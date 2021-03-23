@@ -1,4 +1,4 @@
-Portable Object Compiler (c) 1997-2020.  All Rights Reserved.
+Portable Object Compiler (c) 1997-2021.  All Rights Reserved.
 
 
 GETTING HELP

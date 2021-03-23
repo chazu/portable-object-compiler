@@ -1,4 +1,18 @@
 
+3.3.24  * upgraded config.guess and config.sub to automake 1.11
+
+	* allow configuration ./configure AR=echo FINAL_AR='ar cr'
+	  "Solaris recommended strategy is to remove the existing archive,
+           and recreate it with a single ar invocation." (not our default)
+
+	* add fix for struct __attribute__ ((__aligned__ (16))) __mcontext
+	  in Cygwin64 cygwin/signal.h  (Cygwin32 was OK)
+	  (thanks to Stephen Harris for reporting this)
+
+	* add i686-pc-cygwin (PE32 executable (console) Intel 80386)
+	
+	* add x86_64-unknown-cygwin (PE32+ executable (console) x86-64)
+
 3.3.23  * add pkg/objc.ebuild for build of XPAK Gentoo Linux package
 
 	* change top Makefile compiler target for gmake -j (multiple jobs)

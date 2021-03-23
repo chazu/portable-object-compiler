@@ -1,6 +1,6 @@
 
 /*
- * Copyright (c) 1997,98,99,2000,2001,2002,2011,2014,2019,2020 David Stes.
+ * Copyright (c) 1997,2021 David Stes.
  *
  * This library is free software; you can redistribute it and/or modify it
  * under the terms of the GNU Library General Public License as published 
@@ -16,7 +16,7 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  *
- * $Id: yacc.ym,v 1.20 2020/10/05 08:32:04 stes Exp $
+ * $Id: yacc.ym,v 1.21 2021/03/23 12:39:49 stes Exp $
  */
 
 %{
@@ -788,8 +788,12 @@ shiftexpr : plusexpr
      { $$ = mkbinexpr($1,[$2 strCopy],$3); }
   ;
 
+/* CYGWIN64 has struct __attribute__ ((aligned (16))) __mcontext in signal.h */
+
 structspec : structkeyw identifier '{' optcomponentdeflist '}'
      { $$ = mkstructspec($1,$2,$3,$4,$5); }
+  | structkeyw gnuattribdecl identifier '{' optcomponentdeflist '}'
+     { $$ = mkstructspec(mkpostfixdecl($1,$2),$3,$4,$5,$6); }
   | structkeyw typeword '{' optcomponentdeflist '}'
      { $$ = mkstructspec($1,$2,$3,$4,$5); }
   | structkeyw '{' optcomponentdeflist '}'

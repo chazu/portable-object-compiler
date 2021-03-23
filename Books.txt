@@ -1,27 +1,20 @@
 
-For Smalltalk-80 :
-
-1.  Smalltalk-80: The Language and its Implementation
-	Adele Goldberg and David Robson
-	Xerox Palo Alto Research Center
-	Addison-Wesley Publishing Company, Reading,
-	Massachussetts, Menlo Park, California, 1983, ISBN 0-201-11371-6
-
 For Objective-C :
 
-1.  Object Oriented Programming: An Evolutionary Approach. (2nd ed.)
-	Brad J. Cox, Andrew J. Novobilski
-	Addison-Wesley Publishing Company, Reading,
-	Massachusetts, 1986,1991. ISBN: 0-201-54834-8.
-    	Spanish: ISBN 0-201-60112-5, Japanese: ISBN 4-8101-8046-8
-
-2.  The object oriented pre-compiler: programming Smalltalk 80 methods in C language
+1.  The object oriented pre-compiler: programming Smalltalk 80 methods in C language
         Brad L. Cox, ITT Programming Technology Center, Stratford, Connecticut
 	Volume 18, Issue 1, January 1983, ACM SIGPLAN Notices
     	Association for Computing Machinery,New York,NY,United States
 	ISSN:0362-1340, EISSN:1558-1160
 
 	https://dl.acm.org/doi/abs/10.1145/948093.948095
+
+2.  Objects, Icons and Software-ICs
+	Brad Cox and Bill Hunt
+	Byte Magazine Volume 11 Issue 08: Object-Oriented Languages 
+	Special Issue on Object-Oriented Languages, pp. 186-202
+
+	https://archive.org/details/byte-magazine-1986-08/mode/2up
 
 3.  Producer, A Tool for Translating Smalltalk-80 to Objective-C
 	Brad J. Cox and Kurt J. Schmucker
@@ -32,10 +25,12 @@ For Objective-C :
 
 	https://doi.org/10.1145/38765.38846
 
-4.  Objects, Icons and Software-ICs
-	Brad Cox and Bill Hunt
-	Byte Magazine Volume 11 Issue 08: Object-Oriented Languages 
-	Special Issue on Object-Oriented Languages, pp. 186-202
+4.  Object Oriented Programming: An Evolutionary Approach. (2nd ed.)
+	Brad J. Cox, Andrew J. Novobilski
+	Addison-Wesley Publishing Company, Reading,
+	Massachusetts, 1986,1991. ISBN: 0-201-54834-8.
+    	Spanish: ISBN 0-201-60112-5, Japanese: ISBN 4-8101-8046-8
 
-	https://archive.org/details/byte-magazine-1986-08/mode/2up
-
+5.  Taskmaster ECOOP position paper
+	Brad Cox
+        ECOOP'91, Workshop on Exception Handling And OOPLS, Geneva, Switzerland

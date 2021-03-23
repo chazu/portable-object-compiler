@@ -17,6 +17,8 @@ i586-msvc-win32 (msvc)
 i586-lcc-win32 (lcc)
 i586-djgpp-windows95 (gcc)
 i586-cygwin32-windows95 (gcc)
+x86_64-unknown-cygwin (gcc 10.2, PE32+ executable (console) x86-64, postlink)
+i686-pc-cygwin (PE32 executable (console) Intel 80386, gcc 10.2, postlink)
 
 m68k-unknown-amigaos (gcc) port by Fred Fish
 powerpc-unknown-amigaos (AmigaOS.net SDK 53.30)

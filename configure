@@ -2379,7 +2379,7 @@ test -n "$target_alias" &&
 
 
 TARGET=$target;
-OBJC1VERSION=3.3.23;
+OBJC1VERSION=3.3.24;
 NAME=objc-${OBJC1VERSION};
 WARNING="DO NOT EDIT -- configure ${NAME} ${TARGET}";
 
@@ -4122,10 +4122,43 @@ fi
 
    ;;
  *)
-   if  -z "$FINAL_AR"
-then
-   FINAL_AR='echo'
+   # Extract the first word of "echo", so it can be a program name with args.
+set dummy echo; ac_word=$2
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
+$as_echo_n "checking for $ac_word... " >&6; }
+if ${ac_cv_prog_FINAL_AR+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  if test -n "$FINAL_AR"; then
+  ac_cv_prog_FINAL_AR="$FINAL_AR" # Let the user override the test.
+else
+as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  test -z "$as_dir" && as_dir=.
+    for ac_exec_ext in '' $ac_executable_extensions; do
+  if { test -f "$as_dir/$ac_word$ac_exec_ext" && $as_test_x "$as_dir/$ac_word$ac_exec_ext"; }; then
+    ac_cv_prog_FINAL_AR="echo"
+    $as_echo "$as_me:${as_lineno-$LINENO}: found $as_dir/$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+  done
+IFS=$as_save_IFS
+
+  test -z "$ac_cv_prog_FINAL_AR" && ac_cv_prog_FINAL_AR="echo"
 fi
+fi
+FINAL_AR=$ac_cv_prog_FINAL_AR
+if test -n "$FINAL_AR"; then
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $FINAL_AR" >&5
+$as_echo "$FINAL_AR" >&6; }
+else
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+fi
+
 
    ;;
 esac
