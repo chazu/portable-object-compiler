@@ -103,8 +103,10 @@ freebsd10.4 clang 3.4
 freebsd11.2 clang 6.0
 dragonfly 5.3 gcc 8.1
 ubuntu 18 gcc 7.3
+debian 11 gcc 10.2.1
 SUSE sles15 gcc 7.1
 fedora 29 gcc 8.2.1 flex 2.6.1 
+fedora 34 gcc 11.0.1 flex 2.6.4 byacc 2.0
 openindiana hipster gcc9.2
 x86_64-unknown-linux-gnu alpinelinux 3.9.6 gcc8.3
 x86_64-unknown-linux-gnu Gentoo default/linux/amd64/17.1 (stable) gcc 9.3.0

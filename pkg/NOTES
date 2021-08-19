@@ -58,9 +58,11 @@ For FreeBSD 10
 
 For Ubuntu
 	
+	apt-get install devscripts (for debuild)	
+
 	mv debian ../
 	cd ..
-	date -R >> changelog
+	date -R >> debian/changelog
 	debuild -us -uc -b
 
 For RedHat
@@ -68,8 +70,8 @@ For RedHat
 	install rpm-build for build in $HOME/rpmbuild
 
 	cp objc.spec $HOME/rpmbuild/SPECS/objc.spec
-	cp libobjc.spec $HOME/rpmbuild/SPECS/libobjc.spec
+	cp objclibs.spec $HOME/rpmbuild/SPECS/objclibs.spec
 	cd $HOME
-	rpmbuild -bb rpmbuild/SPECS/objc.spec
-	rpmbuild -bb rpmbuild/SPECS/libobjc.spec
+	rpmbuild -bb --nodebuginfo rpmbuild/SPECS/objc.spec
+	rpmbuild -bb --nodebuginfo rpmbuild/SPECS/objclibs.spec
 
