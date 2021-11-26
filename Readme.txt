@@ -34,10 +34,6 @@ The latest sources of the Portable Object Compiler are available at:
 
 	https://sourceforge.net/projects/objc/
 
-Or from my home page at:
-
-	http://users.pandora.be/stes/
-
 WHAT'S INCLUDED
 ---------------
 

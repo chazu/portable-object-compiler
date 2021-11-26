@@ -1,6 +1,6 @@
 dnl
 dnl autoconf source file for objc-2.x.x configure script
-dnl $Id: configure.in,v 1.88 2021/11/26 15:43:44 stes Exp $
+dnl $Id: configure.in,v 1.89 2021/11/26 17:40:18 stes Exp $
 dnl
 dnl note: we're in the process of converting the old configure script
 dnl (configure.orig) to an autoconf script (long term project)
@@ -732,7 +732,7 @@ then
     fi
   fi
 else
-  AC_MSG_CHECKING(postlink whether to use postlink)
+  AC_MSG_CHECKING(compiler not using common storage)
   ac_cv_postlink=yes;
 fi
 rm -rf $ac_clean_files

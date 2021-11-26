@@ -5138,8 +5138,8 @@ then
     fi
   fi
 else
-  { $as_echo "$as_me:${as_lineno-$LINENO}: checking postlink whether to use postlink" >&5
-$as_echo_n "checking postlink whether to use postlink... " >&6; }
+  { $as_echo "$as_me:${as_lineno-$LINENO}: checking compiler not using common storage" >&5
+$as_echo_n "checking compiler not using common storage... " >&6; }
   ac_cv_postlink=yes;
 fi
 rm -rf $ac_clean_files
