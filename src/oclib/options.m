@@ -16,7 +16,7 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  *
- * $Id: options.m,v 1.6 2019/03/06 20:38:16 stes Exp $
+ * $Id: options.m,v 1.8 2021/11/26 15:49:49 stes Exp $
  */
 
 #include "config.h"
@@ -29,7 +29,8 @@ int o_gnu;
 int o_darwin;
 int o_vms;
 int o_hpux;
-int o_sunm64;
+int o_sunstudio;
+int o_m64;
 int o_refcnt;
 int o_ppi;
 int o_watcom;
@@ -132,7 +133,8 @@ defoptions(void)
   o_msdos = 0;
   o_gnu = 0;
   o_darwin = 0; /* Apple darwin17.7 keyword swift,ios,macosx */
-  o_sunm64 = 0;
+  o_sunstudio = 0;
+  o_m64 = 0;
   o_warnings = 1;
   o_vms = 0;
   o_hpux = 0;

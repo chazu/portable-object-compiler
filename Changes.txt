@@ -1,4 +1,20 @@
 
+3.3.25	* add gcc 10.3 OpenIndiana to Platforms.txt
+
+	* OpenIndiana gcc 10.3 : define __builtin_va_start (again)
+
+	* add _prelink.o to the bootstrap makefile install
+	  so that bootstrap compiler can create a postlink compiler
+
+	* most UNIX compilers use common storage; but not gcc 10
+	  (places tentative definitions in .bss instead of .common now)
+	  due to gcc 10 changing their default from common to no-common
+	  https://gcc.gnu.org/gcc-10/porting_to.html
+	  see common storage in Appendix A10.2 in [Kernighan and Ritchie, 1988]
+	  (tentative definitions)
+
+	* improve configure script so that it deals with gcc 10.3 postlink test
+
 3.3.24  * upgraded config.guess and config.sub to automake 1.11
 
 	* allow configuration ./configure AR=echo FINAL_AR='ar cr'

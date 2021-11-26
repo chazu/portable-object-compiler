@@ -264,8 +264,10 @@ void setoptions(id aCltn)
       o_vms++;
     } else if (!strcmp(t,"-hpux")) {
       o_hpux++;
-    } else if (!strcmp(t,"-sunm64")) {
-      o_sunm64++;
+    } else if (!strcmp(t,"-sunstudio")) {
+      o_sunstudio++;
+    } else if (!strcmp(t,"-m64")) {
+      o_m64++;
     } else if (!strcmp(t,"-refcnt")) {
       o_refcnt++;
       o_selfassign = 0; /* because receiver of a message is not counted */
@@ -486,7 +488,7 @@ void setfirstlinetag(void)
     definebuiltinfun("__builtin_va_end");
     definebuiltinfun("__builtin_va_arg");
     /* Solaris 11.3 defines va_start as function when -m64 */
-    if (!o_sunm64) definebuiltinfun("__builtin_va_start");
+    if (!(o_sunstudio && o_m64)) definebuiltinfun("__builtin_va_start");
     definebuiltinfun("__builtin_expect");
     definebuiltinfun("__builtin_strchr");
     definebuiltinfun("__builtin_strcmp");
@@ -521,7 +523,7 @@ void setfirstlinetag(void)
     /* the following are not really gnu, they're SUN headers */
     /* Solaris 11.3 defines va_arg_incr as function when -m64 */
     definebuiltinvar("__builtin_va_alist");
-    if (!o_sunm64) definebuiltinfun("__builtin_va_arg_incr");
+    if (!(o_sunstudio && o_m64)) definebuiltinfun("__builtin_va_arg_incr");
   }
 }
 

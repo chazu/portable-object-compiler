@@ -2379,7 +2379,7 @@ test -n "$target_alias" &&
 
 
 TARGET=$target;
-OBJC1VERSION=3.3.24;
+OBJC1VERSION=3.3.25;
 NAME=objc-${OBJC1VERSION};
 WARNING="DO NOT EDIT -- configure ${NAME} ${TARGET}";
 
@@ -3769,6 +3769,11 @@ case $target in
 	*beos*) OC_OCARGS="-msdos -watcom -refBind";;
 # since -gnu extensions are enabled by default, we'd better remove this switch
 	*apple-darwin*) OC_OCARGS="-gnu -darwin";;
+	*solaris*)
+case $ac_cv_c_compiler_gnu in
+	yes) OC_OCARGS="-gnu";;
+	no) OC_OCARGS="-gnu -sunstudio";;
+esac;;
 	*) OC_OCARGS="-gnu";;
 esac
 case $ac_cv_shortlinetags in
@@ -5133,7 +5138,8 @@ then
     fi
   fi
 else
-  as_fn_error $? "postlink test failed: $e1 or $e2 compile test failed" "$LINENO" 5
+  { $as_echo "$as_me:${as_lineno-$LINENO}: checking postlink whether to use postlink" >&5
+$as_echo_n "checking postlink whether to use postlink... " >&6; }
   ac_cv_postlink=yes;
 fi
 rm -rf $ac_clean_files

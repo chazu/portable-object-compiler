@@ -1,9 +1,9 @@
 #!/bin/sh
 #
 # script to precompile compiler to C (bootstrap package)
-# $Id: bootSrc,v 1.35 2021/03/23 14:14:15 stes Exp $
+# $Id: bootSrc,v 1.39 2021/11/26 16:31:47 stes Exp $
 
-DST=$HOME/src/objc-bootstrap-3.3.24
+DST=$HOME/src/objc-bootstrap-3.3.25
 
 if test -f Makefile
 then
@@ -31,9 +31,11 @@ test -d $DST || mkdir $DST
 test -d $DST/util || mkdir $DST/util
 cp configure $DST/configure
 cp config.h.in $DST
+cp src/objc/_prelink.c $DST
 cp src/objc/objc.in $DST
 cp src/objc/objc.com $DST
 cp util/BOOTSTRAP $DST
+cp License.txt $DST
 cp util/Makefile.in $DST
 cp util/Makefile.vms $DST
 cp util/config.sub $DST/util/

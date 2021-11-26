@@ -1,6 +1,6 @@
 
 /*
- * Copyright (c) 1998,2017,2019 David Stes.
+ * Copyright (c) 1998,2017,2021 David Stes.
  *
  * This library is free software; you can redistribute it and/or modify it
  * under the terms of the GNU Library General Public License as published 
@@ -16,7 +16,7 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  *
- * $Id: options.h,v 1.6 2019/03/06 20:38:16 stes Exp $
+ * $Id: options.h,v 1.8 2021/11/26 15:49:49 stes Exp $
  */
 
 void defoptions(void);
@@ -24,7 +24,8 @@ void defoptions(void);
 extern int o_warnings;
 extern int o_gnu;
 extern int o_darwin;
-extern int o_sunm64;
+extern int o_m64;
+extern int o_sunstudio;
 extern int o_hpux;
 extern int o_vms;
 extern int o_refcnt;

@@ -1,13 +1,13 @@
 
 #
 # Portable Object Compiler (c) 1996-2020. All Rights Reserved.
-# $Id: Makefile.in,v 1.23 2020/10/09 12:49:32 stes Exp $
+# $Id: Makefile.in,v 1.24 2021/11/26 14:55:06 stes Exp $
 #
 
 CD=cd
 RM=rm
 @SET_MAKE@
-MKDIR=mkdir
+MKDIR=@MKDIR@
 INSTALLDIR=@INSTALLDIR@
 LIBROOTDIR=@LIBROOTDIR@
 DATAROOTDIR=@DATAROOTDIR@

@@ -1,11 +1,12 @@
 
 INSTALLDIR=@INSTALLDIR@
 BINDIR=$(INSTALLDIR)/bin
+LIBDIR=@LIBDIR@
 
 # DNDEBUG important because src was preprocessed with DNDEBUG too
 CC=@CC@ -DNDEBUG @OC_CCARGS@ 
 CP=cp
-MKDIR=mkdir
+MKDIR=@MKDIR@
 RM=rm
 CHMOD=chmod
 
@@ -126,7 +127,7 @@ OBJS= pointer.o\
 OBJC1OBJS=_objc1.o objc1.o
 PLINKOBJS=_plink.o postlink.o
 
-default : objc1 postlink
+default : objc1 postlink _prelink.o
 
 objc1 : $(OBJC1OBJS) $(OBJS) 
 	$(CC) $(OBJC1OBJS) $(OBJS) -o objc1
@@ -143,6 +144,8 @@ install :
 	-$(CHMOD) 755 $(BINDIR)/objc1
 	-$(CP) postlink $(BINDIR)/postlink
 	-$(CHMOD) 755 $(BINDIR)/postlink
+	-test -d $(LIBDIR) || $(MKDIR) $(LIBDIR)
+	-$(CP) _prelink.o $(LIBDIR)/_prelink.o
 
 clean :
 	-$(RM) *.o

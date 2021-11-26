@@ -2,7 +2,7 @@
 # Portable Object Compiler (c) 1997,2020.  All Rights Reserved.
 # Driver Script (@NAME@)
 #
-# $Id: objc.in,v 1.19 2020/10/02 06:59:34 stes Exp $
+# $Id: objc.in,v 1.20 2021/11/26 15:49:46 stes Exp $
 #
 # @WARNING@
 
@@ -246,7 +246,7 @@ do
     -m32)            ocargs="$ocargs";
                      ccargs="$ccargs $arg";libdirname="lib";
                      ldargs="$ldargs $arg";; # OpenIndiana GCC9.2
-    -m64)            ocargs="$ocargs -sunm64";
+    -m64)            ocargs="$ocargs -m64";
                      ccargs="$ccargs $arg";libdirname="lib/amd64";
                      ldargs="$ldargs $arg";; # SunStudio
     -32)             ccargs="$ccargs $arg";ldargs="$ldargs $arg";; # SGI
