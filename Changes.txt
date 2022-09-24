@@ -1,4 +1,7 @@
 
+3.3.26	* change configure and Makefile to use VPATH
+	  configure now should work for a build outside the source code tree
+
 3.3.25	* add gcc 10.3 OpenIndiana to Platforms.txt
 
 	* OpenIndiana gcc 10.3 : define __builtin_va_start (again)

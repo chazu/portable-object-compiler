@@ -2,13 +2,15 @@
 #
 # Computer Algebra Kit
 # Copyright (c) 1992,2019 Computer Algebra Objects.  All Rights Reserved. 
-# $Id: Makefile.in,v 1.3 2019/03/11 18:48:42 stes Exp $
+# $Id: Makefile.in,v 1.4 2022/09/24 17:22:29 stes Exp $
 #
 
 #
 # This Makefile should work with UNIX make's (like AT&T, BSD, GNU make)
 #
 
+SRCDIR=@srcdir@
+BUILDDIR=@builddir@
 MKDIR=mkdir
 SED=sed
 OBJC=@OBJC@
@@ -32,6 +34,8 @@ LIBSUFFIX=@LIBSUFFIX@
 LIBDIR=@LIBDIR@
 IFLAGS=@CAKIT_IFLAGS@
 MFLAGS=$(@MFLAGS@)
+
+VPATH=$(SRCDIR)
 
 .SUFFIXES: .m 
 

@@ -1,13 +1,15 @@
 
 #
 # Portable Object Compiler (c) 1997,98.  All Rights Reserved. 
-# $Id: Makefile.in,v 1.9 2019/03/27 12:37:06 stes Exp $
+# $Id: Makefile.in,v 1.10 2022/09/24 17:22:31 stes Exp $
 #
 
 #
 # This Makefile should work with UNIX make (like SysV, BSD, GNU make)
 #
 
+SRCDIR=@srcdir@
+BUILDDIR=@builddir@
 CD=cd
 MKDIR=mkdir
 STRIP=strip
@@ -44,6 +46,9 @@ MFLAGS=$(@MFLAGS@)
 #
 
 OBJC=@XOBJC@
+
+VPATH=$(SRCDIR)
+
 .SUFFIXES: .m .lm .ym
 
 OBJCSCRIPT=objc

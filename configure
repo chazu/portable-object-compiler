@@ -2379,7 +2379,7 @@ test -n "$target_alias" &&
 
 
 TARGET=$target;
-OBJC1VERSION=3.3.25;
+OBJC1VERSION=3.3.26;
 NAME=objc-${OBJC1VERSION};
 WARNING="DO NOT EDIT -- configure ${NAME} ${TARGET}";
 
@@ -4284,24 +4284,30 @@ esac
 # allow configure EXTRA_MFLAGS=  to specify some extra .m flag
 
 
+# the following is because POC is built against the libraries
+# that come with the source directories (not against the libraries
+# that are installed on the system with the bootstrap compiler)
+# since 3.3.26 the Makefile has $(SRCDIR) set so use path relative to SRCDIR
+
 UP="..$PATHSEP"
+ISRCDIR="-I\$(SRCDIR)${PATHSEP}"
 case $OBJC in
         objc*)  NOI="-noI";
 		NOLIBS="-noLibs";
-                OBJCRT_INC="-noI -I${UP}${UP}include${PATHSEP}objcrt";
+                OBJCRT_INC="-noI ${ISRCDIR}${UP}${UP}include${PATHSEP}objcrt";
 		;;
 	*)      NOI="";
 		NOLIBS="";
-		OBJCRT_INC="-I${UP}${UP}include${PATHSEP}objcrt";
+		OBJCRT_INC="${ISRCDIR}${UP}${UP}include${PATHSEP}objcrt";
 		;;
 esac
 
-OBJPAK_INC="-I${UP}${UP}include${PATHSEP}objpak"
+OBJPAK_INC="${ISRCDIR}${UP}${UP}include${PATHSEP}objpak"
 
 OBJCRT_IFLAGS="$NOI"
 OBJPAK_IFLAGS="$OBJCRT_INC"
 OCLIB_IFLAGS="$OBJCRT_INC $OBJPAK_INC"
-OBJC_IFLAGS="-I. $OBJCRT_INC $OBJPAK_INC -I${UP}oclib"
+OBJC_IFLAGS="-I. $OBJCRT_INC $OBJPAK_INC ${ISRCDIR}${UP}oclib"
 CAKIT_IFLAGS="-I. $OBJCRT_INC"
 
 OBJC_BOOTLIBS="${NOLIBS} ${UP}oclib${PATHSEP}oclib.${LIBSUFFIX}"
