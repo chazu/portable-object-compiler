@@ -2,7 +2,7 @@
 #
 # Computer Algebra Kit
 # Copyright (c) 1992,2019 Computer Algebra Objects.  All Rights Reserved. 
-# $Id: Makefile.in,v 1.4 2022/09/24 17:22:29 stes Exp $
+# $Id: Makefile.in,v 1.5 2022/09/25 14:36:51 stes Exp $
 #
 
 #
@@ -43,7 +43,7 @@ LIBRARY=cakit.a
 SHLIB=libcakit@DOTSHLIBSUFFIX@
 
 .m.o:
-	$(OBJC) -c $*.m $(MFLAGS) $(EXTRA_MFLAGS) $(IFLAGS)
+	$(OBJC) -c $< $(MFLAGS) $(EXTRA_MFLAGS) $(IFLAGS)
 	$(AR) $(LIBRARY) $@
 
 OBJFILES=\

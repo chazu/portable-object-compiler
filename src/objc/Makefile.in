@@ -1,7 +1,7 @@
 
 #
 # Portable Object Compiler (c) 1997,98.  All Rights Reserved. 
-# $Id: Makefile.in,v 1.10 2022/09/24 17:22:31 stes Exp $
+# $Id: Makefile.in,v 1.12 2022/09/25 15:08:15 stes Exp $
 #
 
 #
@@ -75,17 +75,17 @@ POSTLINKFILES=\
 	postlink.$(OBJSUFFIX)
 
 .m.$(OBJSUFFIX):
-	$(OBJC) -c $*.m $(MFLAGS) $(EXTRA_MFLAGS) $(IFLAGS)
+	$(OBJC) -c $< $(MFLAGS) $(EXTRA_MFLAGS) $(IFLAGS)
 
 .lm.$(OBJSUFFIX):
-	$(LEX) $*.lm
+	$(LEX) $<
 	-$(CP) $(LEXYYC) $*.m
 	$(OBJC) -c $(MFLAGS) $(EXTRA_MFLAGS) $(IFLAGS) $*.m
 	-$(RM) $(LEXYYC)
 	-$(RM) $*.m
 
 .ym.$(OBJSUFFIX):
-	$(YACC) $*.ym
+	$(YACC) $<
 	-$(CP) $(YTABH) $*.h
 	-$(CP) $(YTABC) $*.m
 	$(OBJC) -c $(MFLAGS) $(EXTRA_MFLAGS) $(IFLAGS) $*.m
@@ -124,11 +124,11 @@ install : default
 	-$(CHMOD) 644 $(LIBDIR)/$(PREDLLFILE)
 	-$(INSTALL) $(POSTLINK) $(BINDIR)
 	-$(CHMOD) 755 $(BINDIR)/$(POSTLINK)
-	-$(INSTALL) cvtimport $(BINDIR)
+	-$(INSTALL) $(SRCDIR)/cvtimport $(BINDIR)
 	-$(CHMOD) 755 $(BINDIR)/cvtimport
-	-$(INSTALL) objchelp.txt $(LIBDIR)
+	-$(INSTALL) $(SRCDIR)/objchelp.txt $(LIBDIR)
 	-$(CHMOD) 644 $(LIBDIR)/objchelp.txt
-	-$(INSTALL) objcdlso.ld $(LIBDIR)
+	-$(INSTALL) $(SRCDIR)/objcdlso.ld $(LIBDIR)
 	-$(CHMOD) 644 $(LIBDIR)/objcdlso.ld
 
 installruntime : runtime

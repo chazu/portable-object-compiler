@@ -1,7 +1,7 @@
 
 #
 # Portable Object Compiler (c) 1996-2022. All Rights Reserved.
-# $Id: Makefile.in,v 1.10 2022/09/24 17:22:33 stes Exp $
+# $Id: Makefile.in,v 1.11 2022/09/25 14:36:55 stes Exp $
 #
 
 #
@@ -45,7 +45,7 @@ OBJFILES=\
 	objcrt.$(OBJSUFFIX)
 
 .m.o:
-	$(OBJC) -c $*.m $(MFLAGS) $(EXTRA_MFLAGS) $(IFLAGS)
+	$(OBJC) -c $< $(MFLAGS) $(EXTRA_MFLAGS) $(IFLAGS)
 	$(AR) $(LIBRARY) $@ 
 
 $(LIBRARY) : $(OBJFILES)

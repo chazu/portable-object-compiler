@@ -1,7 +1,7 @@
 
 #
 # Portable Object Compiler (c) 1996-2020. All Rights Reserved.
-# $Id: Makefile.in,v 1.25 2022/09/24 17:22:22 stes Exp $
+# $Id: Makefile.in,v 1.26 2022/09/25 14:58:24 stes Exp $
 #
 
 SRCDIR=@srcdir@
@@ -16,9 +16,6 @@ DATAROOTDIR=@DATAROOTDIR@
 CP=@CP@
 HDRDIR=@HDRDIR@
 MANDIR=@MANDIR@
-
-VPATH=$(SRCDIR)/man/man1:$(SRCDIR)/man/man3:$(SRCDIR)/include/ppi:\
- $(SRCDIR)/include/objcrt:$(SRCDIR)/include/objpak:$(SRCDIR)/include/cakit
 
 default ::
 	$(MAKE) compiler
@@ -106,26 +103,26 @@ installruntime ::
 
 #installman only installs manpages (for objc-doc.apk package)
 
-installman : $(MAN1PAGES) $(MAN3PAGES)
+installman ::
 	test -d $(INSTALLDIR) || $(MKDIR) $(INSTALLDIR)
 	test -d $(DATAROOTDIR) || $(MKDIR) $(DATAROOTDIR)
 	test -d $(MANDIR) || $(MKDIR) $(MANDIR)
 	test -d $(MANDIR)/man1 || $(MKDIR) $(MANDIR)/man1
-	$(CP) $(MAN1PAGES) $(MANDIR)/man1
+	-$(CD) $(SRCDIR)/man/man1; $(CP) $(MAN1PAGES) $(MANDIR)/man1
 	test -d $(MANDIR)/man3 || $(MKDIR) $(MANDIR)/man3
-	$(CP) $(MAN3PAGES) $(MANDIR)/man3
+	-$(CD) $(SRCDIR)/man/man3; $(CP) $(MAN3PAGES) $(MANDIR)/man3
 
-installinclude : $(PPIHDRS) $(OBJCRTHDRS) $(OBJPAKHDRS) $(CAKITHDRS)
+installinclude ::
 	test -d $(INSTALLDIR) || $(MKDIR) $(INSTALLDIR)
 	test -d $(HDRDIR) || $(MKDIR) $(HDRDIR)
 	test -d $(HDRDIR)/ppi    || $(MKDIR) $(HDRDIR)/ppi
 	test -d $(HDRDIR)/objcrt || $(MKDIR) $(HDRDIR)/objcrt
 	test -d $(HDRDIR)/objpak || $(MKDIR) $(HDRDIR)/objpak
 	test -d $(HDRDIR)/cakit  || $(MKDIR) $(HDRDIR)/cakit
-	$(CP) $(PPIHDRS) $(HDRDIR)/ppi
-	$(CP) $(OBJCRTHDRS) $(HDRDIR)/objcrt
-	$(CP) $(OBJPAKHDRS) $(HDRDIR)/objpak
-	$(CP) $(CAKITHDRS) $(HDRDIR)/cakit
+	-$(CD) $(SRCDIR)/include/ppi; $(CP) $(PPIHDRS) $(HDRDIR)/ppi
+	-$(CD) $(SRCDIR)/include/objcrt; $(CP) $(OBJCRTHDRS) $(HDRDIR)/objcrt
+	-$(CD) $(SRCDIR)/include/objpak; $(CP) $(OBJPAKHDRS) $(HDRDIR)/objpak
+	-$(CD) $(SRCDIR)/include/cakit; $(CP) $(CAKITHDRS) $(HDRDIR)/cakit
 
 installcakit : cakit
 	test -d $(INSTALLDIR) || $(MKDIR) $(INSTALLDIR)

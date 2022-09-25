@@ -1,4 +1,6 @@
 
+3.3.27  * fix Makefile for some versions of GNU make due to change in 3.3.26
+
 3.3.26	* change configure and Makefile to use VPATH
 	  configure now should work for a build outside the source code tree
 
