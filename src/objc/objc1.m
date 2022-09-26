@@ -1,6 +1,6 @@
 
 /* 
- * Copyright (c) 1998-2021 David Stes
+ * Copyright (c) 1998-2022 David Stes
  *
  * This library is free software; you can redistribute it and/or modify it
  * under the terms of the GNU Library General Public License as published 
@@ -43,7 +43,7 @@ void printversion(void)
 
 void printcopyright(void)
 {
-  printf("Portable Object Compiler %s (c) 1997-2021.\n",OBJCVERSION);
+  printf("Portable Object Compiler %s (c) 1997-2022.\n",OBJCVERSION);
   printf("Distributed under the terms of the GNU LGPL.\n");
 }
 
