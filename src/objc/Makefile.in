@@ -1,7 +1,7 @@
 
 #
-# Portable Object Compiler (c) 1997,98.  All Rights Reserved. 
-# $Id: Makefile.in,v 1.13 2022/09/26 17:17:10 stes Exp $
+# Portable Object Compiler (c) 1997,98,2022.  All Rights Reserved. 
+# $Id: Makefile.in,v 1.14 2022/09/27 15:04:39 stes Exp $
 #
 
 #
@@ -104,10 +104,10 @@ $(OBJC1PROGRAM) : $(OBJC1FILES) $(DEPENDLIBS)
 	$(OBJC) $(EXTRA_MFLAGS) $(OBJC1FILES) $(BOOTLIBS) -o $(OBJC1PROGRAM)
 
 $(PRELINKFILE) : _prelink.c
-	$(CC) -c $(EXTRA_MFLAGS) _prelink.c
+	$(CC) -c $(EXTRA_MFLAGS) $<
 
 $(PREDLLFILE) : _predll.c
-	$(CC) -c $(EXTRA_MFLAGS) _predll.c
+	$(CC) -c $(EXTRA_MFLAGS) $<
 
 $(POSTLINK) : $(POSTLINKFILES) $(DEPENDLIBS)
 	$(OBJC) $(EXTRA_MFLAGS) $(POSTLINKFILES) $(BOOTLIBS) -o $(POSTLINK)
