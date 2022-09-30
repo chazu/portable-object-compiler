@@ -1,4 +1,4 @@
-set name=pkg.fmri value=pkg://stes/library/objclibs@3.3.28
+set name=pkg.fmri value=pkg://stes/library/objclibs@3.3.30
 set name=pkg.summary value="Portable Object Compiler Shared Libraries"
 set name=variant.arch value=i386
 set name=pkg.description value="Shared Libraries for the Portable Object Compiler.  Only required for applications that links against the shared libraries of the Portable Object Compiler."

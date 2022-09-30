@@ -1,14 +1,23 @@
 
 INSTALLDIR=@INSTALLDIR@
+SRCDIR=@srcdir@
+BUILDDIR=@builddir@
 BINDIR=$(INSTALLDIR)/bin
 LIBDIR=@LIBDIR@
+LIBROOTDIR=@LIBROOTDIR@
 
 # DNDEBUG important because src was preprocessed with DNDEBUG too
-CC=@CC@ -DNDEBUG @OC_CCARGS@ 
+CC=@CC@
+CFLAGS=-DNDEBUG @OC_CCARGS@ @EXTRA_CFLAGS@
 CP=cp
 MKDIR=@MKDIR@
 RM=rm
 CHMOD=chmod
+
+VPATH=$(SRCDIR)
+
+.c.o:
+	$(CC) $(CFLAGS) -c $<
 
 OBJS= pointer.o\
 	compdef.o\
@@ -130,10 +139,10 @@ PLINKOBJS=_plink.o postlink.o
 default : objc1 postlink _prelink.o
 
 objc1 : $(OBJC1OBJS) $(OBJS) 
-	$(CC) $(OBJC1OBJS) $(OBJS) -o objc1
+	$(CC) $(CFLAGS) $(OBJC1OBJS) $(OBJS) -o objc1
 
 postlink : $(PLINKOBJS) $(OBJS) 
-	$(CC) $(PLINKOBJS) $(OBJS) -o postlink
+	$(CC) $(CFLAGS) $(PLINKOBJS) $(OBJS) -o postlink
 
 install :
 	-test -d $(INSTALLDIR) || $(MKDIR) $(INSTALLDIR)
@@ -144,6 +153,7 @@ install :
 	-$(CHMOD) 755 $(BINDIR)/objc1
 	-$(CP) postlink $(BINDIR)/postlink
 	-$(CHMOD) 755 $(BINDIR)/postlink
+	-test -d $(LIBROOTDIR) || $(MKDIR) $(LIBROOTDIR)
 	-test -d $(LIBDIR) || $(MKDIR) $(LIBDIR)
 	-$(CP) _prelink.o $(LIBDIR)/_prelink.o
 

@@ -1,4 +1,8 @@
 
+3.3.30  * create separate util/configure.in for bootstrap compiler
+
+	  fix util/Makefile.in to use VPATH for build outside source code tree
+
 3.3.29  * change rule of compile of _prelink.c to use $< due to change 3.3.26
 
 3.3.28	* change compile of _prelink.o to $(CC) due to change in 3.3.26
