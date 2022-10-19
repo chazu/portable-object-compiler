@@ -9,4 +9,5 @@ objc: Smalltalk 80's interpretatation of messaging; binding of a message to
 objc: its target routine is done at run time.  
 objc: 
 objc: 
-objc: http://users.pandora.be/stes/compiler.html  
+objc: https://sourceforge.net/projects/objc
+

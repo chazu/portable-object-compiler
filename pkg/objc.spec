@@ -1,10 +1,10 @@
 Summary: Portable Object Compiler
 Name: objc
-Version: 3.3.25
+Version: 3.3.30
 Release: 1%{?dist}
 Group: Applications/File
 License: GPLv2+
-Source: http://users.pandora.be/stes/objc-%{version}.tar.gz
+Source: https://sourceforge.net/projects/objc/files/src/objc-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 %description
@@ -12,7 +12,7 @@ The Portable Object Compiler, a language and a runtime library for producing C p
 
 %prep
 %setup -q
-./configure OBJCDIR=%{_prefix} --prefix=$RPM_BUILD_ROOT%{_prefix}
+./configure OBJCDIR=%{_prefix} --with-postlink --prefix=$RPM_BUILD_ROOT%{_prefix}
 
 %build
 
@@ -153,6 +153,9 @@ rm -rf $RPM_BUILD_ROOT
 %doc Beos.txt Books.txt Changes.txt Ibmvac.txt Install.txt Intro.txt Lcc.txt License.txt Mpw.txt Platform.txt Readme.txt Visual.txt Vms.txt Watcom.txt
 
 %changelog
+* Wed Oct 19 2022 David Stes <stes@telenet.be> 3.3.30
+Update for 3.3.30
+
 * Fri Nov 26 2021 David Stes <stes@telenet.be> 3.3.25
 Update for 3.3.25
 

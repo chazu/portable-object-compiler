@@ -1,17 +1,17 @@
 # Contributor: David Stes <stes@telenet.be>
 # Maintainer: David Stes <stes@telenet.be>
 pkgname=objc
-pkgver=3.3.22
+pkgver=3.3.30
 pkgrel=1
 pkgdesc="Portable Object Compiler"
-url="http://users.telenet.be/stes/compiler.html"
+url="https://sourceforge.net/projects/objc"
 arch="all"
 license="LGPL-2.0-or-later"
 depends="musl "
 makedepends="objc flex byacc"
 install=""
 subpackages="$pkgname-doc"
-source="http://users.telenet.be/stes/$pkgname-$pkgver.tar.gz"
+source="https://sourceforge.net/projects/objc/files/src/$pkgname-$pkgver.tar.gz"
 builddir="$srcdir/$pkgname-$pkgver"
 
 # normally they want to make DESTDIR="$pkgdir" install

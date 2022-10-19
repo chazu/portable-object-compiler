@@ -38,5 +38,5 @@ Compatibility: PR2
 
                Additional information can be found at:
 
-                   http://users.pandora.be/stes/compiler.html
+                   http://objc.sourceforge.net
 

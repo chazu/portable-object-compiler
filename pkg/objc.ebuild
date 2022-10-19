@@ -4,8 +4,8 @@
 EAPI=7
 
 DESCRIPTION="Portable Object Compiler"
-HOMEPAGE="http://users.telenet.be/stes/compiler.html"
-SRC_URI="http://users.telenet.be/stes/objc-3.3.22.tar.gz"
+HOMEPAGE="http://objc.sourceforge.net"
+SRC_URI="https://sourceforge.net/projects/objc/files/src/objc-3.3.30.tar.gz"
 
 LICENSE="LGPL-2"
 SLOT="0"

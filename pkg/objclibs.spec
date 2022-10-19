@@ -1,10 +1,10 @@
 Summary: Portable Object Compiler Shared Libraries
 Name: objclibs
-Version: 3.3.24
+Version: 3.3.30
 Release: 1%{?dist}
 Group: Applications/File
 License: GPLv2+
-Source: http://users.pandora.be/stes/objc-%{version}.tar.gz
+Source: https://sourceforge.net/projects/objc/files/src/objc-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 %description
