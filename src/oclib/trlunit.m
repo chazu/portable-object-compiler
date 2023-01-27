@@ -1,6 +1,6 @@
 
 /*
- * Copyright (c) 1998 David Stes.
+ * Copyright (c) 1998-2023 David Stes.
  *
  * This library is free software; you can redistribute it and/or modify it
  * under the terms of the GNU Library General Public License as published 
@@ -16,7 +16,7 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  *
- * $Id: trlunit.m,v 1.4 2000/08/19 21:34:40 stes Exp $
+ * $Id: trlunit.m,v 1.5 2023/01/27 20:19:10 stes Exp $
  */
 
 #include "config.h"
@@ -565,6 +565,8 @@ mystrrchr(const char *s, int c)
 
     /* define an uninitialized global for the entry */
     /* goes into bss segment *if* no matching define entry */
+    if (o_attrcommon)
+      gs("__attribute__((__common__)) ");
     gf("struct useDescriptor *OCU_%s;\n", s);
   }
   return self;
@@ -604,6 +606,8 @@ mystrrchr(const char *s, int c)
   while ((entry = [seq next])) {
     char *s = [entry str];
 
+    if (o_attrcommon)
+      gs("__attribute__((__common__)) ");
     gf("struct useDescriptor *OCU_%s = &_useDesc;\n", s);
   }
 

@@ -2,7 +2,7 @@
 # Portable Object Compiler (c) 1997,2020.  All Rights Reserved.
 # Driver Script (@NAME@)
 #
-# $Id: objc.in,v 1.20 2021/11/26 15:49:46 stes Exp $
+# $Id: objc.in,v 1.21 2023/01/27 20:19:07 stes Exp $
 #
 # @WARNING@
 
@@ -78,6 +78,7 @@ xstr=xstr
 runxstr=@RUNXSTR@
 useoutput=n
 postlink=@POSTLINK@
+attrcommon=@ATTRCOMMON@
 initcall=@INITCALL@
 pager=${MANPAGER-more}
 objcrt=objcrt
@@ -334,6 +335,9 @@ case $verbose in
 esac
 
 objfiles=""
+if [ $attrcommon = 1 ]; then 
+    ocargs="$ocargs -attrcommon "; 
+fi
 if [ $postlink = 1 ]; then 
     ocargs="$ocargs -postlink "; 
     ldargs="$ldargs $plldargs";

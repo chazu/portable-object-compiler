@@ -1,6 +1,6 @@
 
 /*
- * Copyright (c) 1998,99,2002,2017,2019 David Stes.
+ * Copyright (c) 1998,99,2002,2017,2019,2023 David Stes.
  *
  * This library is free software; you can redistribute it and/or modify it
  * under the terms of the GNU Library General Public License as published 
@@ -16,7 +16,7 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  *
- * $Id: options.m,v 1.8 2021/11/26 15:49:49 stes Exp $
+ * $Id: options.m,v 1.9 2023/01/27 20:19:10 stes Exp $
  */
 
 #include "config.h"
@@ -76,6 +76,7 @@ int o_warnundefined;
 int o_warnlocalnst;
 int o_warnnotfound;
 int o_warnmissingmethods;
+int o_attrcommon;
 int o_postlink;
 char *o_infile;
 char *o_outfile;
@@ -112,6 +113,7 @@ defoptions(void)
   o_seltranslation = 1;
   o_inlinecache = 0;
   o_nolinetags = 0;
+  o_attrcommon = 0;
   o_postlink = 0;
   o_shareddata = 1;
   o_refbind = 0;		/* force a reference to the BIND() function - Metrowerks */

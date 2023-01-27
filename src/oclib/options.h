@@ -1,6 +1,6 @@
 
 /*
- * Copyright (c) 1998,2017,2021 David Stes.
+ * Copyright (c) 1998-2023 David Stes.
  *
  * This library is free software; you can redistribute it and/or modify it
  * under the terms of the GNU Library General Public License as published 
@@ -16,7 +16,7 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  *
- * $Id: options.h,v 1.8 2021/11/26 15:49:49 stes Exp $
+ * $Id: options.h,v 1.9 2023/01/27 20:19:10 stes Exp $
  */
 
 void defoptions(void);
@@ -73,6 +73,7 @@ extern int o_warnundefined;
 extern int o_warnlocalnst;
 extern int o_warnnotfound;
 extern int o_warnmissingmethods;
+extern int o_attrcommon;
 extern int o_postlink;
 extern char *o_infile;
 extern char *o_outfile;

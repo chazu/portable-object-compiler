@@ -1,6 +1,6 @@
 dnl
 dnl autoconf source file for objc-2.x.x configure script
-dnl $Id: configure.in,v 1.94 2022/09/30 16:03:06 stes Exp $
+dnl $Id: configure.in,v 1.95 2023/01/27 20:18:59 stes Exp $
 dnl
 dnl note: we're in the process of converting the old configure script
 dnl (configure.orig) to an autoconf script (long term project)
@@ -25,10 +25,18 @@ AC_ARG_WITH(prefixed-names,
 dnl runtime initialization options are import
 dnl see documentation (manual) for more info on postlink init vs. automatic
 dnl initialization
+dnl automatic initialisation uses tentative definitions (common storage)
+dnl there are 2 cases here : traditional ANSI C common storage
+dnl and the gcc 10 __attribute__((__common__))
 
 AC_ARG_WITH(postlink,
   [  --with-postlink              use postlink runtime initialization],
   [ac_cv_postlink=$withval]
+)
+
+AC_ARG_WITH(attrcommon,
+  [  --with-attrcommon            use __attribute__ for tentative definitions],
+  [ac_cv_attrcommon=$withval]
 )
 
 dnl generation of # or #line linetags (or none at all)
@@ -55,7 +63,7 @@ AC_CONFIG_AUX_DIR(util)
 AC_CANONICAL_SYSTEM
 
 TARGET=$target;AC_SUBST(TARGET)
-OBJC1VERSION=3.3.30;AC_SUBST(OBJC1VERSION)
+OBJC1VERSION=3.3.31;AC_SUBST(OBJC1VERSION)
 NAME=objc-${OBJC1VERSION};AC_SUBST(NAME)
 WARNING="DO NOT EDIT -- configure ${NAME} ${TARGET}";AC_SUBST(WARNING)
 
@@ -684,7 +692,37 @@ OBJC_HAVE_SYSTEM_CALL=1;AC_SUBST(OBJC_HAVE_SYSTEM_CALL)
 dnl
 dnl Testing for public storage model of C compiler 
 dnl (common storage or strict definition reference)
+dnl stes 27/1/2023
+dnl situation changed with GCC 10 and  dnl __attribute__((__common__))
+dnl by default test whether compilers supports common storage using __attribute
+dnl otherwise fallback to using postlink
 dnl
+
+AC_MSG_CHECKING(whether compiler understands __attribute__((__common__)))
+AC_CACHE_VAL(ac_cv_attrcommon,[
+t1="x$$.c"
+ac_clean_files="$t1"
+# this is the GCC 10+ case
+cat >$t1 <<EOF
+__attribute__((__common__) int a = 7;
+EOF
+echo "$CC -c $t1" >&5
+if $CC -c $t1 2>&5 1>&5
+  then
+    echo " (no)" >&5
+    ac_cv_attrcommon=yes;
+  else
+    echo " (yes)" >&5
+    ac_cv_attrcommon=no;
+fi
+
+],ac_cv_attrcommon=yes,ac_cv_attrcommon=no)
+AC_MSG_RESULT($ac_cv_attrcommon)
+case $ac_cv_attrcommon in
+ yes) ATTRCOMMON=1 ;;
+ no) ATTRCOMMON=0 ;;
+esac
+AC_SUBST(ATTRCOMMON)
 
 AC_MSG_CHECKING(whether to use postlink)
 AC_CACHE_VAL(ac_cv_postlink,[
@@ -694,15 +732,39 @@ e1="x$$"
 e2="y$$"
 ac_clean_files="$e1 $e2 $t1 $t2"
 
+case $ac_cv_attrcommon in
+yes)
+# this is the GCC 10+ case
+cat >$t1 <<EOF
+__attribute__((__common__) int a = 7;
+EOF
+;;
+no)
+# this is the traditional ANSI C case
 cat >$t1 <<EOF
 int a = 7;
 EOF
+;;
+esac
 
+case $ac_cv_attrcommon in
+yes)
+# this is the GCC 10+ case
+cat >$t2 <<EOF
+#include <stdio.h>
+__attribute__((__common__)) int a;
+int main() { exit(a);return a; }
+EOF
+;;
+no)
+# this is the traditional ANSI C case
 cat >$t2 <<EOF
 #include <stdio.h>
 int a;
 int main() { exit(a);return a; }
 EOF
+;;
+esac
 
 echo "$CC $t1 $t2 -o $e1" >&5
 ($CC $t1 $t2 -o $e1) 2>&5 1>&5
@@ -729,7 +791,7 @@ then
     fi
   fi
 else
-  AC_MSG_CHECKING(compiler not using common storage)
+  AC_MSG_CHECKING(compiler not supporting common storage)
   ac_cv_postlink=yes;
 fi
 rm -rf $ac_clean_files

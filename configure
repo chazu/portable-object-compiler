@@ -609,6 +609,7 @@ INITCALL
 OBJCRT_USE_PREFIXED_NAMES
 OBJCRT_SCOPE_OBJCMODULES_EXTERN
 POSTLINK
+ATTRCOMMON
 OBJC_HAVE_SYSTEM_CALL
 OBJCRT_LINUX
 OBJCRT_USE_SNPRINTF
@@ -764,6 +765,7 @@ ac_user_opts='
 enable_option_checking
 with_prefixed_names
 with_postlink
+with_attrcommon
 with_longlinetags
 with_shortlinetags
 with_informix
@@ -1393,6 +1395,7 @@ Optional Packages:
   --without-PACKAGE       do not use PACKAGE (same as --with-PACKAGE=no)
   --with-prefixed-names        use oc_objcInit as initialization function
   --with-postlink              use postlink runtime initialization
+  --with-attrcommon            use __attribute__ for tentative definitions
   --with-longlinetags          generate long #line linetags
   --with-shortlinetags         generate short # linetags
   --with-informix              set SQLCC to Informix esql
@@ -2211,6 +2214,14 @@ fi
 
 
 
+# Check whether --with-attrcommon was given.
+if test "${with_attrcommon+set}" = set; then :
+  withval=$with_attrcommon; ac_cv_attrcommon=$withval
+
+fi
+
+
+
 
 # Check whether --with-longlinetags was given.
 if test "${with_longlinetags+set}" = set; then :
@@ -2379,7 +2390,7 @@ test -n "$target_alias" &&
 
 
 TARGET=$target;
-OBJC1VERSION=3.3.30;
+OBJC1VERSION=3.3.31;
 NAME=objc-${OBJC1VERSION};
 WARNING="DO NOT EDIT -- configure ${NAME} ${TARGET}";
 
@@ -5088,6 +5099,39 @@ OBJC_HAVE_SYSTEM_CALL=1;
 
 
 
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking whether compiler understands __attribute__((__common__))" >&5
+$as_echo_n "checking whether compiler understands __attribute__((__common__))... " >&6; }
+if ${ac_cv_attrcommon+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+
+t1="x$$.c"
+ac_clean_files="$t1"
+# this is the GCC 10+ case
+cat >$t1 <<EOF
+__attribute__((__common__) int a = 7;
+EOF
+echo "$CC -c $t1" >&5
+if $CC -c $t1 2>&5 1>&5
+  then
+    echo " (no)" >&5
+    ac_cv_attrcommon=yes;
+  else
+    echo " (yes)" >&5
+    ac_cv_attrcommon=no;
+fi
+
+
+fi
+
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_attrcommon" >&5
+$as_echo "$ac_cv_attrcommon" >&6; }
+case $ac_cv_attrcommon in
+ yes) ATTRCOMMON=1 ;;
+ no) ATTRCOMMON=0 ;;
+esac
+
+
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking whether to use postlink" >&5
 $as_echo_n "checking whether to use postlink... " >&6; }
 if ${ac_cv_postlink+:} false; then :
@@ -5100,15 +5144,39 @@ e1="x$$"
 e2="y$$"
 ac_clean_files="$e1 $e2 $t1 $t2"
 
+case $ac_cv_attrcommon in
+yes)
+# this is the GCC 10+ case
+cat >$t1 <<EOF
+__attribute__((__common__) int a = 7;
+EOF
+;;
+no)
+# this is the traditional ANSI C case
 cat >$t1 <<EOF
 int a = 7;
 EOF
+;;
+esac
 
+case $ac_cv_attrcommon in
+yes)
+# this is the GCC 10+ case
+cat >$t2 <<EOF
+#include <stdio.h>
+__attribute__((__common__)) int a;
+int main() { exit(a);return a; }
+EOF
+;;
+no)
+# this is the traditional ANSI C case
 cat >$t2 <<EOF
 #include <stdio.h>
 int a;
 int main() { exit(a);return a; }
 EOF
+;;
+esac
 
 echo "$CC $t1 $t2 -o $e1" >&5
 ($CC $t1 $t2 -o $e1) 2>&5 1>&5
@@ -5135,8 +5203,8 @@ then
     fi
   fi
 else
-  { $as_echo "$as_me:${as_lineno-$LINENO}: checking compiler not using common storage" >&5
-$as_echo_n "checking compiler not using common storage... " >&6; }
+  { $as_echo "$as_me:${as_lineno-$LINENO}: checking compiler not supporting common storage" >&5
+$as_echo_n "checking compiler not supporting common storage... " >&6; }
   ac_cv_postlink=yes;
 fi
 rm -rf $ac_clean_files

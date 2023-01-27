@@ -1,4 +1,14 @@
 
+3.3.31  * add configure test to check whether te compiler requires
+	   __attribute__((__common__)) as in gcc 10 (see objc 3.3.25)
+
+	configure logfile will now have something like:
+
+	checking whether compiler understands __attribute__((__common__))... no
+	
+	* add a -attrcommon switch to the objc1 executable to emit and generate
+	  code for gcc 10 __attribute__((__common__))
+
 3.3.30  * create separate util/configure.in for bootstrap compiler
 
 	  fix util/Makefile.in to use VPATH for build outside source code tree
