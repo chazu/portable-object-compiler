@@ -5109,7 +5109,7 @@ t1="x$$.c"
 ac_clean_files="$t1"
 # this is the GCC 10+ case
 cat >$t1 <<EOF
-__attribute__((__common__) int a = 7;
+__attribute__((__common__)) int a = 7;
 EOF
 echo "$CC -c $t1" >&5
 if $CC -c $t1 2>&5 1>&5
@@ -5148,7 +5148,7 @@ case $ac_cv_attrcommon in
 yes)
 # this is the GCC 10+ case
 cat >$t1 <<EOF
-__attribute__((__common__) int a = 7;
+__attribute__((__common__)) int a = 7;
 EOF
 ;;
 no)
