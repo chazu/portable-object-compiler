@@ -5160,8 +5160,6 @@ then
     fi
   fi
 else
-  { $as_echo "$as_me:${as_lineno-$LINENO}: checking compiler not supporting ANSI C tentative definitions" >&5
-$as_echo_n "checking compiler not supporting ANSI C tentative definitions... " >&6; }
   ac_cv_tentdef=no;
 fi
 rm -rf $ac_clean_files

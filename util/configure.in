@@ -1,6 +1,6 @@
 dnl
 dnl autoconf source file for configure script for the objc-bootstrap compiler
-dnl $Id: configure.in,v 1.3 2023/01/29 12:55:59 stes Exp $
+dnl $Id: configure.in,v 1.4 2023/01/29 13:53:23 stes Exp $
 dnl
 dnl note: we're in the process of converting the old configure script
 dnl (configure.orig) to an autoconf script (long term project)
@@ -749,7 +749,6 @@ then
     fi
   fi
 else
-  AC_MSG_CHECKING(compiler not supporting ANSI C tentative definitions)
   ac_cv_tentdef=no;
 fi
 rm -rf $ac_clean_files
