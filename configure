@@ -607,8 +607,8 @@ SQLINC
 SQLCC
 INITCALL
 OBJCRT_USE_PREFIXED_NAMES
-OBJCRT_SCOPE_OBJCMODULES_EXTERN
 POSTLINK
+OBJCRT_SCOPE_OBJCMODULES_EXTERN
 ATTRCOMMON
 OBJC_HAVE_SYSTEM_CALL
 OBJCRT_LINUX
@@ -764,8 +764,9 @@ ac_subst_files=''
 ac_user_opts='
 enable_option_checking
 with_prefixed_names
-with_postlink
+with_tentdef
 with_attrcommon
+with_postlink
 with_longlinetags
 with_shortlinetags
 with_informix
@@ -1394,8 +1395,9 @@ Optional Packages:
   --with-PACKAGE[=ARG]    use PACKAGE [ARG=yes]
   --without-PACKAGE       do not use PACKAGE (same as --with-PACKAGE=no)
   --with-prefixed-names        use oc_objcInit as initialization function
-  --with-postlink              use postlink runtime initialization
+  --with-tentdef               use ANSI C tentative definitions
   --with-attrcommon            use __attribute__ for tentative definitions
+  --with-postlink              use postlink runtime initialization
   --with-longlinetags          generate long #line linetags
   --with-shortlinetags         generate short # linetags
   --with-informix              set SQLCC to Informix esql
@@ -2206,9 +2208,9 @@ fi
 
 
 
-# Check whether --with-postlink was given.
-if test "${with_postlink+set}" = set; then :
-  withval=$with_postlink; ac_cv_postlink=$withval
+# Check whether --with-tentdef was given.
+if test "${with_tentdef+set}" = set; then :
+  withval=$with_tentdef; ac_cv_tentdef=$withval
 
 fi
 
@@ -2217,6 +2219,14 @@ fi
 # Check whether --with-attrcommon was given.
 if test "${with_attrcommon+set}" = set; then :
   withval=$with_attrcommon; ac_cv_attrcommon=$withval
+
+fi
+
+
+
+# Check whether --with-postlink was given.
+if test "${with_postlink+set}" = set; then :
+  withval=$with_postlink; ac_cv_postlink=$withval
 
 fi
 
@@ -5099,15 +5109,80 @@ OBJC_HAVE_SYSTEM_CALL=1;
 
 
 
-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking whether compiler understands __attribute__((__common__))" >&5
-$as_echo_n "checking whether compiler understands __attribute__((__common__))... " >&6; }
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking whether compiler supports ANSI C tentative definitions" >&5
+$as_echo_n "checking whether compiler supports ANSI C tentative definitions... " >&6; }
+if ${ac_cv_tentdef+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+
+t1="x$$.c"
+t2="y$$.c"
+e1="x$$"
+e2="y$$"
+ac_clean_files="$e1 $e2 $t1 $t2"
+
+# this is the traditional ANSI C case
+# tentative definitions are resolved using 'common storage'
+# this case is supported by setting CC to 'gcc -fcommon'
+# which is since gcc 10 not the default (it defaults now to -fno-common)
+cat >$t1 <<EOF
+int a = 7;
+EOF
+
+cat >$t2 <<EOF
+#include <stdio.h>
+int a;
+int main() { exit(a);return a; }
+EOF
+
+echo "$CC $t1 $t2 -o $e1" >&5
+($CC $t1 $t2 -o $e1) 2>&5 1>&5
+echo "$CC $t2 $t1 -o $e2" >&5
+($CC $t2 $t1 -o $e2) 2>&5 1>&5
+
+if test -x ./$e1 -a -x ./$e2
+then
+  echo -n "check whether $e1 returns '7'" >&5
+  if ./$e1 != 7
+  then
+    echo " (no)" >&5
+    ac_cv_tentdef=no;
+  else
+    echo " (yes)" >&5
+    echo -n "check whether $e2 returns '7'" >&5
+    if ./$e2 != 7
+    then
+     echo " (no)" >&5
+     ac_cv_tentdef=no
+    else
+     echo " (yes)" >&5
+     ac_cv_tentdef=yes;
+    fi
+  fi
+else
+  { $as_echo "$as_me:${as_lineno-$LINENO}: checking compiler not supporting ANSI C tentative definitions" >&5
+$as_echo_n "checking compiler not supporting ANSI C tentative definitions... " >&6; }
+  ac_cv_tentdef=no;
+fi
+rm -rf $ac_clean_files
+
+fi
+
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_tentdef" >&5
+$as_echo "$ac_cv_tentdef" >&6; }
+
+
+if test "$ac_cv_tentdef" = "no"
+then
+
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking whether compiler supports __attribute__((__common__))" >&5
+$as_echo_n "checking whether compiler supports __attribute__((__common__))... " >&6; }
 if ${ac_cv_attrcommon+:} false; then :
   $as_echo_n "(cached) " >&6
 else
 
 t1="x$$.c"
 ac_clean_files="$t1"
-# this is the GCC 10+ case
 cat >$t1 <<EOF
 __attribute__((__common__)) int a = 7;
 EOF
@@ -5126,11 +5201,8 @@ fi
 
 { $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_attrcommon" >&5
 $as_echo "$ac_cv_attrcommon" >&6; }
-case $ac_cv_attrcommon in
- yes) ATTRCOMMON=1 ;;
- no) ATTRCOMMON=0 ;;
-esac
 
+fi
 
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking whether to use postlink" >&5
 $as_echo_n "checking whether to use postlink... " >&6; }
@@ -5138,88 +5210,38 @@ if ${ac_cv_postlink+:} false; then :
   $as_echo_n "(cached) " >&6
 else
 
-t1="x$$.c"
-t2="y$$.c"
-e1="x$$"
-e2="y$$"
-ac_clean_files="$e1 $e2 $t1 $t2"
-
-case $ac_cv_attrcommon in
-yes)
-# this is the GCC 10+ case
-cat >$t1 <<EOF
-__attribute__((__common__)) int a = 7;
-EOF
-;;
-no)
-# this is the traditional ANSI C case
-cat >$t1 <<EOF
-int a = 7;
-EOF
-;;
-esac
-
-case $ac_cv_attrcommon in
-yes)
-# this is the GCC 10+ case
-cat >$t2 <<EOF
-#include <stdio.h>
-__attribute__((__common__)) int a;
-int main() { exit(a);return a; }
-EOF
-;;
-no)
-# this is the traditional ANSI C case
-cat >$t2 <<EOF
-#include <stdio.h>
-int a;
-int main() { exit(a);return a; }
-EOF
-;;
-esac
-
-echo "$CC $t1 $t2 -o $e1" >&5
-($CC $t1 $t2 -o $e1) 2>&5 1>&5
-echo "$CC $t2 $t1 -o $e2" >&5
-($CC $t2 $t1 -o $e2) 2>&5 1>&5
-
-if test -x ./$e1 -a -x ./$e2
-then
-  echo -n "check whether $e1 returns '7'" >&5
-  if ./$e1 != 7
-  then
-    echo " (no)" >&5
-    ac_cv_postlink=yes;
-  else
-    echo " (yes)" >&5
-    echo -n "check whether $e2 returns '7'" >&5
-    if ./$e2 != 7
-    then
-     echo " (no)" >&5
-     ac_cv_postlink=yes
-    else
-     echo " (yes)" >&5
-     ac_cv_postlink=no;
-    fi
-  fi
-else
-  { $as_echo "$as_me:${as_lineno-$LINENO}: checking compiler not supporting common storage" >&5
-$as_echo_n "checking compiler not supporting common storage... " >&6; }
-  ac_cv_postlink=yes;
-fi
-rm -rf $ac_clean_files
+  case $ac_cv_tentdef in
+    yes) ac_cv_postlink=no;;
+    no)
+    case $ac_cv_attrcommon in
+      yes) ac_cv_postlink=no;;
+        *) ac_cv_postlink=yes;
+   esac
+   ;;
+  esac
 
 fi
 
 { $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_postlink" >&5
 $as_echo "$ac_cv_postlink" >&6; }
 
-case $ac_cv_postlink in
-  no) POSTLINK=0;OBJCRT_SCOPE_OBJCMODULES_EXTERN=0;;
-  yes) POSTLINK=1;OBJCRT_SCOPE_OBJCMODULES_EXTERN=1;;
-  *) as_fn_error $? "you must use --with-postlink or --without-postlink" "$LINENO" 5;;
+case $ac_cv_tentdef in
+ yes) ATTRCOMMON=0; OBJCRT_SCOPE_OBJCMODULES_EXTERN=0 ;;
+ no)
+   case $ac_cv_attrcommon in
+    yes) ATTRCOMMON=1; OBJCRT_SCOPE_OBJCMODULES_EXTERN=1 ;;
+    no)  ATTRCOMMON=0; OBJCRT_SCOPE_OBJCMODULES_EXTERN=1 ;;
+   esac
+   ;;
 esac
 
+
+
+case $ac_cv_postlink in
+  no) POSTLINK=0;;
+  yes) POSTLINK=1;;
+  *) as_fn_error $? "you must use --with-postlink or --without-postlink" "$LINENO" 5;;
+esac
 
 
 

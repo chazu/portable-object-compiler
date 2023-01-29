@@ -1,10 +1,19 @@
 
-3.3.31  * add configure test to check whether te compiler requires
+3.3.31  * add configure --with-tentdef ANSI C tentative definition switch
+
+	  this is the 'common storage' model which was supported and used
+	  in the --without-postlink (noPostlink case)
+
+	  the common storage model for ANSI C tentative definitions is
+	  used for the so-called 'automatic runtime initialisation'
+
+	* add --with-attrcomm  test to check whether te compiler requires
 	   __attribute__((__common__)) as in gcc 10 (see objc 3.3.25)
 
-	configure logfile will now have something like:
+	  checking whether compiler understands __attribute__((__common__))...
 
-	checking whether compiler understands __attribute__((__common__))... no
+	  this permits the use of 'automatic runtime intialisation'
+	  without explicitely enabling tentative definitions
 	
 	* add a -attrcommon switch to the objc1 executable to emit and generate
 	  code for gcc 10 __attribute__((__common__))

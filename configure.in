@@ -1,6 +1,6 @@
 dnl
 dnl autoconf source file for objc-2.x.x configure script
-dnl $Id: configure.in,v 1.96 2023/01/28 15:02:18 stes Exp $
+dnl $Id: configure.in,v 1.97 2023/01/29 12:55:57 stes Exp $
 dnl
 dnl note: we're in the process of converting the old configure script
 dnl (configure.orig) to an autoconf script (long term project)
@@ -22,21 +22,26 @@ AC_ARG_WITH(prefixed-names,
   [ac_cv_prefixed_names=$withval]
 )
 
-dnl runtime initialization options are import
+dnl runtime initialization options
 dnl see documentation (manual) for more info on postlink init vs. automatic
 dnl initialization
-dnl automatic initialisation uses tentative definitions (common storage)
-dnl there are 2 cases here : traditional ANSI C common storage
-dnl and the gcc 10 __attribute__((__common__))
+dnl automatic initialisation can use tentative definitions (common storage)
+dnl or the gcc 10 __attribute__ (( __common__ )) construct
+dnl the preferred model is the --with-tentdef ANSI C (K&R book Appendix A10.2)
 
-AC_ARG_WITH(postlink,
-  [  --with-postlink              use postlink runtime initialization],
-  [ac_cv_postlink=$withval]
+AC_ARG_WITH(tentdef,
+  [  --with-tentdef               use ANSI C tentative definitions],
+  [ac_cv_tentdef=$withval]
 )
 
 AC_ARG_WITH(attrcommon,
   [  --with-attrcommon            use __attribute__ for tentative definitions],
   [ac_cv_attrcommon=$withval]
+)
+
+AC_ARG_WITH(postlink,
+  [  --with-postlink              use postlink runtime initialization],
+  [ac_cv_postlink=$withval]
 )
 
 dnl generation of # or #line linetags (or none at all)
@@ -691,18 +696,79 @@ OBJC_HAVE_SYSTEM_CALL=1;AC_SUBST(OBJC_HAVE_SYSTEM_CALL)
 
 dnl
 dnl Testing for public storage model of C compiler 
-dnl (common storage or strict definition reference)
+dnl  1. common storage tentative definition
+dnl  2. gcc 10 __attribute__ (( __common__ ))
+dnl  3. or strict definition reference
+dnl
+dnl the preferred model is the --with-tentdef ANSI C (K&R book Appendix A10.2)
 dnl stes 27/1/2023
 dnl situation changed with GCC 10 and  dnl __attribute__((__common__))
-dnl by default test whether compilers supports common storage using __attribute
-dnl otherwise fallback to using postlink
+dnl where GCC by default stopped supporting the ANSI C model (-fcommon)
 dnl
 
-AC_MSG_CHECKING(whether compiler understands __attribute__((__common__)))
+AC_MSG_CHECKING(whether compiler supports ANSI C tentative definitions)
+AC_CACHE_VAL(ac_cv_tentdef,[
+t1="x$$.c"
+t2="y$$.c"
+e1="x$$"
+e2="y$$"
+ac_clean_files="$e1 $e2 $t1 $t2"
+
+# this is the traditional ANSI C case
+# tentative definitions are resolved using 'common storage'
+# this case is supported by setting CC to 'gcc -fcommon'
+# which is since gcc 10 not the default (it defaults now to -fno-common)
+cat >$t1 <<EOF
+int a = 7;
+EOF
+
+cat >$t2 <<EOF
+#include <stdio.h>
+int a;
+int main() { exit(a);return a; }
+EOF
+
+echo "$CC $t1 $t2 -o $e1" >&5
+($CC $t1 $t2 -o $e1) 2>&5 1>&5
+echo "$CC $t2 $t1 -o $e2" >&5
+($CC $t2 $t1 -o $e2) 2>&5 1>&5
+
+if test -x ./$e1 -a -x ./$e2
+then
+  echo -n "check whether $e1 returns '7'" >&5
+  if ./$e1 != 7
+  then
+    echo " (no)" >&5
+    ac_cv_tentdef=no;
+  else
+    echo " (yes)" >&5
+    echo -n "check whether $e2 returns '7'" >&5
+    if ./$e2 != 7
+    then
+     echo " (no)" >&5
+     ac_cv_tentdef=no
+    else
+     echo " (yes)" >&5
+     ac_cv_tentdef=yes;
+    fi
+  fi
+else
+  AC_MSG_CHECKING(compiler not supporting ANSI C tentative definitions)
+  ac_cv_tentdef=no;
+fi
+rm -rf $ac_clean_files
+],ac_cv_tentdef=no,ac_cv_tentdef=yes)
+AC_MSG_RESULT($ac_cv_tentdef)
+
+dnl only test for __attribute__ ((__common__)) in the non-ANSI case
+
+if test "$ac_cv_tentdef" = "no"
+then
+
+AC_MSG_CHECKING(whether compiler supports __attribute__((__common__)))
 AC_CACHE_VAL(ac_cv_attrcommon,[
 t1="x$$.c"
 ac_clean_files="$t1"
-# this is the GCC 10+ case
 cat >$t1 <<EOF
 __attribute__((__common__)) int a = 7;
 EOF
@@ -718,93 +784,41 @@ fi
 
 ],ac_cv_attrcommon=yes,ac_cv_attrcommon=no)
 AC_MSG_RESULT($ac_cv_attrcommon)
-case $ac_cv_attrcommon in
- yes) ATTRCOMMON=1 ;;
- no) ATTRCOMMON=0 ;;
-esac
-AC_SUBST(ATTRCOMMON)
+
+fi
 
 AC_MSG_CHECKING(whether to use postlink)
 AC_CACHE_VAL(ac_cv_postlink,[
-t1="x$$.c"
-t2="y$$.c"
-e1="x$$"
-e2="y$$"
-ac_clean_files="$e1 $e2 $t1 $t2"
-
-case $ac_cv_attrcommon in
-yes)
-# this is the GCC 10+ case
-cat >$t1 <<EOF
-__attribute__((__common__)) int a = 7;
-EOF
-;;
-no)
-# this is the traditional ANSI C case
-cat >$t1 <<EOF
-int a = 7;
-EOF
-;;
-esac
-
-case $ac_cv_attrcommon in
-yes)
-# this is the GCC 10+ case
-cat >$t2 <<EOF
-#include <stdio.h>
-__attribute__((__common__)) int a;
-int main() { exit(a);return a; }
-EOF
-;;
-no)
-# this is the traditional ANSI C case
-cat >$t2 <<EOF
-#include <stdio.h>
-int a;
-int main() { exit(a);return a; }
-EOF
-;;
-esac
-
-echo "$CC $t1 $t2 -o $e1" >&5
-($CC $t1 $t2 -o $e1) 2>&5 1>&5
-echo "$CC $t2 $t1 -o $e2" >&5
-($CC $t2 $t1 -o $e2) 2>&5 1>&5
-
-if test -x ./$e1 -a -x ./$e2
-then
-  echo -n "check whether $e1 returns '7'" >&5
-  if ./$e1 != 7
-  then
-    echo " (no)" >&5
-    ac_cv_postlink=yes;
-  else
-    echo " (yes)" >&5
-    echo -n "check whether $e2 returns '7'" >&5
-    if ./$e2 != 7
-    then
-     echo " (no)" >&5
-     ac_cv_postlink=yes
-    else
-     echo " (yes)" >&5
-     ac_cv_postlink=no;
-    fi
-  fi
-else
-  AC_MSG_CHECKING(compiler not supporting common storage)
-  ac_cv_postlink=yes;
-fi
-rm -rf $ac_clean_files
+  case $ac_cv_tentdef in
+    yes) ac_cv_postlink=no;;
+    no) 
+    case $ac_cv_attrcommon in
+      yes) ac_cv_postlink=no;;
+        *) ac_cv_postlink=yes;
+   esac
+   ;;
+  esac
 ],ac_cv_postlink=yes,ac_cv_postlink=no)
 AC_MSG_RESULT($ac_cv_postlink)
 
+case $ac_cv_tentdef in
+ yes) ATTRCOMMON=0; OBJCRT_SCOPE_OBJCMODULES_EXTERN=0 ;;
+ no) 
+   case $ac_cv_attrcommon in
+    yes) ATTRCOMMON=1; OBJCRT_SCOPE_OBJCMODULES_EXTERN=1 ;;
+    no)  ATTRCOMMON=0; OBJCRT_SCOPE_OBJCMODULES_EXTERN=1 ;;
+   esac
+   ;;
+esac
+AC_SUBST(ATTRCOMMON)
+AC_SUBST(OBJCRT_SCOPE_OBJCMODULES_EXTERN)
+
 case $ac_cv_postlink in
-  no) POSTLINK=0;OBJCRT_SCOPE_OBJCMODULES_EXTERN=0;;
-  yes) POSTLINK=1;OBJCRT_SCOPE_OBJCMODULES_EXTERN=1;;
+  no) POSTLINK=0;;
+  yes) POSTLINK=1;;
   *) AC_MSG_ERROR(you must use --with-postlink or --without-postlink);;
 esac
 AC_SUBST(POSTLINK)
-AC_SUBST(OBJCRT_SCOPE_OBJCMODULES_EXTERN)
 
 dnl
 dnl Testing for system libs that contain _objcInit
