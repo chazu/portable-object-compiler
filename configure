@@ -5224,7 +5224,7 @@ fi
 $as_echo "$ac_cv_postlink" >&6; }
 
 case $ac_cv_tentdef in
- yes) ATTRCOMMON=0; OBJCRT_SCOPE_OBJCMODULES_EXTERN=0 ;;
+ yes) ATTRCOMMON=0; OBJCRT_SCOPE_OBJCMODULES_EXTERN=1 ;;
  no)
    case $ac_cv_attrcommon in
     yes) ATTRCOMMON=1; OBJCRT_SCOPE_OBJCMODULES_EXTERN=1 ;;

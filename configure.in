@@ -1,6 +1,6 @@
 dnl
 dnl autoconf source file for objc-2.x.x configure script
-dnl $Id: configure.in,v 1.98 2023/01/29 13:53:20 stes Exp $
+dnl $Id: configure.in,v 1.99 2023/02/01 17:11:25 stes Exp $
 dnl
 dnl note: we're in the process of converting the old configure script
 dnl (configure.orig) to an autoconf script (long term project)
@@ -800,8 +800,10 @@ AC_CACHE_VAL(ac_cv_postlink,[
 ],ac_cv_postlink=yes,ac_cv_postlink=no)
 AC_MSG_RESULT($ac_cv_postlink)
 
+dnl the classical tentdef no case could set extern = 0
+dnl the traditional runtime used to use a tentative definition
 case $ac_cv_tentdef in
- yes) ATTRCOMMON=0; OBJCRT_SCOPE_OBJCMODULES_EXTERN=0 ;;
+ yes) ATTRCOMMON=0; OBJCRT_SCOPE_OBJCMODULES_EXTERN=1 ;;
  no) 
    case $ac_cv_attrcommon in
     yes) ATTRCOMMON=1; OBJCRT_SCOPE_OBJCMODULES_EXTERN=1 ;;
