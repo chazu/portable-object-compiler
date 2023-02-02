@@ -1,4 +1,6 @@
 
+3.3.32	* fix configure for 3.3.26 change (out of source tree build)
+
 3.3.31  * add configure --with-tentdef ANSI C tentative definition switch
 
 	  this is the 'common storage' model which was supported and used

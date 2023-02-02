@@ -2400,7 +2400,7 @@ test -n "$target_alias" &&
 
 
 TARGET=$target;
-OBJC1VERSION=3.3.31;
+OBJC1VERSION=3.3.32;
 NAME=objc-${OBJC1VERSION};
 WARNING="DO NOT EDIT -- configure ${NAME} ${TARGET}";
 
@@ -4302,25 +4302,24 @@ esac
 
 UP="..$PATHSEP"
 ISRCDIR="-I\$(SRCDIR)${PATHSEP}"
-case $OBJC in
-        objc*)  NOI="-noI";
-		NOLIBS="-noLibs";
-                OBJCRT_INC="-noI ${ISRCDIR}${UP}${UP}include${PATHSEP}objcrt";
-		;;
-	*)      NOI="";
-		NOLIBS="";
-		OBJCRT_INC="${ISRCDIR}${UP}${UP}include${PATHSEP}objcrt";
-		;;
-esac
 
+# always build now with -noI and -noLibs
+# so that the compiler can be built with a bootstrap compiler
+# without its own include files and its own runtime libs
+
+NOI="-noI";
+NOLIBS="-noLibs";
+OBJCRT_INC="${ISRCDIR}${UP}${UP}include${PATHSEP}objcrt";
 OBJPAK_INC="${ISRCDIR}${UP}${UP}include${PATHSEP}objpak"
 
 # -I. is included for #include "config.h" and "yacc.h"
-OBJCRT_IFLAGS="$NOI -I."
-OBJPAK_IFLAGS="$OBJCRT_INC -I."
-OCLIB_IFLAGS="$OBJCRT_INC $OBJPAK_INC -I."
-OBJC_IFLAGS="-I. $OBJCRT_INC $OBJPAK_INC ${ISRCDIR}${UP}oclib"
-CAKIT_IFLAGS="-I. $OBJCRT_INC"
+# it is possible that $ISRCDIR is also -I./ so duplicate -I./ -I. in that case
+# for out of source tree build they are different directories
+OBJCRT_IFLAGS="$NOI $ISRCDIR -I."
+OBJPAK_IFLAGS="$NOI $OBJCRT_INC $ISRCDIR -I."
+OCLIB_IFLAGS="$NOI $OBJCRT_INC $OBJPAK_INC $ISRCDIR -I."
+OBJC_IFLAGS="$NOI $OBJCRT_INC $OBJPAK_INC ${ISRCDIR}${UP}oclib $ISRCDIR -I."
+CAKIT_IFLAGS="$NOI $OBJCRT_INC $ISRCDIR -I."
 
 OBJC_BOOTLIBS="${NOLIBS} ${UP}oclib${PATHSEP}oclib.${LIBSUFFIX}"
 OBJC_BOOTLIBS="$OBJC_BOOTLIBS ${UP}objpak${PATHSEP}objpak.${LIBSUFFIX}"

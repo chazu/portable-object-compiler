@@ -1,6 +1,6 @@
 dnl
 dnl autoconf source file for configure script for the objc-bootstrap compiler
-dnl $Id: configure.in,v 1.4 2023/01/29 13:53:23 stes Exp $
+dnl $Id: configure.in,v 1.5 2023/02/02 18:23:01 stes Exp $
 dnl
 dnl note: we're in the process of converting the old configure script
 dnl (configure.orig) to an autoconf script (long term project)
@@ -70,7 +70,7 @@ AC_CONFIG_AUX_DIR(util)
 AC_CANONICAL_SYSTEM
 
 TARGET=$target;AC_SUBST(TARGET)
-OBJC1VERSION=3.3.31;AC_SUBST(OBJC1VERSION)
+OBJC1VERSION=3.3.32;AC_SUBST(OBJC1VERSION)
 NAME=objc-${OBJC1VERSION};AC_SUBST(NAME)
 WARNING="DO NOT EDIT -- configure ${NAME} ${TARGET}";AC_SUBST(WARNING)
 
@@ -446,44 +446,6 @@ esac
 
 # allow configure EXTRA_CFLAGS=  to specify some extra .c flag
 AC_SUBST(EXTRA_CFLAGS)
-
-# the following is because POC is built against the libraries
-# that come with the source directories (not against the libraries
-# that are installed on the system with the bootstrap compiler)
-# since 3.3.26 the Makefile has $(SRCDIR) set so use path relative to SRCDIR
-
-UP="..$PATHSEP"
-ISRCDIR="-I\$(SRCDIR)${PATHSEP}"
-case $OBJC in
-        objc*)  NOI="-noI";
-		NOLIBS="-noLibs";
-                OBJCRT_INC="-noI ${ISRCDIR}${UP}${UP}include${PATHSEP}objcrt";
-		;;
-	*)      NOI=""; 
-		NOLIBS="";
-		OBJCRT_INC="${ISRCDIR}${UP}${UP}include${PATHSEP}objcrt";
-		;;
-esac 
-
-OBJPAK_INC="${ISRCDIR}${UP}${UP}include${PATHSEP}objpak"
-
-# -I. is included for #include "config.h" and "yacc.h"
-OBJCRT_IFLAGS="$NOI -I."
-OBJPAK_IFLAGS="$OBJCRT_INC -I."
-OCLIB_IFLAGS="$OBJCRT_INC $OBJPAK_INC -I."
-OBJC_IFLAGS="-I. $OBJCRT_INC $OBJPAK_INC ${ISRCDIR}${UP}oclib"
-CAKIT_IFLAGS="-I. $OBJCRT_INC"
-
-OBJC_BOOTLIBS="${NOLIBS} ${UP}oclib${PATHSEP}oclib.${LIBSUFFIX}"
-OBJC_BOOTLIBS="$OBJC_BOOTLIBS ${UP}objpak${PATHSEP}objpak.${LIBSUFFIX}"
-OBJC_BOOTLIBS="$OBJC_BOOTLIBS ${UP}objcrt${PATHSEP}objcrt.${LIBSUFFIX}"
-
-AC_SUBST(OBJCRT_IFLAGS)
-AC_SUBST(OBJPAK_IFLAGS)
-AC_SUBST(OCLIB_IFLAGS)
-AC_SUBST(OBJC_IFLAGS)
-AC_SUBST(CAKIT_IFLAGS)
-AC_SUBST(OBJC_BOOTLIBS)
 
 dnl Since the quality of the POC depends on lex/yacc, we require flex/byacc
 dnl Most lexes, yaccs and bison also work (but: byacc is required for -refcnt)

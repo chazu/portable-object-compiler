@@ -2,7 +2,7 @@
 .de q
 ``\\$1''\\$2
 ..
-.TH objc 1 "Mar 7, 2019"
+.TH objc 1 "Feb 2, 2023"
 .SH NAME
 objc \- Portable Object Compiler
 .SH SYNOPSIS
@@ -57,7 +57,7 @@ When used with the \-E option, this option will preserve comments in the preproc
 
 .IP "\fB\-check\fP"
 
-Implemented for the binary driver objc.exe only.  Forces the driver to print a command whenever it is supposed to invoke some tool using a system() call.  Commands are simply printed, they are not executed.  This is the default configuration of the Macintosh MPW driver.
+Implemented for the binary driver objc.exe only.  Forces the driver to print a command whenever it is supposed to invoke some tool using a system() call.  Commands are simply printed, they are not executed.
 
 .IP "\fB\-cthreads\fP"
 
@@ -172,10 +172,6 @@ The default function name is
 .B main,
 but this can be changed using this option if it's not desirable for some reason to compile the main() function using
 .B objc.
-
-.IP "\fB\-mpwtool\fP"
-
-Macintosh specific.  Generates an MPW tool.  Sets creator type to the MPW type and adds the libraries defined in the environment variable OBJCMPWLIBS.
 
 .IP "\fB\-noBlocks\fP"
 
@@ -334,10 +330,6 @@ variable is declared as
 then assignments to the variable are
 .BR NOT
 reference counted.
-
-.IP "\fB\-sioux\fP"
-
-Macintosh specific.  Generates a SIOUX tool.  Adds the libraries defined in the environment variable OBJCSIOUXLIBS.
 
 .IP "\fB\-static\fP"
 
