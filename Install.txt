@@ -15,9 +15,9 @@ or preferably to the objc-discuss@lists.sourceforge.net mailing list.
 
    for BSD yacc (for example yacc-1.9.1) :
 
-   	http://www.ibiblio.org/pub/Linux/devel/compiler-tools/
+        export YACC="byacc -d"
 
-   It is possible to use myacc or bison :
+   It is possible to use different yacc's such as myacc or bison :
 
 	export YACC="bison -y -d"
 

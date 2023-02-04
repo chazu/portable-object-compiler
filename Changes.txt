@@ -1,4 +1,10 @@
 
+3.3.33  * allow override of OPT_MFLAGS, DBG_MFLAGS and MFLAGS in configure
+
+	* use OBJC variable instead of objc for shlib target in Makefile
+
+	* add -attrcomm support to the objc driver executable
+
 3.3.32	* fix configure for 3.3.26 change (out of source tree build)
 
 3.3.31  * add configure --with-tentdef ANSI C tentative definition switch

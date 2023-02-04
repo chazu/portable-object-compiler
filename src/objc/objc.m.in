@@ -1,8 +1,8 @@
 
 /*
- * Portable Object Compiler (c) 1997-2020.  All Rights Reserved.
+ * Portable Object Compiler (c) 1997-2023.  All Rights Reserved.
  *
- * $Id: objc.m.in,v 1.8 2020/09/27 12:10:57 stes Exp $
+ * $Id: objc.m.in,v 1.9 2023/02/04 16:11:23 stes Exp $
  *
  * @WARNING@
  */
@@ -49,15 +49,15 @@ BOOL uselibs = YES;
 BOOL blocks = YES;
 BOOL ppi = NO;
 BOOL verbose = NO;
-BOOL printfsystem = @PRINTFSYSTEM@;
+BOOL printfsystem = NO;
 BOOL debug = NO;
 BOOL dynamic = NO;
 BOOL retain = NO;
 BOOL retaincpp = NO;
 BOOL profile = NO;
 BOOL useoutput = NO;
-BOOL cplusplus = NO;
 BOOL postlink = @POSTLINK@;
+BOOL attrcommon = @ATTRCOMMON@;
 BOOL shortcmdline = @SHORTCMDLINE@;
 BOOL runxstr = NO;
 
@@ -649,11 +649,6 @@ doptions(id args)
       [cpargs add:[String str:"@CPPIMPORTFLAG@"]];
       continue;
     }
-    if (eq("-cplus")) {
-      cplusplus = YES;
-      postlink = YES;
-      continue;
-    }
     if (eq("-dump")) {
       link = NO;
       compile = NO;
@@ -1200,46 +1195,6 @@ doptions(id args)
       [actions add:actionc];
       continue;
     }
-    if (issuffix(".cc")) {
-      [inputs add:arg];
-      [extensions add:[String str:"cc"]];
-      [actions add:actioncc];
-      cplusplus = YES;
-      postlink = YES;
-      continue;
-    }
-    if (issuffix(".C")) {
-      [inputs add:arg];
-      [extensions add:[String str:"C"]];
-      [actions add:actioncc];
-      cplusplus = YES;
-      postlink = YES;
-      continue;
-    }
-    if (issuffix(".cpp")) {
-      [inputs add:arg];
-      [extensions add:[String str:"cpp"]];
-      [actions add:actioncc];
-      cplusplus = YES;
-      postlink = YES;
-      continue;
-    }
-    if (issuffix(".cxx")) {
-      [inputs add:arg];
-      [extensions add:[String str:"cxx"]];
-      [actions add:actioncc];
-      cplusplus = YES;
-      postlink = YES;
-      continue;
-    }
-    if (issuffix(".mm")) {
-      [inputs add:arg];
-      [extensions add:[String str:"mm"]];
-      [actions add:[String str:"mm"]];
-      cplusplus = YES;
-      postlink = YES;
-      continue;
-    }
     /* for matching the dot is important */
     if (issuffix(dotobjsuffix)) {
       [inputs add:arg];
@@ -1398,7 +1353,6 @@ eacharg(int argc, char **argv)
 
 id objc1;
 id objfiles;
-id objcplus1;
 
 static void 
 setglobals()
@@ -1416,16 +1370,15 @@ setglobals()
   setstring(&cppfilter, "cppfilter", cppfilter);
   setstring(&objc1filter, "objc1filter", objc1filter);
   setstring(&objc1, "objc1", pathcat(bindir, "objc1"));
-  setstring(&objcplus1, "objcplus1", pathcat(bindir, "objc1"));
 
   objfiles = [OrdCltn new];
 
-  if (cplusplus) {
-    [ocargs add:[String str:"-cplus"]];
-    [ocargs add:[String str:"-noFwd"]];
-  }
   setbool(&postlink, "postlink", postlink);
   setstring(&postlinkexe, "postlink", pathcat(bindir, "postlink"));
+
+  if (attrcommon) {
+    [ocargs add:[String str:"-attrcommon"]];
+  }
 
   if (postlink) {
     [ocargs add:[String str:"-postlink"]];
@@ -1745,7 +1698,7 @@ drivercpp(id input, id extension, id result)
   if ([extension isEqualSTR:"c"]) {
     success = drivercpp1(input, result);
   } else {
-    id tmpc = replacesuffix(input, extension, (cplusplus) ? "cc" : "c");
+    id tmpc = replacesuffix(input, extension, "c");
 
 #if 0
     /* this is wrong on the DEC, for DEC cc this changes the include path */
@@ -1786,7 +1739,7 @@ driverobjc(id name, id extension, id input, id result)
   [cargs add:input];
   [cargs add:result];
 
-  success = drvcmd((cplusplus) ? objcplus1 : objc1, NULL, cargs, nil);
+  success = drvcmd(objc1, NULL, cargs, nil);
 
   if (fixfile) {
     if (success)
@@ -1816,10 +1769,10 @@ drivercc(id input, id result)
     /* -fo= on WATCOM, -o on UNIX */
     [filenames add:makeO([result str])];
   }
-  return drvcmd((cplusplus) ? cxx : cc, "cc.opt", cargs, filenames);
+  return drvcmd(cc, "cc.opt", cargs, filenames);
 }
 
-/* this is for compiling _postlnk.c etc. (never use cplusplus here) */
+/* this is for compiling _postlnk.c etc. */
 
 static BOOL 
 simplecc(id input, id ofile)
@@ -1865,7 +1818,7 @@ processM(id input, id extension)
   tmpp = replacesuffix(input, extension, "P");
   if (tmpdir)
     tmpp = addprefix(tmpdir, tmpp);
-  tmpi = replacesuffix(input, extension, (cplusplus) ? "ii" : "i");
+  tmpi = replacesuffix(input, extension, "i");
   if (tmpdir)
     tmpi = addprefix(tmpdir, tmpi);
 

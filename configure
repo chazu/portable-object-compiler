@@ -2400,7 +2400,7 @@ test -n "$target_alias" &&
 
 
 TARGET=$target;
-OBJC1VERSION=3.3.32;
+OBJC1VERSION=3.3.33;
 NAME=objc-${OBJC1VERSION};
 WARNING="DO NOT EDIT -- configure ${NAME} ${TARGET}";
 
@@ -4277,13 +4277,13 @@ AOUTNAME=a.out;
 BINDOTSUFFIX='';
 USELFLAG=1;
 
-MFLAGS=OPT_MFLAGS;
+MFLAGS=${MFLAGS:-OPT_MFLAGS};
 case $ac_cv_c_compiler_gnu in
-  yes) OPT_MFLAGS='-DNDEBUG -O2';;
-  *) OPT_MFLAGS='-DNDEBUG';;
+  yes) OPT_MFLAGS=${OPT_MFLAGS:-'-DNDEBUG -O2'};;
+  *) OPT_MFLAGS=${OPT_MFLAGS:-'-DNDEBUG'};;
 esac
 
-DBG_MFLAGS='-DDEBUG -g';
+DBG_MFLAGS=${DBG_MFLAGS:-'-DDEBUG -g'};
 
 # when configured as Solaris amd64 or x86_64 add -m64
 

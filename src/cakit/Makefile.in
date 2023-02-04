@@ -2,7 +2,7 @@
 #
 # Computer Algebra Kit
 # Copyright (c) 1992,2019 Computer Algebra Objects.  All Rights Reserved. 
-# $Id: Makefile.in,v 1.5 2022/09/25 14:36:51 stes Exp $
+# $Id: Makefile.in,v 1.6 2023/02/04 13:49:57 stes Exp $
 #
 
 #
@@ -112,7 +112,7 @@ $(LIBRARY) : $(OBJFILES)
 	$(RANLIB) $(LIBRARY)
 
 shlib : $(OBJFILES)
-	objc -dl $(OBJFILES) -o $(SHLIB)
+	$(OBJC) -dl $(OBJFILES) -o $(SHLIB)
 
 install : $(LIBRARY)
 	test -d $(LIBDIR) || $(MKDIR) $(LIBDIR)
