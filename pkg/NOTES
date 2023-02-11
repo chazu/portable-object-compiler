@@ -65,13 +65,18 @@ For Ubuntu
 	date -R >> debian/changelog
 	debuild -us -uc -b
 
-For RedHat
+For RedHat / OracleLinux / SUSE / openSUSE / rpm based systems 
 
 	install rpm-build for build in $HOME/rpmbuild
+	for openSUSE: zypper install -t pattern devel_rpm_build
 
-	cp objc.spec $HOME/rpmbuild/SPECS/objc.spec
+	cp objc-boostrap.spec $HOME/rpmbuild/SPECS/objc-bootstrap.spec
+	cp objclibs.spec $HOME/rpmbuild/SPECS/objclibs.spec
 	cp objclibs.spec $HOME/rpmbuild/SPECS/objclibs.spec
 	cd $HOME
+	rpmbuild -bb --nodebuginfo rpmbuild/SPECS/objc-bootstrap.spec
+	rpm -iv objc-bootstrap # to install under /opt/objc-bootstrap
+	PATH=/opt/objc-bootstrap/bin:$PATH
 	rpmbuild -bb --nodebuginfo rpmbuild/SPECS/objc.spec
 	rpmbuild -bb --nodebuginfo rpmbuild/SPECS/objclibs.spec
 

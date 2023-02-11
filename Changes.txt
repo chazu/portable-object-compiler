@@ -1,4 +1,17 @@
 
+3.3.34  * add src/objc/objut.m (Object Unit Test) program for regression tests
+
+	* implement toplevel 'make check' (toplevel test target) to allow to
+	  runs objut (Object Unit Test) in src/objc/ before 'make install'
+
+	* implement toplevel 'make words' for building the 'words' example
+	  this tests the compiler in the PATH (after a make install)
+
+	* implement toplevel 'make DependencyGraph' for example from Cox' book
+	  this also tests the compiler in the PATH (so first make install)
+
+	* add objc-bootstrap.spec spec file for RPM build of bootstrap package
+
 3.3.33  * allow override of OPT_MFLAGS, DBG_MFLAGS and MFLAGS in configure
 
 	* use OBJC variable instead of objc for shlib target in Makefile

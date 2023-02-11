@@ -25,7 +25,7 @@ or preferably to the objc-discuss@lists.sourceforge.net mailing list.
 
    Some versions of bison have had issues with Portable Object Compiler.
 
-   Also some versions of flex may require --nounistd.
+   Also some versions of flex may require --nounistd, depends on the OS.
 
 1. Start with a binary "port" of Portable Object Compiler to get a "bootstrap" (initial) compiler, or compile the bootstrap compiler package : 
 
@@ -33,7 +33,7 @@ I'd recommend to start with a binary package and use operating system specific
 tools to install the binaries (such as RPM or APT or IPS pkg).
 
 The binaries that are installed as such, can then be used to recompile
-the actual compiler with itself (the compiler can compile itself),
+the actual compiler with itself (the compiler is used to compile itself),
 but this process must be started by installing a binary package first.
 
 In case you compile a bootstrap compiler from source,
@@ -99,13 +99,22 @@ or on Digital Unix, CC='cc -std' or on Solaris /opt/developerstudio12.6/bin/cc
            AR=echo FINAL_AR='ar cr'
 
         the previous configure line sets OBJC and XOBJC to 
-        a bootstrap compiler that was installed in /opt/objc-bootstrap
+        a bootstrap compiler that was installed in /opt/objc-bootstrap,
+	which is only necessary,
+	if you don't have a previous version of objc in the PATH (see step 2)
 
         it also sets YACC and FLEX and changes the default values for AR,
         where by default we use multiple ar invocations instead of a single
         ar invocation.
 
 	make
+
+  Optionally run a few basic tests before 'make install':
+
+	make check
+
+  Then 
+
 	make install
 
   Note that the actual compiler should be installed in a location like
@@ -113,6 +122,14 @@ or on Digital Unix, CC='cc -std' or on Solaris /opt/developerstudio12.6/bin/cc
   /usr/bin or /usr/local/bin or /opt/objc/bin or $HOME/bin 
 
   different from /opt/objc-bootstrap/bin or $HOME/objc-bootstrap/bin.
+
+  Some examples can be used to check:
+
+	make words
+
+  or
+
+	make DependencyGraph
 
 4.  [Optional] Repeat step 3 to test the compiler (do not repeat step 1).
 

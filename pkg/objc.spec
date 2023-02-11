@@ -1,10 +1,10 @@
 Summary: Portable Object Compiler
 Name: objc
-Version: 3.3.30
+Version: 3.3.34
 Release: 1%{?dist}
 Group: Applications/File
 License: GPLv2+
-Source: https://sourceforge.net/projects/objc/files/src/objc-%{version}.tar.gz
+Source: http://users.pandora.be/stes/objc-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 %description
@@ -12,7 +12,7 @@ The Portable Object Compiler, a language and a runtime library for producing C p
 
 %prep
 %setup -q
-./configure OBJCDIR=%{_prefix} --with-postlink --prefix=$RPM_BUILD_ROOT%{_prefix}
+./configure OBJCDIR=%{_prefix} --prefix=$RPM_BUILD_ROOT%{_prefix}
 
 %build
 
@@ -24,6 +24,8 @@ rm -rf $RPM_BUILD_ROOT
 mkdir $RPM_BUILD_ROOT
 
 make install
+# motif-devel conflict on OpenSUSE 15.4
+rm -f $RPM_BUILD_ROOT%{_prefix}/share/man/man3/Object.3
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -128,7 +130,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man3/Message.3.gz
 %{_mandir}/man3/Monomial.3.gz
 %{_mandir}/man3/NotFound.3.gz
-%{_mandir}/man3/Object.3.gz
+# motif-devel conflict
+# %{_mandir}/man3/Object.3.gz
 %{_mandir}/man3/OrdCltn.3.gz
 %{_mandir}/man3/OutOfBounds.3.gz
 %{_mandir}/man3/OutOfMemory.3.gz
@@ -153,8 +156,8 @@ rm -rf $RPM_BUILD_ROOT
 %doc Beos.txt Books.txt Changes.txt Ibmvac.txt Install.txt Intro.txt Lcc.txt License.txt Mpw.txt Platform.txt Readme.txt Visual.txt Vms.txt Watcom.txt
 
 %changelog
-* Wed Oct 19 2022 David Stes <stes@telenet.be> 3.3.30
-Update for 3.3.30
+* Sat Feb 11 2023 David Stes <stes@telenet.be> 3.3.34
+Update for 3.3.34, manpage Object.3 conflict with motif-devel
 
 * Fri Nov 26 2021 David Stes <stes@telenet.be> 3.3.25
 Update for 3.3.25

@@ -1,12 +1,6 @@
 
 /* 
- * cheating a little bit : define __NO_CTYPE
- * this is because GNU glibc2 ctype.h otherwise uses complicated macros
- * for isspace , which makes the job for VICI more difficult
- * #define __NO_CTYPE 1
- * cheating a bit : some headers expand stdin and stdout 
- * #undef stdin
- * #undef stdout
+ * example from Brad Cox book - see Books.txt
  */
 
 #include "stdio.h"
@@ -63,5 +57,6 @@ main(int argc,char *argv[])
     if (argc==3) if (!freopen(argv[2],"r",stdin)) {perror("freopen");exit(1);}
     root = argv[1];
     doGraph();
+    exit(0);
 }
 

@@ -1,7 +1,7 @@
 
 #
-# Portable Object Compiler (c) 1996-2020. All Rights Reserved.
-# $Id: Makefile.in,v 1.27 2022/09/30 16:12:50 stes Exp $
+# Portable Object Compiler (c) 1996-2023. All Rights Reserved.
+# $Id: Makefile.in,v 1.29 2023/02/11 12:43:10 stes Exp $
 #
 
 SRCDIR=@srcdir@
@@ -42,6 +42,12 @@ oclib ::
 
 objc : objcrt objpak oclib
 	$(CD) src; $(CD) objc;   $(MAKE)
+
+test : compiler
+	$(CD) src; $(CD) objc;   $(MAKE) check
+
+check : compiler
+	$(CD) src; $(CD) objc;   $(MAKE) check
 
 cakit ::
 	$(CD) src; $(CD) cakit;  $(MAKE)
@@ -138,6 +144,17 @@ installcompiler : compiler
 
 install : installcompiler installcakit installinclude installman
 
+words ::
+	-$(CD) words;             $(MAKE)
+	words/words -set  < words/erasmus | wc -l
+	words/words -cltn < words/erasmus | wc -l
+	words/words -dic  < words/erasmus | wc -l
+	words/words -sort < words/erasmus | wc -l
+
+DependencyGraph ::
+	-$(CD) DependencyGraph;   $(MAKE)
+	DependencyGraph/dg main DependencyGraph/INPUT
+
 cleantmp :
 	-$(CD) src; $(CD) objcrt; $(MAKE) cleantmp
 	-$(CD) src; $(CD) objpak; $(MAKE) cleantmp
@@ -146,6 +163,7 @@ cleantmp :
 	-$(CD) src; $(CD) cakit;  $(MAKE) cleantmp
 	-$(CD) examples;          $(MAKE) cleantmp
 	-$(CD) words;             $(MAKE) cleantmp
+	-$(CD) DependencyGraph;   $(MAKE) cleantmp
 
 cleanruntime :
 	-$(CD) src; $(CD) objcrt; $(MAKE) clean
@@ -157,6 +175,7 @@ clean : cleanruntime
 	-$(CD) src; $(CD) objc;   $(MAKE) clean
 	-$(CD) examples;          $(MAKE) clean
 	-$(CD) words;             $(MAKE) clean
+	-$(CD) DependencyGraph;   $(MAKE) clean
 
 distclean :
 	-$(RM) Makefile tags
@@ -169,4 +188,5 @@ distclean :
 	-$(CD) src; $(CD) cakit;  $(MAKE) distclean
 	-$(CD) examples;          $(MAKE) distclean
 	-$(CD) words;             $(MAKE) distclean
+	-$(CD) DependencyGraph;   $(MAKE) distclean
 

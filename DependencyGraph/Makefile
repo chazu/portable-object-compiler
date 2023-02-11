@@ -10,4 +10,6 @@ OBJS=Graph.o Node.o mGraph.o
 dg : $(OBJS) ; $(OBJC) $(OBJS) -o dg
 wc : ; wc *.m
 clean: ; rm -f *.o dg
+distclean: clean
+cleantmp: clean
 

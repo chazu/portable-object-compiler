@@ -2400,7 +2400,7 @@ test -n "$target_alias" &&
 
 
 TARGET=$target;
-OBJC1VERSION=3.3.33;
+OBJC1VERSION=3.3.34;
 NAME=objc-${OBJC1VERSION};
 WARNING="DO NOT EDIT -- configure ${NAME} ${TARGET}";
 
