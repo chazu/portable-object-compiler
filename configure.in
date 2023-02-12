@@ -1,6 +1,6 @@
 dnl
-dnl autoconf source file for objc-2.x.x configure script
-dnl $Id: configure.in,v 1.102 2023/02/11 12:31:52 stes Exp $
+dnl autoconf source file for objc-3.x.x configure script
+dnl $Id: configure.in,v 1.103 2023/02/12 11:30:48 stes Exp $
 dnl
 dnl note: we're in the process of converting the old configure script
 dnl (configure.orig) to an autoconf script (long term project)
@@ -68,7 +68,7 @@ AC_CONFIG_AUX_DIR(util)
 AC_CANONICAL_SYSTEM
 
 TARGET=$target;AC_SUBST(TARGET)
-OBJC1VERSION=3.3.34;AC_SUBST(OBJC1VERSION)
+OBJC1VERSION=3.3.35;AC_SUBST(OBJC1VERSION)
 NAME=objc-${OBJC1VERSION};AC_SUBST(NAME)
 WARNING="DO NOT EDIT -- configure ${NAME} ${TARGET}";AC_SUBST(WARNING)
 
@@ -109,6 +109,9 @@ PATHSEPC=/;AC_SUBST(PATHSEPC)
 # this could be customized with below directories for 'make install'
 # these were introduced in POC 3.3.1 for the rpmbuild support (packaging)
 # lib/64 is a link on Solaris to lib/amd64
+#
+# note that this guess is not entirely correct as target can be x64
+# while still configured with -m32 and explicitely setting LIB64NAME to lib
 
 if test -z "$LIB64NAME"
 then
@@ -439,13 +442,6 @@ case $ac_cv_prog_gcc in
 esac
 AC_SUBST(OPT_MFLAGS)
 DBG_MFLAGS=${DBG_MFLAGS:-'-DDEBUG -g'};AC_SUBST(DBG_MFLAGS)
-
-# when configured as Solaris amd64 or x86_64 add -m64
-
-case $target in
-  *64-pc-solaris*) EXTRA_MFLAGS="$EXTRA_MFLAGS -m64";;
-  *) ;;
-esac
 
 # allow configure EXTRA_MFLAGS=  to specify some extra .m flag
 AC_SUBST(EXTRA_MFLAGS)

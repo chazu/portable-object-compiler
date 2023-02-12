@@ -1,4 +1,8 @@
 
+3.3.35  * undo change from 3.3.6 (OpenSolaris - OpenIndiana specific)
+
+	* make Object Unit Test program print success or failed
+
 3.3.34  * add src/objc/objut.m (Object Unit Test) program for regression tests
 
 	* implement toplevel 'make check' (toplevel test target) to allow to

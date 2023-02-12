@@ -2400,7 +2400,7 @@ test -n "$target_alias" &&
 
 
 TARGET=$target;
-OBJC1VERSION=3.3.34;
+OBJC1VERSION=3.3.35;
 NAME=objc-${OBJC1VERSION};
 WARNING="DO NOT EDIT -- configure ${NAME} ${TARGET}";
 
@@ -2437,6 +2437,9 @@ PATHSEPC=/;
 # this could be customized with below directories for 'make install'
 # these were introduced in POC 3.3.1 for the rpmbuild support (packaging)
 # lib/64 is a link on Solaris to lib/amd64
+#
+# note that this guess is not entirely correct as target can be x64
+# while still configured with -m32 and explicitely setting LIB64NAME to lib
 
 if test -z "$LIB64NAME"
 then
@@ -4284,13 +4287,6 @@ case $ac_cv_c_compiler_gnu in
 esac
 
 DBG_MFLAGS=${DBG_MFLAGS:-'-DDEBUG -g'};
-
-# when configured as Solaris amd64 or x86_64 add -m64
-
-case $target in
-  *64-pc-solaris*) EXTRA_MFLAGS="$EXTRA_MFLAGS -m64";;
-  *) ;;
-esac
 
 # allow configure EXTRA_MFLAGS=  to specify some extra .m flag
 

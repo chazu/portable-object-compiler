@@ -96,7 +96,7 @@ NICE FEATURES
 	2.Works on many systems with the native cc, debugger, profiler etc.
 	(Unix, Windows, Macintosh, Beos, OpenVMS etc. see Platforms.txt file)
 
-	2a. Option for reference counted memory management (-refcnt).
+	2a. Option for auto reference counted memory management (-refcnt).
 	This uses the native malloc(), free() etc. but the compiler generates
 	statements for keeping track of references.
 	(Tested on a few platforms, such as IRIX 5.2 with the SGI malloc).
@@ -116,9 +116,10 @@ NICE FEATURES
 	and load objects to and from disk (for all instance variables of
 	type "id").
 
-	8.Option for Garbage Collection (using Boehm gc package).  Tested
-	on some UNIXes and WIN32.   Option for reference counted memory
-	management (doesn't require Boehm).
+	8.Option for Garbage Collection (using Boehm gc package).
+
+          Option for automatic reference counted memory management 
+          (doesn't require Boehm).  
 
 	9.Exception handling scheme (using Objective-C Blocks) that allows
 	to specify a default handler to be executed.

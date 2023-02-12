@@ -54,7 +54,7 @@ psuccess(int ok)
 {
   int exitcode = (ok)?0:1;
   printf("\n");
-  printf("Object Unit Test: exit code is %i\n",exitcode);
+  printf("Object Unit Test: %s\n",(ok)?"success":"failure");
   exit(exitcode);
   return exitcode;
 }
