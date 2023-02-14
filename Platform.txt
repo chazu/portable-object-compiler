@@ -113,4 +113,5 @@ x86_64-unknown-linux-gnu Gentoo default/linux/amd64/17.1 (stable) gcc 9.3.0
 x86_64-unknown-openbsd clang 13 / flex 2.5.39 / yacc of OpenBSD 7.1 as byacc
 openindiana hipster gcc10.4 using byacc 1.9.1
 OpenSUSE 15.4 leap  gcc 7.5 suse (zypper install byacc on suse)
+x86_64-unknown-linux-gnu Debian 11.5 gcc Debian 10.2.1-6 byacc 1.9 flex 2.6.4
 
