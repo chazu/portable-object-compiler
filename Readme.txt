@@ -55,6 +55,12 @@ The "objc" distribution consists of the following parts :
 	There's absolutely no assembly language needed, nor is there
 	a dependency on stack layout, register allocation conventions etc.
 
+        The runtime and compiler support using the frame pointer,
+	as a general purpose register (as in the x64 ABI, for instance).
+
+	Portable Object Compiler supports builds with "noframeptr" so that
+	an optimizer can use the frame pointer as a general purpose register.
+
 	Most other runtimes, were derived from pre-"all C"-Stepstone 
 	runtimes, so this is an important point of difference.
 

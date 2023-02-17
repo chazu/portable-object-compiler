@@ -1,6 +1,6 @@
 
 /*
- * Copyright (c) 1998,2000 David Stes.
+ * Copyright (c) 1998-2023 David Stes.
  *
  * This library is free software; you can redistribute it and/or modify it
  * under the terms of the GNU Library General Public License as published 
@@ -16,7 +16,7 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  *
- * $Id: symbol.m,v 1.4 2011/06/15 19:06:42 stes Exp $
+ * $Id: symbol.m,v 1.5 2023/02/17 15:39:07 stes Exp $
  */
 
 #include "config.h"
@@ -121,8 +121,18 @@ id s_iddecref;
 + commonsymbols
 {
   s_newblock = [Symbol str:"newBlock"];
-  assert(o_mainfun != NULL);
-  s_main = [Symbol str:o_mainfun];
+  /* 
+   * stes feb/2023 o_mainfun can differ from main
+   * but o_mainfun is not necessarily set at this point in time 
+   * the way s_main is used is not related to the strcmp() to o_mainfun
+   * s_main is used for automatic runtime init OCU_main entry will be used
+   * even if the o_mainfun has a different name than main
+   * the runtime src/objcrt/objcrt.m hardcodes the name OCU_main 
+   * and is doing a _objcModules = findmods (OCU_main) and
+   * a return _objcInitNoShared (_objcModules, OCU_main)
+   * so it refers to the name OCU_main regardless of o_mainfun name
+   */
+  s_main = [Symbol str:"main"]; /* objcrt refers to OCU_main */
   s_objcmain = [Symbol str:"objcmain"];
   s_void = [Symbol str:"void"];
   s_char = [Symbol str:"char"];

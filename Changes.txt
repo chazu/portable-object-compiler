@@ -1,4 +1,19 @@
 
+3.3.36  * change for the objc -main foo switch where foo is main function
+	  fixes the Object Unit Test build with -DNDEBUG -g (assertions enabled)
+
+	* introduce MAN1=man1 and MAN3=man3objc in the Makefile.in
+	  use MAN3=man3objc to install manpages in the location man/man3objc
+	  this resolves a motif-devel conflict on OpenSUSE 15.4 with the
+	  Motif Object.3 manpage
+
+	* update SUSE/RedHat RPM spec file for new man3objc location;
+	  update Debian objc.dirs to from man/man3 to man/man3objc
+
+	* avoid recursion do not 'make clean' examples directories
+
+	* add Debian 11 gcc Debian 10.2.1-6 byacc 1.9 flex 2.6.4 to Platforms
+
 3.3.35  * undo change from 3.3.6 (OpenSolaris - OpenIndiana specific)
 
 	* make Object Unit Test program print success or failed

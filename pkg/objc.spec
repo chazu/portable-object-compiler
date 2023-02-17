@@ -1,6 +1,6 @@
 Summary: Portable Object Compiler
 Name: objc
-Version: 3.3.34
+Version: 3.3.36
 Release: 1%{?dist}
 Group: Applications/File
 License: GPLv2+
@@ -25,7 +25,7 @@ mkdir $RPM_BUILD_ROOT
 
 make install
 # motif-devel conflict on OpenSUSE 15.4
-rm -f $RPM_BUILD_ROOT%{_prefix}/share/man/man3/Object.3
+# rm -f $RPM_BUILD_ROOT%{_prefix}/share/man/man3objc/Object.3
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -110,49 +110,49 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/objc.1.gz
 %{_mandir}/man1/postlink.1.gz
 %{_mandir}/man1/vici.1.gz
-%{_mandir}/man3/Array.3.gz
-%{_mandir}/man3/AsciiFiler.3.gz
-%{_mandir}/man3/BadVersion.3.gz
-%{_mandir}/man3/Bag.3.gz
-%{_mandir}/man3/BigInt.3.gz
-%{_mandir}/man3/Block.3.gz
-%{_mandir}/man3/CAObject.3.gz
-%{_mandir}/man3/Cltn.3.gz
-%{_mandir}/man3/Complex.3.gz
-%{_mandir}/man3/Dictionary.3.gz
-%{_mandir}/man3/Exception.3.gz
-%{_mandir}/man3/Float.3.gz
-%{_mandir}/man3/Fraction.3.gz
-%{_mandir}/man3/IdArray.3.gz
-%{_mandir}/man3/IntArray.3.gz
-%{_mandir}/man3/IntegerModp.3.gz
-%{_mandir}/man3/Matrix.3.gz
-%{_mandir}/man3/Message.3.gz
-%{_mandir}/man3/Monomial.3.gz
-%{_mandir}/man3/NotFound.3.gz
-# motif-devel conflict
-# %{_mandir}/man3/Object.3.gz
-%{_mandir}/man3/OrdCltn.3.gz
-%{_mandir}/man3/OutOfBounds.3.gz
-%{_mandir}/man3/OutOfMemory.3.gz
-%{_mandir}/man3/Paragraph.3.gz
-%{_mandir}/man3/Point.3.gz
-%{_mandir}/man3/Polynomial.3.gz
-%{_mandir}/man3/Rectangle.3.gz
-%{_mandir}/man3/RunArray.3.gz
-%{_mandir}/man3/Sequence.3.gz
-%{_mandir}/man3/Set.3.gz
-%{_mandir}/man3/SortCltn.3.gz
-%{_mandir}/man3/Stack.3.gz
-%{_mandir}/man3/String.3.gz
-%{_mandir}/man3/Symbol.3.gz
-%{_mandir}/man3/Term.3.gz
-%{_mandir}/man3/Text.3.gz
-%{_mandir}/man3/TextAttribute.3.gz
-%{_mandir}/man3/TextStyle.3.gz
-%{_mandir}/man3/TypeInconsistency.3.gz
-%{_mandir}/man3/UnknownType.3.gz
-%{_mandir}/man3/Vector.3.gz
+%{_mandir}/man3objc/Array.3.gz
+%{_mandir}/man3objc/AsciiFiler.3.gz
+%{_mandir}/man3objc/BadVersion.3.gz
+%{_mandir}/man3objc/Bag.3.gz
+%{_mandir}/man3objc/BigInt.3.gz
+%{_mandir}/man3objc/Block.3.gz
+%{_mandir}/man3objc/CAObject.3.gz
+%{_mandir}/man3objc/Cltn.3.gz
+%{_mandir}/man3objc/Complex.3.gz
+%{_mandir}/man3objc/Dictionary.3.gz
+%{_mandir}/man3objc/Exception.3.gz
+%{_mandir}/man3objc/Float.3.gz
+%{_mandir}/man3objc/Fraction.3.gz
+%{_mandir}/man3objc/IdArray.3.gz
+%{_mandir}/man3objc/IntArray.3.gz
+%{_mandir}/man3objc/IntegerModp.3.gz
+%{_mandir}/man3objc/Matrix.3.gz
+%{_mandir}/man3objc/Message.3.gz
+%{_mandir}/man3objc/Monomial.3.gz
+%{_mandir}/man3objc/NotFound.3.gz
+# motif-devel conflict with Object.3
+%{_mandir}/man3objc/Object.3.gz
+%{_mandir}/man3objc/OrdCltn.3.gz
+%{_mandir}/man3objc/OutOfBounds.3.gz
+%{_mandir}/man3objc/OutOfMemory.3.gz
+%{_mandir}/man3objc/Paragraph.3.gz
+%{_mandir}/man3objc/Point.3.gz
+%{_mandir}/man3objc/Polynomial.3.gz
+%{_mandir}/man3objc/Rectangle.3.gz
+%{_mandir}/man3objc/RunArray.3.gz
+%{_mandir}/man3objc/Sequence.3.gz
+%{_mandir}/man3objc/Set.3.gz
+%{_mandir}/man3objc/SortCltn.3.gz
+%{_mandir}/man3objc/Stack.3.gz
+%{_mandir}/man3objc/String.3.gz
+%{_mandir}/man3objc/Symbol.3.gz
+%{_mandir}/man3objc/Term.3.gz
+%{_mandir}/man3objc/Text.3.gz
+%{_mandir}/man3objc/TextAttribute.3.gz
+%{_mandir}/man3objc/TextStyle.3.gz
+%{_mandir}/man3objc/TypeInconsistency.3.gz
+%{_mandir}/man3objc/UnknownType.3.gz
+%{_mandir}/man3objc/Vector.3.gz
 %doc Beos.txt Books.txt Changes.txt Ibmvac.txt Install.txt Intro.txt Lcc.txt License.txt Mpw.txt Platform.txt Readme.txt Visual.txt Vms.txt Watcom.txt
 
 %changelog

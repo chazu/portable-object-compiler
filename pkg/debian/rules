@@ -3,11 +3,11 @@
 %:
 	dh $@
 
-INSTALLDIR=/home/stes/objc-3.3.24/debian/objc/usr
-BINDIR=/home/stes/objc-3.3.24/debian/objc/usr/bin
-HDRDIR=/home/stes/objc-3.3.24/debian/objc/usr/include
-LIBDIR=/home/stes/objc-3.3.24/debian/objc/usr/lib
-MANDIR=/home/stes/objc-3.3.24/debian/objc/usr/share/man
+INSTALLDIR=/home/stes/objc-3.3.36/debian/objc/usr
+BINDIR=/home/stes/objc-3.3.36/debian/objc/usr/bin
+HDRDIR=/home/stes/objc-3.3.36/debian/objc/usr/include
+LIBDIR=/home/stes/objc-3.3.36/debian/objc/usr/lib
+MANDIR=/home/stes/objc-3.3.36/debian/objc/usr/share/man
 
 override_dh_auto_configure:
 	dh_auto_configure -- LEX="flex --nounistd"

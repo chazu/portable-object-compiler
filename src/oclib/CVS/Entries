@@ -156,7 +156,6 @@
 /switstmt.h/1.1.1.1/Sun May 10 12:00:04 2020//
 /switstmt.m/1.1.1.1/Sun May 10 12:00:04 2020//
 /symbol.h/1.2/Sun May 10 12:00:04 2020//
-/symbol.m/1.4/Sun May 10 12:00:04 2020//
 /trlunit.h/1.2/Sun May 10 12:00:04 2020//
 /type.h/1.2/Sun May 10 12:00:04 2020//
 /type.m/1.3/Sun May 10 12:00:04 2020//
@@ -173,5 +172,6 @@
 /Makefile.in/1.6/Sun Sep 25 14:36:58 2022//
 /options.h/1.9/Fri Jan 27 20:19:10 2023//
 /options.m/1.9/Fri Jan 27 20:19:10 2023//
-/trlunit.m/1.5/Fri Jan 27 20:19:10 2023//
+/symbol.m/1.5/Fri Feb 17 15:39:07 2023//
+/trlunit.m/1.6/Fri Feb 17 15:39:07 2023//
 D

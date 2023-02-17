@@ -16,7 +16,7 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  *
- * $Id: trlunit.m,v 1.5 2023/01/27 20:19:10 stes Exp $
+ * $Id: trlunit.m,v 1.6 2023/02/17 15:39:07 stes Exp $
  */
 
 #include "config.h"
@@ -611,11 +611,6 @@ mystrrchr(const char *s, int c)
     gf("struct useDescriptor *OCU_%s = &_useDesc;\n", s);
   }
 
-  /* objcrt references OCU_main but our main function can be bar() */
-  /* in that case, we emitted an OCU_bar but no OCU_main yet */
-  if ([self definesmain] && (strcmp(o_mainfun, "main"))) {
-    gf("\nstruct useDescriptor *OCU_main=&_useDesc;\n");
-  }
   return self;
 }
 

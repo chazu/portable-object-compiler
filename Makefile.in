@@ -1,7 +1,7 @@
 
 #
 # Portable Object Compiler (c) 1996-2023. All Rights Reserved.
-# $Id: Makefile.in,v 1.29 2023/02/11 12:43:10 stes Exp $
+# $Id: Makefile.in,v 1.30 2023/02/17 15:39:00 stes Exp $
 #
 
 SRCDIR=@srcdir@
@@ -16,6 +16,8 @@ DATAROOTDIR=@DATAROOTDIR@
 CP=@CP@
 HDRDIR=@HDRDIR@
 MANDIR=@MANDIR@
+MAN1=man1
+MAN3=man3objc
 
 default ::
 	$(MAKE) compiler
@@ -108,15 +110,16 @@ installruntime ::
 	-$(CD) src; $(CD) cakit; $(MAKE) install
 
 #installman only installs manpages (for objc-doc.apk package)
+#copy from man/man{1,3} to man/$(MAN1) and man/$(MAN3)
 
 installman ::
 	test -d $(INSTALLDIR) || $(MKDIR) $(INSTALLDIR)
 	test -d $(DATAROOTDIR) || $(MKDIR) $(DATAROOTDIR)
 	test -d $(MANDIR) || $(MKDIR) $(MANDIR)
-	test -d $(MANDIR)/man1 || $(MKDIR) $(MANDIR)/man1
-	-$(CD) $(SRCDIR)/man/man1; $(CP) $(MAN1PAGES) $(MANDIR)/man1
-	test -d $(MANDIR)/man3 || $(MKDIR) $(MANDIR)/man3
-	-$(CD) $(SRCDIR)/man/man3; $(CP) $(MAN3PAGES) $(MANDIR)/man3
+	test -d $(MANDIR)/$(MAN1) || $(MKDIR) $(MANDIR)/$(MAN1)
+	-$(CD) $(SRCDIR)/man/man1; $(CP) $(MAN1PAGES) $(MANDIR)/$(MAN1)
+	test -d $(MANDIR)/$(MAN3) || $(MKDIR) $(MANDIR)/$(MAN3)
+	-$(CD) $(SRCDIR)/man/man3; $(CP) $(MAN3PAGES) $(MANDIR)/$(MAN3)
 
 installinclude ::
 	test -d $(INSTALLDIR) || $(MKDIR) $(INSTALLDIR)
@@ -173,9 +176,6 @@ cleanruntime :
 clean : cleanruntime
 	-$(CD) src; $(CD) oclib;  $(MAKE) clean
 	-$(CD) src; $(CD) objc;   $(MAKE) clean
-	-$(CD) examples;          $(MAKE) clean
-	-$(CD) words;             $(MAKE) clean
-	-$(CD) DependencyGraph;   $(MAKE) clean
 
 distclean :
 	-$(RM) Makefile tags
