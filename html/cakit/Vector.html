@@ -113,7 +113,7 @@ Inserts <I>aScalar</I> as i-th entry and returns <B>self</B>.  The object <I>aSc
 <BLOCKQUOTE>-<B>removeScalar</B></BLOCKQUOTE>
 Removes (and returns) the first scalar in the vector (the scalar at index 0).  Returns <B>nil</B> if there were no more elements left.  This can be used in the following way :<P>
 <BLOCKQUOTE><PRE>
-while (c = [vector removeScalar]) { /* do something with c */ }
+while ((c = [vector removeScalar])) { /* do something with c */ }
 </PRE></BLOCKQUOTE>
 To remove a scalar, the reference count of the vector should be equal to one.<P>
 <H3><A NAME="19">removeScalarAt:</A></H3>

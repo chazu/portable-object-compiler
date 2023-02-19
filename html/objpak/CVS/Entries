@@ -1,5 +1,4 @@
 /Array.html/1.1.1.1/Sun May 10 12:00:04 2020//
-/AsciiFiler.html/1.2/Sun May 10 12:00:04 2020//
 /BadVersion.html/1.1/Sun May 10 12:00:04 2020//
 /Bag.html/1.2/Sun May 10 12:00:04 2020//
 /Cltn.html/1.3/Sun May 10 12:00:04 2020//
@@ -8,7 +7,6 @@
 /IntArray.html/1.2/Sun May 10 12:00:04 2020//
 /NotFound.html/1.1/Sun May 10 12:00:04 2020//
 /OrdCltn.html/1.4/Sun May 10 12:00:04 2020//
-/OutOfBounds.html/1.1/Sun May 10 12:00:04 2020//
 /Paragraph.html/1.1.1.1/Sun May 10 12:00:04 2020//
 /Point.html/1.1.1.1/Sun May 10 12:00:04 2020//
 /Rectangle.html/1.1.1.1/Sun May 10 12:00:04 2020//
@@ -17,10 +15,12 @@
 /Set.html/1.3/Sun May 10 12:00:04 2020//
 /SortCltn.html/1.3/Sun May 10 12:00:04 2020//
 /Stack.html/1.1.1.1/Sun May 10 12:00:04 2020//
-/String.html/1.2/Sun May 10 12:00:04 2020//
 /Text.html/1.2/Sun May 10 12:00:04 2020//
 /TextAttribute.html/1.1.1.1/Sun May 10 12:00:04 2020//
 /TextStyle.html/1.1.1.1/Sun May 10 12:00:04 2020//
 /TypeInconsistency.html/1.1/Sun May 10 12:00:04 2020//
 /UnknownType.html/1.1/Sun May 10 12:00:04 2020//
+/AsciiFiler.html/1.3/Sun Feb 19 16:46:30 2023//
+/OutOfBounds.html/1.2/Sun Feb 19 16:46:30 2023//
+/String.html/1.3/Sun Feb 19 16:46:30 2023//
 D

@@ -3,7 +3,7 @@
 <H1>Object Specification Sheet</H1>
 
 <HR>
-Portable Object Compiler (c) 1997,98,99,2000,03.  All Rights Reserved.<P>
+Portable Object Compiler (c) 1997,2023.  All Rights Reserved.<P>
 <H1>Object</H1>
 None.  (Object is the root class).<P>
 <H2>Class Description</H2>
@@ -386,7 +386,7 @@ A good use of <B>methodFor:</B> however, is, because this method is supported by
 <BLOCKQUOTE><PRE>
 ((int (*) (id,id,BOOL))[object methodFor:selector])(object,arg,flag);
 </PRE></BLOCKQUOTE>
-The same thing can be achieved by using the _imp() function immediately, but the above is preferred usage, since it will also work for NeXT, Stepstone and GNU. <P>
+The same thing can be achieved by using the _imp() function immediately but using the <B>methodFor:</B> message is the preferred API.<P>
 <H3><A NAME="67">instanceMethodFor:</A></H3>
 <BLOCKQUOTE>+ (IMP)<B>instanceMethodFor</B>:(SEL)<I>aSelector</I></BLOCKQUOTE>
 Returns a function implementation pointer for <I>aSelector</I>.  Returns a pointer to an error handling function if the object does not respond to <I>aSelector</I>.<P>

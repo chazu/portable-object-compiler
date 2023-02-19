@@ -17,7 +17,7 @@ For a variable dense monomial, the collection of symbols is fixed when the monom
 It suffices to remove terms from a monomial in one representation and to insert them into another; abstractly, both kind of monomials, are collections of terms.<P>
 <BLOCKQUOTE><PRE>
 sparse = [Monomial scalar:[dense scalar]];
-while (term = [dense removeTerm]) [sparse insertTerm:term];
+while ((term = [dense removeTerm])) [sparse insertTerm:term];
 </PRE></BLOCKQUOTE>
 The example shows how to, destructively, convert from the variable dense into the variable sparse representation (see also <B>makeVariableSparse</B>).  Note that when you create a variable sparse monomial, you don't have to specify the symbols in advance. <P>
 <BLOCKQUOTE><PRE>

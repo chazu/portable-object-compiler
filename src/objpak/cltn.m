@@ -1,7 +1,7 @@
 
 /*
  * Portable Object Compiler (c) 1997,98,2003.  All Rights Reserved.
- * $Id: cltn.m,v 1.4 2020/04/16 19:16:07 stes Exp $
+ * $Id: cltn.m,v 1.5 2023/02/19 17:01:00 stes Exp $
  */
 
 /*
@@ -66,7 +66,7 @@
 
 - perform:(SEL)aSel with:a with:b with:c
 {
-  /* NeXT Object.h doesn't have this, so add this dummy */
+  /* if Object.h doesn't have this, add this dummy */
   return [self subclassResponsibility:_cmd];
 }
 

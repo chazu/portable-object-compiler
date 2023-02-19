@@ -1,7 +1,7 @@
 
 /*
- * Portable Object Compiler (c) 1997,2020.  All Rights Reserved.
- * $Id: objcrt.h,v 1.16 2020/05/11 07:14:02 stes Exp $
+ * Portable Object Compiler (c) 1997,2020,2023.  All Rights Reserved.
+ * $Id: objcrt.h,v 1.17 2023/02/19 17:00:57 stes Exp $
  */
 
 /*

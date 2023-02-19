@@ -1,7 +1,7 @@
 
 /*
- * Portable Object Compiler (c) 1998.  All Rights Reserved.
- * $Id: Message.h,v 1.2 2020/04/16 19:15:42 stes Exp $
+ * Portable Object Compiler (c) 1998,2023.  All Rights Reserved.
+ * $Id: Message.h,v 1.3 2023/02/19 17:00:57 stes Exp $
  */
 
 /*

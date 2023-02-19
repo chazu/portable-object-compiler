@@ -1,6 +1,6 @@
 dnl
 dnl autoconf source file for objc-3.x.x configure script
-dnl $Id: configure.in,v 1.104 2023/02/17 15:39:01 stes Exp $
+dnl $Id: configure.in,v 1.105 2023/02/19 16:56:16 stes Exp $
 dnl
 dnl note: we're in the process of converting the old configure script
 dnl (configure.orig) to an autoconf script (long term project)
@@ -68,7 +68,7 @@ AC_CONFIG_AUX_DIR(util)
 AC_CANONICAL_SYSTEM
 
 TARGET=$target;AC_SUBST(TARGET)
-OBJC1VERSION=3.3.36;AC_SUBST(OBJC1VERSION)
+OBJC1VERSION=3.3.37;AC_SUBST(OBJC1VERSION)
 NAME=objc-${OBJC1VERSION};AC_SUBST(NAME)
 WARNING="DO NOT EDIT -- configure ${NAME} ${TARGET}";AC_SUBST(WARNING)
 
@@ -761,8 +761,9 @@ then
 
 AC_MSG_CHECKING(whether compiler supports __attribute__((__common__)))
 AC_CACHE_VAL(ac_cv_attrcommon,[
-t1="x$$.c"
-ac_clean_files="$t1"
+t1="ac$$.c"
+o1="ac$$.o"
+ac_clean_files="$t1 $o1"
 cat >$t1 <<EOF
 __attribute__((__common__)) int a = 7;
 EOF
@@ -775,7 +776,7 @@ if $CC -c $t1 2>&5 1>&5
     echo " (yes)" >&5
     ac_cv_attrcommon=no;
 fi
-
+rm -rf $ac_clean_files
 ],ac_cv_attrcommon=yes,ac_cv_attrcommon=no)
 AC_MSG_RESULT($ac_cv_attrcommon)
 
@@ -863,7 +864,9 @@ AC_SUBST(SQLINC)
 AC_SUBST(SQLLIBS)
 AC_SUBST(SQLEXT)
 
-list='config.h Makefile src/objcrt/config.h src/objcrt/Makefile src/objpak/config.h src/objpak/Makefile src/oclib/config.h src/oclib/Makefile src/objc/config.h src/objc/Makefile src/objc/objc src/objc/objc.m src/cakit/config.h src/cakit/Makefile examples/Makefile words/Makefile pkg/objc.p5m pkg/objclibs.p5m' 
+list='config.h Makefile src/objcrt/config.h src/objcrt/Makefile src/objpak/config.h src/objpak/Makefile src/oclib/config.h src/oclib/Makefile src/objc/config.h src/objc/Makefile src/objc/objc src/objc/objc.m src/cakit/config.h src/cakit/Makefile examples/Makefile words/Makefile'
+
+#list="$list pkg/objc.p5m pkg/objclibs.p5m" 
 
 AC_OUTPUT($list)
 

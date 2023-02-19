@@ -1,7 +1,7 @@
 
 /*
- * Portable Object Compiler (c) 2003.  All Rights Reserved.
- * $Id: OutOfMem.h,v 1.3 2020/04/16 19:15:42 stes Exp $
+ * Portable Object Compiler (c) 2003,2023.  All Rights Reserved.
+ * $Id: OutOfMem.h,v 1.4 2023/02/19 17:00:57 stes Exp $
  */
 
 /*

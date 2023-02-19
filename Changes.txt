@@ -1,4 +1,10 @@
 
+3.3.37  * fix configure to delete temporary test file
+
+	* remove IPS p5m manifests from configure
+
+	* update __objcrt_revision__
+
 3.3.36  * change for the objc -main foo switch where foo is main function
 	  fixes the Object Unit Test build with -DNDEBUG -g (assertions enabled)
 

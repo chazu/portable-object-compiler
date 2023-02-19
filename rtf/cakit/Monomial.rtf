@@ -41,7 +41,7 @@
 \f0\fs28\li2200 It suffices to remove terms from a monomial in one representation and to insert them into another; abstractly, both kind of monomials, are collections of terms.\fs16\
 \
 \f2\fs24\li2800 sparse = [Monomial scalar:[dense scalar]];\
-while (term = [dense removeTerm]) [sparse insertTerm:term];\
+while ((term = [dense removeTerm])) [sparse insertTerm:term];\
 \f0\fs16\
 \f0\fs28\li2200 The example shows how to, destructively, convert from the variable dense into the variable sparse representation (see also {\b makeVariableSparse}).  Note that when you create a variable sparse monomial, you don't have to specify the symbols in advance. \fs16\
 \

@@ -1,7 +1,7 @@
 
 /*
- * Portable Object Compiler (c) 1997,98,99,2000,03,14.  All Rights Reserved.
- * $Id: Object.h,v 1.6 2014/03/04 09:15:17 stes Exp $
+ * Portable Object Compiler (c) 1997,2023.  All Rights Reserved.
+ * $Id: Object.h,v 1.8 2023/02/19 17:15:52 stes Exp $
  */
 
 /*
@@ -31,7 +31,7 @@
 #include "objcrt.h"
 #include <string.h>
 
-#define __objcrt_revision__ "3.2.1"
+#define __objcrt_revision__ "3.3.37"
 
 #ifdef _XtIntrinsic_h
 #define Object OCObject		/* remap Object class - cant use Xt Object */

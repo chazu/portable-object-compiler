@@ -3,7 +3,7 @@
 <H1>ocstring Specification Sheet</H1>
 
 <HR>
-Portable Object Compiler (c) 1997,98,99,2003.  All Rights Reserved.<P>
+Portable Object Compiler (c) 1997,98,99,2003,09,14.  All Rights Reserved.<P>
 <H1>String</H1>
 <B>Inherits from:</B> Array<P>
 <H2>Class Description</H2>
@@ -133,6 +133,7 @@ Concatenates the receiver's C string to <I>aBuffer</I>.  No length checking is p
 <H3><A NAME="21">concat:</A></H3>
 <BLOCKQUOTE>-<B>concat</B>:<I>aString</I></BLOCKQUOTE>
 Concatenates <I>aString</I> (any instance that responds to <B>str</B>) to the end of the receiver.  Returns <B>self</B>.<P>
+<B>Note:</B> Since version 3.2.10, this method works correctly when the argument is the same object as the receiver.<P>
 <H3><A NAME="22">concatSTR:</A></H3>
 <BLOCKQUOTE>-<B>concatSTR</B>:(STR)<I>aString</I></BLOCKQUOTE>
 Concatenates <I>aString</I>, an ordinary C string, to the end of the receiver.  Returns <B>self</B>.<P>

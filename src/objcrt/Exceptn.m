@@ -1,7 +1,7 @@
 
 /*
- * Portable Object Compiler (c) 2003.  All Rights Reserved.
- * $Id: Exceptn.m,v 1.4 2020/04/16 19:15:42 stes Exp $
+ * Portable Object Compiler (c) 2003,2023.  All Rights Reserved.
+ * $Id: Exceptn.m,v 1.5 2023/02/19 17:00:57 stes Exp $
  */
 
 /*

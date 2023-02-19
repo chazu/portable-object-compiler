@@ -1,4 +1,4 @@
-.TH "monomial" 3 "Oct 12, 2003"
+.TH "monomial" 3 "Feb 19, 2023"
 .SH Monomial
 .PP
 .B
@@ -71,7 +71,7 @@ It suffices to remove terms from a monomial in one representation and to insert 
 
 sparse = [Monomial scalar:[dense scalar]];
 .br
-while (term = [dense removeTerm]) [sparse insertTerm:term];
+while ((term = [dense removeTerm])) [sparse insertTerm:term];
 .br
 
 .RE

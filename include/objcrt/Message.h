@@ -1,7 +1,7 @@
 
 /*
- * Portable Object Compiler (c) 1998.  All Rights Reserved.
- * $Id: Message.h,v 1.1.1.1 2000/06/07 21:09:24 stes Exp $
+ * Portable Object Compiler (c) 1998,2023.  All Rights Reserved.
+ * $Id: Message.h,v 1.2 2023/02/19 17:00:50 stes Exp $
  */
 
 /*
@@ -27,14 +27,14 @@
 
 #ifndef __OBJECT_INCLUDED__
 #define __OBJECT_INCLUDED__
-#include "Object.h" /* Stepstone Object.h assumes #import */
+#include "Object.h"		/* Stepstone Object.h assumes #import */
 #endif
 
 @interface Message : Object
 {
-	SEL selector;
-	ARGIMP dispatch;
-	void* args;
+  SEL selector;
+  ARGIMP dispatch;
+  void *args;
 }
 
 + selector:(SEL)s dispatch:(ARGIMP)d args:(void *)a;
@@ -47,6 +47,4 @@
 #endif /* __PORTABLE_OBJC__ */
 
 #endif /* __MESSAG_H__ */
-
-
  
