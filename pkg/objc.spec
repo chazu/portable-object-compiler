@@ -1,6 +1,6 @@
 Summary: Portable Object Compiler
 Name: objc
-Version: 3.3.36
+Version: 3.3.38
 Release: 1%{?dist}
 Group: Applications/File
 License: GPLv2+

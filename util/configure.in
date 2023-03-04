@@ -1,6 +1,6 @@
 dnl
 dnl autoconf source file for configure script for the objc-bootstrap compiler
-dnl $Id: configure.in,v 1.8 2023/02/19 16:57:01 stes Exp $
+dnl $Id: configure.in,v 1.9 2023/03/04 08:16:31 stes Exp $
 dnl
 dnl note: we're in the process of converting the old configure script
 dnl (configure.orig) to an autoconf script (long term project)
@@ -20,40 +20,23 @@ dnl normally we check for _objcInit() (to see if it's not in the syslibs)
 dnl if it is, we should be using some other prefixed name (oc_objcInit)
 
 AC_ARG_WITH(prefixed-names,
-  [  --with-prefixed-names        use oc_objcInit as initialization function],
+  [  --with-prefixed-names   use oc_objcInit as initialization function],
   [ac_cv_prefixed_names=$withval]
 )
 
-dnl runtime initialization options
-dnl see documentation (manual) for more info on postlink init vs. automatic
-dnl initialization
-dnl automatic initialisation can use tentative definitions (common storage)
-dnl or the gcc 10 __attribute__ (( __common__ )) construct
-dnl the preferred model is the --with-tentdef ANSI C (K&R book Appendix A10.2)
-
-AC_ARG_WITH(tentdef,
-  [  --with-tentdef               use ANSI C tentative definitions],
-  [ac_cv_tentdef=$withval]
-)
-
-AC_ARG_WITH(attrcommon,
-  [  --with-attrcommon            use __attribute__ for tentative definitions],
-  [ac_cv_attrcommon=$withval]
-)
-
 AC_ARG_WITH(postlink,
-  [  --with-postlink              use postlink runtime initialization],
+  [  --with-postlink         use postlink runtime initialization],
   [ac_cv_postlink=$withval]
 )
 
 dnl generation of # or #line linetags (or none at all)
 
 AC_ARG_WITH(longlinetags,
-  [  --with-longlinetags          generate long #line linetags],
+  [  --with-longlinetags     generate long #line linetags],
   [ac_cv_longlinetags=$withval]
 )
 AC_ARG_WITH(shortlinetags,
-  [  --with-shortlinetags         generate short # linetags],
+  [  --with-shortlinetags    generate short # linetags],
   [ac_cv_longlinetags=$withval]
 )
 
@@ -61,7 +44,7 @@ dnl for embedded SQL in Objective-C we could support several servers
 dnl currently only for Informix (with esql .ec files)
 
 AC_ARG_WITH(informix,
-  [  --with-informix              set SQLCC to Informix esql],
+  [  --with-informix         set SQLCC to Informix esql],
   [ac_cv_informix=$withval],
   [ac_cv_informix=no]
 )
@@ -70,7 +53,7 @@ AC_CONFIG_AUX_DIR(util)
 AC_CANONICAL_SYSTEM
 
 TARGET=$target;AC_SUBST(TARGET)
-OBJC1VERSION=3.3.37;AC_SUBST(OBJC1VERSION)
+OBJC1VERSION=3.3.38;AC_SUBST(OBJC1VERSION)
 NAME=objc-${OBJC1VERSION};AC_SUBST(NAME)
 WARNING="DO NOT EDIT -- configure ${NAME} ${TARGET}";AC_SUBST(WARNING)
 
@@ -645,97 +628,15 @@ esac
 AC_SUBST(OBJCRT_LINUX)
 OBJC_HAVE_SYSTEM_CALL=1;AC_SUBST(OBJC_HAVE_SYSTEM_CALL)
 
-dnl
-dnl Testing for public storage model of C compiler 
-dnl  1. common storage tentative definition
-dnl  2. gcc 10 __attribute__ (( __common__ ))
-dnl  3. or strict definition reference
-dnl
-dnl the preferred model is the --with-tentdef ANSI C (K&R book Appendix A10.2)
-dnl stes 27/1/2023
-dnl situation changed with GCC 10 and  dnl __attribute__((__common__))
-dnl where GCC by default stopped supporting the ANSI C model (-fcommon)
-dnl
-
-AC_MSG_CHECKING(whether compiler supports ANSI C tentative definitions)
-AC_CACHE_VAL(ac_cv_tentdef,[
-t1="x$$.c"
-t2="y$$.c"
-e1="x$$"
-e2="y$$"
-ac_clean_files="$e1 $e2 $t1 $t2"
-
-# this is the traditional ANSI C case
-# tentative definitions are resolved using 'common storage'
-# this case is supported by setting CC to 'gcc -fcommon'
-# which is since gcc 10 not the default (it defaults now to -fno-common)
-cat >$t1 <<EOF
-int a = 7;
-EOF
-
-cat >$t2 <<EOF
-#include <stdio.h>
-int a;
-int main() { exit(a);return a; }
-EOF
-
-echo "$CC $t1 $t2 -o $e1" >&5
-($CC $t1 $t2 -o $e1) 2>&5 1>&5
-echo "$CC $t2 $t1 -o $e2" >&5
-($CC $t2 $t1 -o $e2) 2>&5 1>&5
-
-if test -x ./$e1 -a -x ./$e2
-then
-  echo -n "check whether $e1 returns '7'" >&5
-  if ./$e1 != 7
-  then
-    echo " (no)" >&5
-    ac_cv_tentdef=no;
-  else
-    echo " (yes)" >&5
-    echo -n "check whether $e2 returns '7'" >&5
-    if ./$e2 != 7
-    then
-     echo " (no)" >&5
-     ac_cv_tentdef=no
-    else
-     echo " (yes)" >&5
-     ac_cv_tentdef=yes;
-    fi
-  fi
-else
-  ac_cv_tentdef=no;
-fi
-rm -rf $ac_clean_files
-],ac_cv_tentdef=no,ac_cv_tentdef=yes)
-AC_MSG_RESULT($ac_cv_tentdef)
+m4_include([ax_cc_tentdef.m4])
+m4_include([ax_cc_attrcommon.m4])
 
 dnl only test for __attribute__ ((__common__)) in the non-ANSI case
 
+AX_CC_TENTDEF
 if test "$ac_cv_tentdef" = "no"
 then
-
-AC_MSG_CHECKING(whether compiler supports __attribute__((__common__)))
-AC_CACHE_VAL(ac_cv_attrcommon,[
-t1="ac$$.c"
-o1="ac$$.o"
-ac_clean_files="$t1 $o1"
-cat >$t1 <<EOF
-__attribute__((__common__)) int a = 7;
-EOF
-echo "$CC -c $t1" >&5
-if $CC -c $t1 2>&5 1>&5
-  then
-    echo " (no)" >&5
-    ac_cv_attrcommon=yes;
-  else
-    echo " (yes)" >&5
-    ac_cv_attrcommon=no;
-fi
-rm -rf $ac_clean_files
-],ac_cv_attrcommon=yes,ac_cv_attrcommon=no)
-AC_MSG_RESULT($ac_cv_attrcommon)
-
+  AX_CC_ATTRCOMMON
 fi
 
 AC_MSG_CHECKING(whether to use postlink)

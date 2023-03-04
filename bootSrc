@@ -1,9 +1,9 @@
 #!/bin/sh
 #
 # script to precompile compiler to C (bootstrap package)
-# $Id: bootSrc,v 1.44 2023/02/14 15:53:39 stes Exp $
+# $Id: bootSrc,v 1.45 2023/03/04 08:16:24 stes Exp $
 
-DST=/tmp/objc-bootstrap-3.3.35
+DST=/tmp/objc-bootstrap-3.3.38
 
 if test -f Makefile
 then
@@ -36,6 +36,8 @@ cp src/objc/objc.com $DST
 cp util/BOOTSTRAP $DST
 cp License.txt $DST
 cp util/configure.in $DST
+cp util/ax_cc_tentdef.m4 $DST
+cp util/ax_cc_attrcommon.m4 $DST
 cp util/Makefile.in $DST
 cp util/Makefile.vms $DST
 cp util/config.sub $DST/util/

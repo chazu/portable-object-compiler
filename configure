@@ -764,12 +764,12 @@ ac_subst_files=''
 ac_user_opts='
 enable_option_checking
 with_prefixed_names
-with_tentdef
-with_attrcommon
 with_postlink
 with_longlinetags
 with_shortlinetags
 with_informix
+with_tentdef
+with_attrcommon
 '
       ac_precious_vars='build_alias
 host_alias
@@ -1394,13 +1394,13 @@ if test -n "$ac_init_help"; then
 Optional Packages:
   --with-PACKAGE[=ARG]    use PACKAGE [ARG=yes]
   --without-PACKAGE       do not use PACKAGE (same as --with-PACKAGE=no)
-  --with-prefixed-names        use oc_objcInit as initialization function
-  --with-tentdef               use ANSI C tentative definitions
-  --with-attrcommon            use __attribute__ for tentative definitions
-  --with-postlink              use postlink runtime initialization
-  --with-longlinetags          generate long #line linetags
-  --with-shortlinetags         generate short # linetags
-  --with-informix              set SQLCC to Informix esql
+  --with-prefixed-names   use oc_objcInit as initialization function
+  --with-postlink         use postlink runtime initialization
+  --with-longlinetags     generate long #line linetags
+  --with-shortlinetags    generate short # linetags
+  --with-informix         set SQLCC to Informix esql
+  --with-tentdef          use C tentative definitions
+  --with-attrcommon       use __attribute__ for C tentative definitions
 
 Some influential environment variables:
   LIB64NAME   name relative to OBJCDIR
@@ -2207,23 +2207,6 @@ fi
 
 
 
-
-# Check whether --with-tentdef was given.
-if test "${with_tentdef+set}" = set; then :
-  withval=$with_tentdef; ac_cv_tentdef=$withval
-
-fi
-
-
-
-# Check whether --with-attrcommon was given.
-if test "${with_attrcommon+set}" = set; then :
-  withval=$with_attrcommon; ac_cv_attrcommon=$withval
-
-fi
-
-
-
 # Check whether --with-postlink was given.
 if test "${with_postlink+set}" = set; then :
   withval=$with_postlink; ac_cv_postlink=$withval
@@ -2400,7 +2383,7 @@ test -n "$target_alias" &&
 
 
 TARGET=$target;
-OBJC1VERSION=3.3.37;
+OBJC1VERSION=3.3.38;
 NAME=objc-${OBJC1VERSION};
 WARNING="DO NOT EDIT -- configure ${NAME} ${TARGET}";
 
@@ -5102,10 +5085,116 @@ esac
 
 OBJC_HAVE_SYSTEM_CALL=1;
 
+# ===========================================================================
+#       https://www.gnu.org/software/autoconf-archive/
+# ===========================================================================
+#
+# SYNOPSIS
+#
+#   AX_CC_TENTDEF
+#
+# DESCRIPTION
+#
+#   Determine whether the C compiler supports C tentative defintions.
+#   See K&R book Appendix A10.2 on 'extern' and tentative definitions.
+#   Some compilers use a 'strict definition-reference model'
+#   Traditionally most UNIX C compilers support tentative definitions,
+#   whereas some compiler such as Metrowerks or WATCOM C do not.
+#
+#   The $ac_cv_tentdef variable will be either no or yes,
+#   and can be overridden on the command line using --with-tentdef
+#
+#   See also:  ax_cc_attrcommon.m4 for a __attribute__(( __common__)) test
+#
+# LICENSE
+#
+#   Copyright (c) 1996-2023 David Stes
+#
+#   This program is free software: you can redistribute it and/or modify it
+#   under the terms of the GNU General Public License as published by the
+#   Free Software Foundation, either version 3 of the License, or (at your
+#   option) any later version.
+#
+#   This program is distributed in the hope that it will be useful, but
+#   WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
+#   Public License for more details.
+#
+#   You should have received a copy of the GNU General Public License along
+#   with this program. If not, see <https://www.gnu.org/licenses/>.
+
+#serial 1
 
 
-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking whether compiler supports ANSI C tentative definitions" >&5
-$as_echo_n "checking whether compiler supports ANSI C tentative definitions... " >&6; }
+# Check whether --with-tentdef was given.
+if test "${with_tentdef+set}" = set; then :
+  withval=$with_tentdef; ac_cv_tentdef=$withval
+
+fi
+
+
+
+
+
+# ===========================================================================
+#       https://www.gnu.org/software/autoconf-archive
+# ===========================================================================
+#
+# SYNOPSIS
+#
+#   AX_CC_ATTRCOMMON
+#
+# DESCRIPTION
+#
+#   Determine whether the C compiler supports C tentative defintions
+#   with __attribute((__common__))
+#   See K&R book Appendix A10.2 on 'extern' and tentative definitions.
+#   Some compilers use a 'strict definition-reference model'
+#   Traditionally most UNIX C compilers support C tentative definitions.
+#   GCC 10 switched from default fcommon to fnocommon
+#   and will need __attribute__ ((__common__)) for tentative definitions.
+#
+#   The $ac_cv_attrcommon variable will be either yes or no,
+#   and can be overridden on the command line with using --with-attrcommon
+#
+#   See also:  ax_cc_tentdef.m4 for a test on C tentative definitions
+#
+# LICENSE
+#
+#   Copyright (c) 1996-2023 David Stes
+#
+#   This program is free software: you can redistribute it and/or modify it
+#   under the terms of the GNU General Public License as published by the
+#   Free Software Foundation, either version 3 of the License, or (at your
+#   option) any later version.
+#
+#   This program is distributed in the hope that it will be useful, but
+#   WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
+#   Public License for more details.
+#
+#   You should have received a copy of the GNU General Public License along
+#   with this program. If not, see <https://www.gnu.org/licenses/>.
+
+#serial 1
+
+
+# Check whether --with-attrcommon was given.
+if test "${with_attrcommon+set}" = set; then :
+  withval=$with_attrcommon; ac_cv_attrcommon=$withval
+
+fi
+
+
+
+
+
+
+
+
+
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking whether compiler supports C tentative definitions" >&5
+$as_echo_n "checking whether compiler supports C tentative definitions... " >&6; }
 if ${ac_cv_tentdef+:} false; then :
   $as_echo_n "(cached) " >&6
 else
@@ -5116,7 +5205,7 @@ e1="x$$"
 e2="y$$"
 ac_clean_files="$e1 $e2 $t1 $t2"
 
-# this is the traditional ANSI C case
+# this is the traditional case for most compilers (K&R book Appendix A10.2)
 # tentative definitions are resolved using 'common storage'
 # this case is supported by setting CC to 'gcc -fcommon'
 # which is since gcc 10 not the default (it defaults now to -fno-common)
@@ -5164,7 +5253,6 @@ fi
 { $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_tentdef" >&5
 $as_echo "$ac_cv_tentdef" >&6; }
 
-
 if test "$ac_cv_tentdef" = "no"
 then
 
@@ -5180,6 +5268,10 @@ ac_clean_files="$t1 $o1"
 cat >$t1 <<EOF
 __attribute__((__common__)) int a = 7;
 EOF
+# tentative definitions are resolved using 'common storage'
+# this is the traditional case for most C compilers (K&R book Appendix A10.2)
+# this case is supported by setting CC to 'gcc -fcommon'
+# which is since gcc 10 not the default (it defaults now to -fno-common)
 echo "$CC -c $t1" >&5
 if $CC -c $t1 2>&5 1>&5
   then
