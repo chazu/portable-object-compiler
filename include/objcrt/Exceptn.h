@@ -1,7 +1,7 @@
 
 /*
  * Portable Object Compiler (c) 2003,2023.  All Rights Reserved.
- * $Id: Exceptn.h,v 1.4 2023/02/19 17:00:50 stes Exp $
+ * $Id: Exceptn.h,v 1.6 2023/03/12 16:10:42 stes Exp $
  */
 
 /*
@@ -36,10 +36,12 @@
   id tag;
   id resumeHandler;
 }
+#ifndef OTBCRT
 :
 {
   id handler;			/* for this class of exceptions */
 }
+#endif
 
 
 + signal;

@@ -1,7 +1,7 @@
 
 /*
  * Portable Object Compiler (c) 2003,2023.  All Rights Reserved.
- * $Id: Exceptn.m,v 1.5 2023/02/19 17:00:57 stes Exp $
+ * $Id: Exceptn.m,v 1.7 2023/03/12 16:10:55 stes Exp $
  */
 
 /*
@@ -37,6 +37,11 @@
  * Installing Handlers
  *
  ****************************************************************************/
+
+#ifdef OTBCRT
+static id handler;		/* OTB runtime not tested with Exception */
+#endif
+
 
 + install:aHandler
 {
@@ -108,7 +113,7 @@
 
 - signal:(STR)message
 {
-  return [[self messageText:message] signal];
+  return [[self str:message] signal];
 }
 
 - messageText

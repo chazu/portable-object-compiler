@@ -1,7 +1,7 @@
 
 /*
- * Portable Object Compiler (c) 2003.  All Rights Reserved.
- * $Id: typeinc.h,v 1.2 2004/07/24 18:50:39 stes Exp $
+ * Portable Object Compiler (c) 2003,2023.  All Rights Reserved.
+ * $Id: typeinc.h,v 1.3 2023/03/12 16:10:44 stes Exp $
  */
 
 /*

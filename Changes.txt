@@ -1,4 +1,11 @@
 
+3.3.39  * submitted ax_cc_tentdef.m4 to autoconf-archive
+          as patch #10317: ax_cc_tentdef.m4
+	
+	* fix signal: in Exception class
+
+	* fix -otb compile (Object Tables) of Exception class
+
 3.3.38  * move the C tentative definition test to util/ax_cc_tentdef.m4
 
 	* move the GCC attribute test to util/ax_cc_attrcommon.m4

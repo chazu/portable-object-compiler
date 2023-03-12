@@ -1,7 +1,7 @@
 
 /*
- * Portable Object Compiler (c) 2003.  All Rights Reserved.
- * $Id: outofbnd.h,v 1.4 2020/04/16 19:16:08 stes Exp $
+ * Portable Object Compiler (c) 2003,2023.  All Rights Reserved.
+ * $Id: outofbnd.h,v 1.5 2023/03/12 16:10:57 stes Exp $
  */
 
 /*
