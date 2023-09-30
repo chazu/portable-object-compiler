@@ -1,4 +1,12 @@
 
+3.3.40  * add Debian 12.1 to Platforms (gcc 12/byacc 2.0 from debian)
+
+	* ran autoupdate 2.68 on configure.in to prepare for autoconf 2.71
+
+	* remove AC_HEADER_STDC in configure.in scripts to prepare for 2.71
+	  AC_HEADER_STDC is obsoleted by autoconf 2.71
+	  and autoconf claims that is likely not needed unless for unusual env
+
 3.3.39  * submitted ax_cc_tentdef.m4 to autoconf-archive
           as patch #10317: ax_cc_tentdef.m4
 	
