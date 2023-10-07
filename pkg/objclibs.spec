@@ -1,6 +1,6 @@
 Summary: Portable Object Compiler Shared Libraries
 Name: objclibs
-Version: 3.3.38
+Version: 3.3.41
 Release: 1%{?dist}
 Group: Applications/File
 License: GPLv2+
@@ -34,6 +34,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libobjpak.so
 
 %changelog
+* Sat Oct  7 13:52:10 CEST 2023 David Stes <stes@telenet.be> 3.3.41
+Update for 3.3.41
+
 * Wed Mar 13 2019 David Stes <stes@telenet.be> 3.3.11
 Create for objc-3.3.11 as a separate package (currently not required for objc)
 

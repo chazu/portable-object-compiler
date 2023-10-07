@@ -1,10 +1,10 @@
 Summary: Portable Object Compiler
 Name: objc
-Version: 3.3.38
+Version: 3.3.41
 Release: 1%{?dist}
 Group: Applications/File
 License: GPLv2+
-Source: http://users.pandora.be/stes/objc-%{version}.tar.gz
+Source: https://sourceforge.net/projects/objc/files/src/objc-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 %description
@@ -156,6 +156,9 @@ rm -rf $RPM_BUILD_ROOT
 %doc Beos.txt Books.txt Changes.txt Ibmvac.txt Install.txt Intro.txt Lcc.txt License.txt Mpw.txt Platform.txt Readme.txt Visual.txt Vms.txt Watcom.txt
 
 %changelog
+* Sat Oct  7 13:51:05 CEST 2023 David Stes <stes@telenet.be> 3.3.41
+Update for 3.3.41
+
 * Sat Feb 11 2023 David Stes <stes@telenet.be> 3.3.34
 Update for 3.3.34, manpage Object.3 conflict with motif-devel
 
@@ -176,4 +179,3 @@ Update for 3.3.1
 
 * Sat Sep 26 2015 David Stes <stes@telenet.be> 3.2.13
 Copy spec file from example
-
