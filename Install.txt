@@ -1,13 +1,17 @@
-Portable Object Compiler (c) 1997-2023  All Rights Reserved.
+Portable Object Compiler (c) 1997-2024  All Rights Reserved.
 
 For help, send email to me: stes@telenet.be
 or preferably to the objc-discuss@lists.sourceforge.net mailing list.
 
-0. Get flex and yacc or byacc if you don't have them :
+0. Get lex and yacc or byacc (BSD yacc) if you don't have them :
 
-   for FLEX (for example flex 2.5.4) :
+   for LEX preferably download flex from :
  
   	http://www.gnu.org/ 
+
+   some versions of flex may require --nounistd, depends on the OS.
+
+   for YACC be sure to use the -d option to generate a y.tab.h file :
 
    The AT&T yacc works :
 
@@ -24,8 +28,6 @@ or preferably to the objc-discuss@lists.sourceforge.net mailing list.
    but I recommend the byacc package (see Changes.txt for some subtle issues)
 
    Some versions of bison have had issues with Portable Object Compiler.
-
-   Also some versions of flex may require --nounistd, depends on the OS.
 
 1. Start with a binary "port" of Portable Object Compiler to get a "bootstrap" (initial) compiler, or compile the bootstrap compiler package : 
 
