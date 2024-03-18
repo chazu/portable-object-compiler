@@ -3,31 +3,56 @@ Portable Object Compiler (c) 1997-2024  All Rights Reserved.
 For help, send email to me: stes@telenet.be
 or preferably to the objc-discuss@lists.sourceforge.net mailing list.
 
-0. Get lex and yacc or byacc (BSD yacc) if you don't have them :
+0. Get lex and yacc or byacc (Berkeley yacc) if you don't have them :
 
-   for LEX preferably download flex from :
+   for LEX, use the original lex, or preferably download 'flex' from :
  
   	http://www.gnu.org/ 
 
-   some versions of flex may require --nounistd, depends on the OS.
+   some versions of 'flex' may require --nounistd, depends on the OS.
 
-   for YACC be sure to use the -d option to generate a y.tab.h file :
+   For YACC be sure to use the -d option to generate a y.tab.h file.
 
-   The AT&T yacc works :
+   The AT&T yacc (by Stephen C. Johnson), if it is called 'yacc', works :
 
         export YACC="yacc -d"
 
-   for BSD yacc (for example yacc-1.9.1) :
+   I do an effort to keep the grammar compatible with AT&T 'original' yacc,
+   i.e., not to use any extensions of newer versions of yacc.
+
+   For Berkeley yacc (by Robert Corbett), if it is called 'byacc' :
 
         export YACC="byacc -d"
 
-   It is possible to use different yacc's such as myacc or bison :
+   some BSD UNIX systems install byacc as 'yacc' and in those cases :
+
+        export YACC="yacc -d"
+
+   I recommend Berkeley yacc (see Changes.txt for some subtle issues),
+   and originally used the byacc port from FreeBSD and Linux Slackware,
+   and the AT&T yacc from various AT&T SVR4 derived systems (see Platforms.txt)
+
+   Berkeley yacc is maintained nowadays by Ken Dickey, byacc 2.0 on Debian,
+   however I do not use any of the Btyacc extensions of that version of byacc.
+
+   It is also possible to use GNU bison (originally by Robert Corbett as well).
+
+   Robert Corbett apparently wrote both Berkeley yacc and bison, 
+   based on his thesis and research work,
+   and based on work (an algorithm) by Tom Pennello and Frank DeRemer.
+
+   Originally the name of bison was 'zeus', 'zoo', 'ox' and 'byson'.
+
+   Later in the GNU project 'byson' was renamed to bison :
 
 	export YACC="bison -y -d"
 
-   but I recommend the byacc package (see Changes.txt for some subtle issues)
+   For GNU bison the POSIX or yacc compatibility mode (-y) is required.
 
-   Some versions of bison have had issues with Portable Object Compiler.
+   Some versions of GNU bison have had issues with Portable Object Compiler,
+   however in other cases it works fine. See Platforms.txt for more info.
+
+   It is possible to use different yacc's such as myacc.
 
 1. Start with a binary "port" of Portable Object Compiler to get a "bootstrap" (initial) compiler, or compile the bootstrap compiler package : 
 

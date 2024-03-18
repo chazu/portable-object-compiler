@@ -1,4 +1,10 @@
 
+3.3.43  * add comment on byacc and bison in Install.txt
+
+	  change the name BSD yacc to 'Berkeley yacc'
+
+	  compiler works with the byacc 2.0 from Ken Dickey's byacc version
+
 3.3.42  * update configure to autoconf 2.72
 
 	* update config.sub and config.guess from autoconf 2.72
