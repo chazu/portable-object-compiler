@@ -3,17 +3,21 @@ Portable Object Compiler (c) 1997-2024  All Rights Reserved.
 For help, send email to me: stes@telenet.be
 or preferably to the objc-discuss@lists.sourceforge.net mailing list.
 
-0. Get lex and yacc or byacc (Berkeley yacc) if you don't have them :
+0. Make sure to install lex and yacc and set LEX and YACC variables :
 
-   for LEX, use the original lex, or preferably download 'flex' from :
- 
-  	http://www.gnu.org/ 
+   Use the original lex from Bell Labs (AT&T) by Mike Lesk.
 
-   some versions of 'flex' may require --nounistd, depends on the OS.
+   Or use flex by Vern Paxson from http://flex.sourceforge.net
+
+   Some versions of 'flex' may require
+
+	export LEX="flex --nounistd"
+
+   depending on the C compiler and contents of the header file unistd.h.
 
    For YACC be sure to use the -d option to generate a y.tab.h file.
 
-   The AT&T yacc (by Stephen C. Johnson), if it is called 'yacc', works :
+   The Bell Labs (AT&T) yacc (by Stephen C. Johnson), works :
 
         export YACC="yacc -d"
 
@@ -30,7 +34,7 @@ or preferably to the objc-discuss@lists.sourceforge.net mailing list.
 
    I recommend Berkeley yacc (see Changes.txt for some subtle issues),
    and originally used the byacc port from FreeBSD and Linux Slackware,
-   and the AT&T yacc from various AT&T SVR4 derived systems (see Platforms.txt)
+   and the AT&T yacc from various AT&T SVR4 UNIX derived systems 
 
    Berkeley yacc is maintained nowadays by Ken Dickey, byacc 2.0 on Debian,
    however I do not use any of the Btyacc extensions of that version of byacc.
@@ -122,7 +126,7 @@ or on Digital Unix, CC='cc -std' or on Solaris /opt/developerstudio12.6/bin/cc
 	./configure --prefix=$HOME \
            OBJC=/opt/objc-bootstrap/bin/objc \
            XOBJC=/opt/objc-bootstrap/bin/objc \
-           YACC='yacc -d' FLEX='flex --nounistd' \
+           YACC='yacc -d' LEX='flex --nounistd' \
            AR=echo FINAL_AR='ar cr'
 
         the previous configure line sets OBJC and XOBJC to 
@@ -130,7 +134,7 @@ or on Digital Unix, CC='cc -std' or on Solaris /opt/developerstudio12.6/bin/cc
 	which is only necessary,
 	if you don't have a previous version of objc in the PATH (see step 2)
 
-        it also sets YACC and FLEX and changes the default values for AR,
+        it also sets YACC and LEX and changes the default values for AR,
         where by default we use multiple ar invocations instead of a single
         ar invocation.
 

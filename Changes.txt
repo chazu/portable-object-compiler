@@ -1,4 +1,8 @@
 
+3.3.44  * add comment on lex and flex in Install.txt
+
+	* fix incorrect example which was setting FLEX instead of LEX
+
 3.3.43  * add comment on byacc and bison in Install.txt
 
 	  change the name BSD yacc to 'Berkeley yacc'
