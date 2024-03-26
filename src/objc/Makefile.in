@@ -1,7 +1,7 @@
 
 #
 # Portable Object Compiler (c) 1997-2023.  All Rights Reserved. 
-# $Id: Makefile.in,v 1.15 2023/02/11 12:32:14 stes Exp $
+# $Id: Makefile.in,v 1.16 2024/03/26 16:57:06 stes Exp $
 #
 
 #
@@ -160,7 +160,7 @@ cleantmp :
 clean : cleantmp
 	-$(RM) *.$(OBJSUFFIX)
 	-$(RM) *.$(LIBSUFFIX)
-	-$(RM) objc.m yacc.m lex.m
+	-$(RM) objc.m yacc.h yacc.m lex.m
 	-$(RM) $(OBJCPROGRAM)
 	-$(RM) $(OBJC1PROGRAM)
 	-$(RM) $(OBJUTPROGRAM)

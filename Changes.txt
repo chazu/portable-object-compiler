@@ -2,6 +2,8 @@
 3.3.44  * add comment on lex and flex in Install.txt
 
 	* fix incorrect example which was setting FLEX instead of LEX
+	
+	* fix config.h cleanup in src/cakit/Makefile
 
 3.3.43  * add comment on byacc and bison in Install.txt
 
