@@ -18,7 +18,6 @@
 /esql.em/1.1.1.1/Sun May 10 12:00:04 2020//
 /except.m/1.1.1.1/Sun May 10 12:00:04 2020//
 /gdb.m/1.1.1.1/Sun May 10 12:00:04 2020//
-/howmany.m/1.1.1.1/Sun May 10 12:00:04 2020//
 /ifExcept.m/1.1.1.1/Sun May 10 12:00:04 2020//
 /loop.m/1.1.1.1/Sun May 10 12:00:04 2020//
 /memory.m/1.1.1.1/Sun May 10 12:00:04 2020//
@@ -33,4 +32,6 @@
 /tail.m/1.1.1.1/Sun May 10 12:00:04 2020//
 /timeblock.m/1.1.1.1/Sun May 10 12:00:04 2020//
 /varscope.m/1.1.1.1/Sun May 10 12:00:04 2020//
+/howmany-utmpx.m/1.1/Fri May 31 21:00:51 2024//
+/howmany.m/1.2/Fri May 31 20:54:27 2024//
 D

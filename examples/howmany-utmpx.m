@@ -1,14 +1,12 @@
 
-/* old style utmp example - superseded by howmany-utmpx.m for utmpx */
+/* utmpx example based on the old howmany.m utmp example */
 
 #include <stdio.h>
-#include <utmp.h>
+#include <utmpx.h>
 #include <stdlib.h>
 #include <objpak.h>
 
-#if !defined(UTMP_FILE) && defined(_PATH_UTMP)
-#define UTMP_FILE _PATH_UTMP
-#endif
+/* should use getutxent() */
 
 #if defined(USER_PROCESS)
 #define gooduser(ut) (*ut.ut_name && ut.ut_type == USER_PROCESS)
@@ -21,10 +19,10 @@ users(void)
 {
   id c;
   FILE *f;
-  struct utmp ut;
-  int n,m = sizeof(struct utmp);
+  struct utmpx ut;
+  int n,m = sizeof(struct utmpx);
 
-  if ( (f = fopen(UTMP_FILE,"r")) == NULL) {
+  if ( (f = fopen(UTMPX_FILE,"r")) == NULL) {
      perror("fopen");
      exit(1);
   }
@@ -40,7 +38,7 @@ users(void)
 
 int main(int argc,char *argv[])
 {
-  printf("Opening for read: %s\n",UTMP_FILE);
+  printf("Opening for read: %s\n",UTMPX_FILE);
   printf("Number of good users: %i\n",[users() size]);
 }
 
