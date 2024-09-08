@@ -1,4 +1,8 @@
 
+3.3.46	* add link to Brad Cox' TaskMaster paper and ISBN in Books.txt
+
+	* add orcltntest() to test OrderedCollection in src/objc/objut.m
+
 3.3.45  * add examples/howmany-utmpx.m extended user accounting utmpx
 
 3.3.44  * add comment on lex and flex in Install.txt

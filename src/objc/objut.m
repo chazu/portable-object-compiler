@@ -55,13 +55,37 @@ psuccess(int ok)
   int exitcode = (ok)?0:1;
   printf("\n");
   printf("Object Unit Test: %s\n",(ok)?"success":"failure");
-  exit(exitcode);
+  if (!ok) exit(exitcode);
   return exitcode;
+}
+
+/* simple String and Collection class test */
+
+int ordcltntest(void)
+{
+   id s,ordcltn,set;
+
+   printf("Object Unit Test: OrdCltn and Set test\n",numclasses);
+
+   s = [String str:"hello world"];
+   
+   ordcltn = [OrdCltn new];
+   [ordcltn add:s];
+   [ordcltn add:s];
+
+   set = [Set new];
+   [set add:s];
+   [set add:s];
+
+   return psuccess(([s size] == 11)&&([ordcltn size] == 2)&&([set size] == 1));
 }
 
 /*
  * idea here is to link an executable which like objc1
- * is processing TranlationUnit classes
+ * is processing TranslationUnit classes
+ *
+ * the main() program first creates a TranslationUnit instance,
+ * just like the objc1 executable
  *
  * however here for testing purposes we just print some info
  * that can then be used as a basic regression test to see that the
@@ -70,15 +94,20 @@ psuccess(int ok)
  * if this program would crash (or core dump), then it makes no sense
  * to do a 'make install' obviously
  *
+ * additional tests to test classes can/should be added here
+ *
  */
 
 int main(int argc, char *argv[])
 {
   id trlunit = [TranslationUnit new];
 
+  printf("\n");
+
+  ordcltntest(); 
+
   phierarchy(Object);
 
-  printf("\n");
   printf("Object Unit Test: number of classes is %i\n",numclasses);
 
   return psuccess(numclasses == 105);
