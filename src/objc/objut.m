@@ -80,6 +80,25 @@ int ordcltntest(void)
    return psuccess(([s size] == 11)&&([ordcltn size] == 2)&&([set size] == 1));
 }
 
+int bagtest(void)
+{
+   id s,bag,set;
+
+   printf("Object Unit Test: Bag and Set test\n",numclasses);
+
+   s = [String str:"hello world"];
+   
+   bag = [Bag new];
+   [bag add:s];
+   [bag add:s];
+
+   set = [Set new];
+   [set add:s];
+   [set add:s];
+
+   return psuccess(([s size] == 11)&&([bag size] == 2)&&([set size] == 1));
+}
+
 /*
  * idea here is to link an executable which like objc1
  * is processing TranslationUnit classes
@@ -104,12 +123,13 @@ int main(int argc, char *argv[])
 
   printf("\n");
 
+  bagtest(); 
   ordcltntest(); 
 
   phierarchy(Object);
 
   printf("Object Unit Test: number of classes is %i\n",numclasses);
 
-  return psuccess(numclasses == 105);
+  return psuccess(numclasses == 107);
 }
 

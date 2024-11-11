@@ -1,4 +1,8 @@
 
+3.3.47  * add bagtest() in src/objc/objut.m with a test for the Bag class
+
+	* increase count of classes in objut as Bag and BagSequence are loaded
+
 3.3.46	* add link to Brad Cox' TaskMaster paper and ISBN in Books.txt
 
 	* add orcltntest() to test OrderedCollection in src/objc/objut.m
