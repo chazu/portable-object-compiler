@@ -1,4 +1,6 @@
 
+3.3.48  * add eachElementtest() in objut.m with an eachElement Sequence test
+
 3.3.47  * add bagtest() in src/objc/objut.m with a test for the Bag class
 
 	* increase count of classes in objut as Bag and BagSequence are loaded

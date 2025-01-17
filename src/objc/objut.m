@@ -1,6 +1,6 @@
 
 /* 
- * Copyright (c) 1998-2024 David Stes
+ * Copyright (c) 1998-2025 David Stes
  *
  * This library is free software; you can redistribute it and/or modify it
  * under the terms of the GNU Library General Public License as published 
@@ -65,7 +65,7 @@ int ordcltntest(void)
 {
    id s,ordcltn,set;
 
-   printf("Object Unit Test: OrdCltn and Set test\n",numclasses);
+   printf("Object Unit Test: OrdCltn and Set test\n");
 
    s = [String str:"hello world"];
    
@@ -84,7 +84,7 @@ int bagtest(void)
 {
    id s,bag,set;
 
-   printf("Object Unit Test: Bag and Set test\n",numclasses);
+   printf("Object Unit Test: Bag and Set test\n");
 
    s = [String str:"hello world"];
    
@@ -97,6 +97,27 @@ int bagtest(void)
    [set add:s];
 
    return psuccess(([s size] == 11)&&([bag size] == 2)&&([set size] == 1));
+}
+
+int eachElementtest(void)
+{
+   id s,seq,set,item;
+   int numElements = 0;
+
+   printf("Object Unit Test: eachElement test\n");
+
+   s = [String str:"hello world"];
+
+   set = [Set new];
+   [set add:s];
+   [set add:s];
+
+   seq = [set eachElement];
+   while ((item = [seq next])) {
+      numElements++;
+   }
+
+   return psuccess(numElements == 1);
 }
 
 /*
@@ -125,6 +146,7 @@ int main(int argc, char *argv[])
 
   bagtest(); 
   ordcltntest(); 
+  eachElementtest(); 
 
   phierarchy(Object);
 
