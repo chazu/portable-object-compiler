@@ -1,4 +1,8 @@
 
+3.3.49  * for gcc 14.2 reenable prototypes yylex() and yyerror() in yacc.ym
+
+	* add gcc 14.2 to Platforms.txt
+
 3.3.48  * add eachElementtest() in objut.m with an eachElement Sequence test
 
 3.3.47  * add bagtest() in src/objc/objut.m with a test for the Bag class
