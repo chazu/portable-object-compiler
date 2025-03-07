@@ -1,0 +1,77 @@
+
+#
+# Portable Object Compiler (c) 2025.  All Rights Reserved. 
+# $Id: Makefile.in,v 1.1 2025/03/07 19:11:11 stes Exp $
+#
+
+#
+# This Makefile should work with UNIX make (like SysV, BSD, GNU make)
+#
+
+SRCDIR=@srcdir@
+BUILDDIR=@builddir@
+CD=cd
+MKDIR=mkdir
+STRIP=strip
+CHMOD=chmod
+RM=@RM@
+CP=@CP@
+AR=@AR@
+INSTALL=@INSTALL@
+FINAL_AR=@FINAL_AR@
+RANLIB=@RANLIB@
+@SET_MAKE@
+CC=@CC@
+DBG_MFLAGS=@DBG_MFLAGS@
+OPT_MFLAGS=@OPT_MFLAGS@
+EXTRA_MFLAGS=@EXTRA_MFLAGS@
+OBJSUFFIX=@OBJSUFFIX@
+LIBSUFFIX=@LIBSUFFIX@
+BINDIR=@BINDIR@
+LIBDIR=@LIBDIR@
+IFLAGS=@OBJC_IFLAGS@
+BOOTLIBS=@OBJC_BOOTLIBS@
+DEPENDLIBS=../objcrt/objcrt.$(LIBSUFFIX) \
+           ../objpak/objpak.$(LIBSUFFIX) \
+           ../oclib/oclib.$(LIBSUFFIX)
+MFLAGS=$(@MFLAGS@)
+
+#
+# Link the objut test program to BOOTLIBS
+# the libraries that are not yet installed;  this is so that "make check"
+# can test those libraries before they are installed by "make install"
+#
+
+OBJC=@XOBJC@
+
+VPATH=$(SRCDIR)
+
+.SUFFIXES: .m
+
+OBJUTPROGRAM=objut@BINDOTSUFFIX@
+
+OBJUTFILES=\
+	objut.$(OBJSUFFIX)
+
+.m.$(OBJSUFFIX):
+	$(OBJC) -c $< $(MFLAGS) $(EXTRA_MFLAGS) $(IFLAGS)
+
+check : $(OBJUTPROGRAM)
+	$(BUILDDIR)/$(OBJUTPROGRAM)
+
+$(OBJUTPROGRAM) : $(OBJUTFILES) $(DEPENDLIBS)
+	$(OBJC) $(EXTRA_MFLAGS) $(OBJUTFILES) $(BOOTLIBS) -o $(OBJUTPROGRAM)
+
+cleantmp :
+	-$(RM) *.P
+	-$(RM) *.i
+
+clean : cleantmp
+	-$(RM) *.$(OBJSUFFIX)
+	-$(RM) *.$(LIBSUFFIX)
+	-$(RM) $(OBJUTPROGRAM)
+
+distclean : clean
+	-$(RM) Makefile 
+	-$(RM) config.h 
+

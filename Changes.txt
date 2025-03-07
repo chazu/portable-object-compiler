@@ -1,4 +1,8 @@
 
+3.4.1	* add a directory src/unittest for the Object Unit Test
+
+	* move src/objc/objut.m to src/unittest/objut.m
+
 3.3.49  * for gcc 14.2 reenable prototypes yylex() and yyerror() in yacc.ym
 
 	* add gcc 14.2 to Platforms.txt

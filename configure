@@ -2738,7 +2738,7 @@ test -n "$target_alias" &&
   program_prefix=${target_alias}-
 
 TARGET=$target;
-OBJC1VERSION=3.3.49;
+OBJC1VERSION=3.4.1;
 NAME=objc-${OBJC1VERSION};
 WARNING="DO NOT EDIT -- configure ${NAME} ${TARGET}";
 
@@ -5877,7 +5877,7 @@ esac
 
 
 
-list='config.h Makefile src/objcrt/config.h src/objcrt/Makefile src/objpak/config.h src/objpak/Makefile src/oclib/config.h src/oclib/Makefile src/objc/config.h src/objc/Makefile src/objc/objc src/objc/objc.m src/cakit/config.h src/cakit/Makefile examples/Makefile words/Makefile'
+list='config.h Makefile src/objcrt/config.h src/objcrt/Makefile src/objpak/config.h src/objpak/Makefile src/oclib/config.h src/oclib/Makefile src/objc/config.h src/objc/Makefile src/objc/objc src/objc/objc.m src/unittest/config.h src/unittest/Makefile src/cakit/config.h src/cakit/Makefile examples/Makefile words/Makefile'
 
 #list="$list pkg/objc.p5m pkg/objclibs.p5m"
 
