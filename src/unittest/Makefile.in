@@ -1,7 +1,7 @@
 
 #
 # Portable Object Compiler (c) 2025.  All Rights Reserved. 
-# $Id: Makefile.in,v 1.1 2025/03/07 19:11:11 stes Exp $
+# $Id: Makefile.in,v 1.2 2025/03/15 14:50:40 stes Exp $
 #
 
 #
@@ -51,6 +51,12 @@ VPATH=$(SRCDIR)
 OBJUTPROGRAM=objut@BINDOTSUFFIX@
 
 OBJUTFILES=\
+	testste.$(OBJSUFFIX)\
+	testcase.$(OBJSUFFIX)\
+	classcnt.$(OBJSUFFIX)\
+	bagtest.$(OBJSUFFIX)\
+	ordctest.$(OBJSUFFIX)\
+	seqtest.$(OBJSUFFIX)\
 	objut.$(OBJSUFFIX)
 
 .m.$(OBJSUFFIX):
@@ -72,6 +78,7 @@ clean : cleantmp
 	-$(RM) $(OBJUTPROGRAM)
 
 distclean : clean
+	-$(RM) core 
 	-$(RM) Makefile 
 	-$(RM) config.h 
 

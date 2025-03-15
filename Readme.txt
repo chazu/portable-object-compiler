@@ -4,7 +4,7 @@ Portable Object Compiler (c) 1997-2025.  All Rights Reserved.
 GETTING HELP
 ------------
 
-For help and reporting bugs : send email to me (stes@telenet.be)
+For help and reporting bugs : send email to David Stes (stes@telenet.be)
 or to the objc-discuss@lists.sourceforge.net mailing list.
 
 Subscribe to the mailing list at https://sourceforge.net/p/objc/mailman/

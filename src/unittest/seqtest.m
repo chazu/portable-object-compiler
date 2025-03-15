@@ -1,8 +1,10 @@
 
-/* 
+/*
  * Portable Object Compiler (c) 2025.  All Rights Reserved.
- * $Id: objut.m,v 1.2 2025/03/15 14:50:40 stes Exp $
- *
+ * $Id: seqtest.m,v 1.1 2025/03/15 14:50:40 stes Exp $
+ */
+
+/*
  * This library is free software; you can redistribute it and/or modify it
  * under the terms of the GNU Library General Public License as published 
  * by the Free Software Foundation; either version 2 of the License, or
@@ -19,26 +21,36 @@
  */
 
 #include "config.h"
-#include <stdlib.h>
-
-#include "testcase.h"
-#include "testste.h"
-#include "classcnt.h"
-#include "bagtest.h"
+#include <assert.h>
 #include "seqtest.h"
-#include "ordctest.h"
+#if OBJC_BLOCKS
+#include "Block.h"
+#endif
+#include <objpak.h>
 
-/* objut (Object Unit Test) is a test program to check newly built libs */
+@implementation SequenceTest
 
-int main(int argc, char *argv[])
+- run
 {
-  id testSuite = [TestSuite new];
-  [testSuite addTest:[ClassCount new]];
-  [testSuite addTest:[BagTest new]];
-  [testSuite addTest:[OrdCltnTest new]];
-  [testSuite addTest:[SequenceTest new]];
-  [testSuite run];
-  /* always success except when assert() fails */
-  exit(0);
+   id s,seq,set,item;
+   int numElements = 0;
+
+   printf("Object Unit Test: eachElement test\n");
+
+   s = [String str:"hello world"];
+
+   set = [Set new];
+   [set add:s];
+   [set add:s];
+
+   seq = [set eachElement];
+   while ((item = [seq next])) {
+      numElements++;
+   }
+
+   [self assert:(numElements == 1)];
+   return self;
 }
+
+@end
 

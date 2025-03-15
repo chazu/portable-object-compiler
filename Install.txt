@@ -1,6 +1,6 @@
 Portable Object Compiler (c) 1997-2025  All Rights Reserved.
 
-For help, send email to me: stes@telenet.be
+For help, send email to David Stes: stes@telenet.be
 or preferably to the objc-discuss@lists.sourceforge.net mailing list.
 
 0. Make sure to install lex and yacc and set LEX and YACC variables :
@@ -119,7 +119,7 @@ or on Digital Unix, CC='cc -std' or on Solaris /opt/developerstudio12.6/bin/cc
 	cd objc-2.3.1
 
 	./configure --help
-	./configure --prefix=$HOME
+	./configure --prefix=$HOME MFLAGS=DBG_MFLAGS
 
         or
 
@@ -127,7 +127,8 @@ or on Digital Unix, CC='cc -std' or on Solaris /opt/developerstudio12.6/bin/cc
            OBJC=/opt/objc-bootstrap/bin/objc \
            XOBJC=/opt/objc-bootstrap/bin/objc \
            YACC='yacc -d' LEX='flex --nounistd' \
-           AR=echo FINAL_AR='ar cr'
+           AR=echo FINAL_AR='ar cr' \
+	   MFLAGS=DBG_MFLAGS
 
         the previous configure line sets OBJC and XOBJC to 
         a bootstrap compiler that was installed in /opt/objc-bootstrap,
@@ -138,11 +139,25 @@ or on Digital Unix, CC='cc -std' or on Solaris /opt/developerstudio12.6/bin/cc
         where by default we use multiple ar invocations instead of a single
         ar invocation.
 
+	MFLAGS=DBG_MFLAGS enables lots of assert() statements
+
 	make
+
+  Enable debug and assertions with
+
+	./configure MFLAGS=DBG_MFLAGS
+
+  Enable optimizer flags with (this adds -DNDEBUG to disable asserts)
+
+	./configure MFLAGS=OPT_MFLAGS
 
   Optionally run a few basic tests before 'make install':
 
 	make check
+
+  Note that "make check" will only fail if not compiled with -DNDEBUG.  See,
+
+	man assert
 
   Then 
 

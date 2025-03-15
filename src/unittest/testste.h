@@ -1,8 +1,10 @@
 
-/* 
+/*
  * Portable Object Compiler (c) 2025.  All Rights Reserved.
- * $Id: objut.m,v 1.2 2025/03/15 14:50:40 stes Exp $
- *
+ * $Id: testste.h,v 1.1 2025/03/15 14:50:40 stes Exp $
+ */
+
+/*
  * This library is free software; you can redistribute it and/or modify it
  * under the terms of the GNU Library General Public License as published 
  * by the Free Software Foundation; either version 2 of the License, or
@@ -18,27 +20,24 @@
  * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-#include "config.h"
-#include <stdlib.h>
+#ifndef __TESTSUITE_H__
+#define __TESTSUITE__H__
 
-#include "testcase.h"
-#include "testste.h"
-#include "classcnt.h"
-#include "bagtest.h"
-#include "seqtest.h"
-#include "ordctest.h"
+#ifndef __OBJECT_INCLUDED__
+#define __OBJECT_INCLUDED__
+#include <stdio.h>		/* FILE */
+#include "Object.h"		/* Stepstone Object.h assumes #import */
+#endif
 
-/* objut (Object Unit Test) is a test program to check newly built libs */
-
-int main(int argc, char *argv[])
+@interface TestSuite : Object
 {
-  id testSuite = [TestSuite new];
-  [testSuite addTest:[ClassCount new]];
-  [testSuite addTest:[BagTest new]];
-  [testSuite addTest:[OrdCltnTest new]];
-  [testSuite addTest:[SequenceTest new]];
-  [testSuite run];
-  /* always success except when assert() fails */
-  exit(0);
+  id tests;
 }
 
++ new;
+- addTest:aTestCase;
+
+@end
+
+#endif /* __TESTSUITE_H__ */
+ 

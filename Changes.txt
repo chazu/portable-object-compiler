@@ -1,4 +1,8 @@
 
+3.4.2	* add TestCase, TestSuite and subclasses to src/unittest
+
+	* add note on configure MFLAGS=DBG_FLAGS in Install.txt
+
 3.4.1	* add a directory src/unittest for the Object Unit Test
 
 	* move src/objc/objut.m to src/unittest/objut.m
