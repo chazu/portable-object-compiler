@@ -1,4 +1,8 @@
 
+3.4.3   * add gcc 15 for openSUSE Leap 16 to Platforms
+	  
+	  builds with gcc15 using -std=gnu17 and byacc (not with bison 3.8.2)
+
 3.4.2	* add TestCase, TestSuite and subclasses to src/unittest
 
 	* add note on configure MFLAGS=DBG_FLAGS in Install.txt
