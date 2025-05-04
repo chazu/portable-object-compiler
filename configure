@@ -806,6 +806,7 @@ with_postlink
 with_longlinetags
 with_shortlinetags
 with_informix
+with_gnu17
 with_tentdef
 with_attrcommon
 '
@@ -1444,6 +1445,7 @@ Optional Packages:
   --with-longlinetags     generate long #line linetags
   --with-shortlinetags    generate short # linetags
   --with-informix         set SQLCC to Informix esql
+  --with-gnu17            use -std=gnu17 for C compiler and C preprocessor
   --with-tentdef          use C tentative definitions
   --with-attrcommon       use __attribute__ for C tentative definitions
 
@@ -4290,6 +4292,96 @@ case $ac_cv_c_compiler_gnu in
     esac
     ;;
   *) ;;
+esac
+
+
+# ===========================================================================
+#       https://www.gnu.org/software/autoconf-archive
+# ===========================================================================
+#
+# SYNOPSIS
+#
+#   AX_CC_GNU17
+#
+# DESCRIPTION
+#
+#   Determine whether the C compiler supports -std=gnu17
+#
+#   The $ac_cv_gnu17 variable will be either yes or no
+#
+# LICENSE
+#
+#   Copyright (c) 2025 David Stes
+#
+#   This program is free software: you can redistribute it and/or modify it
+#   under the terms of the GNU General Public License as published by the
+#   Free Software Foundation, either version 3 of the License, or (at your
+#   option) any later version.
+#
+#   This program is distributed in the hope that it will be useful, but
+#   WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
+#   Public License for more details.
+#
+#   You should have received a copy of the GNU General Public License along
+#   with this program. If not, see <https://www.gnu.org/licenses/>.
+
+#serial 1
+
+
+# Check whether --with-gnu17 was given.
+if test ${with_gnu17+y}
+then :
+  withval=$with_gnu17; ac_cv_gnu17=$withval
+
+fi
+
+
+
+
+
+
+
+
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking whether compiler supports -std=gnu17" >&5
+printf %s "checking whether compiler supports -std=gnu17... " >&6; }
+if test ${ac_cv_gnu17+y}
+then :
+  printf %s "(cached) " >&6
+else case e in #(
+  e)
+t1="ac$$.c"
+o1="ac$$.o"
+ac_clean_files="$t1 $o1"
+cat >$t1 <<EOF
+#ifdef __cplusplus
+typedef int (*IMP) (...);        /* pointer in C++/C23 */
+#else
+typedef int (*IMP) ();           /* pointer in K&R C/C17 */
+#endif
+EOF
+# since gcc 15 gcc defaults to C++ style definitions with ... (ellipsis)
+echo "$CC -std=gnu17 -c $t1" >&5
+if $CC -std=gnu17 -c $t1 2>&5 1>&5
+  then
+    echo " (yes)" >&5
+    ac_cv_gnu17=yes;
+  else
+    echo " (no)" >&5
+    ac_cv_gnu17=no;
+fi
+rm -rf $ac_clean_files
+ ;;
+esac
+fi
+
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $ac_cv_gnu17" >&5
+printf "%s\n" "$ac_cv_gnu17" >&6; }
+
+
+case $ac_cv_gnu17 in
+    yes) OC_CPARGS="-std=gnu17 $OC_CPARGS";OC_CCARGS="-std=gnu17 $OC_CCARGS";;
+    no) ;;
 esac
 
 OC_CPARGS="-D__PORTABLE_OBJC__ $OC_CPARGS"

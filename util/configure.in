@@ -1,6 +1,6 @@
 dnl
 dnl autoconf source file for configure script for the objc-bootstrap compiler
-dnl $Id: configure.in,v 1.13 2024/02/11 14:55:46 stes Exp $
+dnl $Id: configure.in,v 1.14 2025/05/04 18:56:58 stes Exp $
 dnl
 dnl note: we're in the process of converting the old configure script
 dnl (configure.orig) to an autoconf script (long term project)
@@ -277,6 +277,20 @@ case $ac_cv_c_compiler_gnu in
     esac
     ;;
   *) ;;
+esac
+
+dnl
+dnl Since gcc 15 the compiler defaults to C23
+dnl select -std=gnu17 if the compiler accepts that flag
+dnl
+
+m4_include([ax_cc_gnu17.m4])
+
+AX_CC_GNU17
+
+case $ac_cv_gnu17 in
+    yes) OC_CPARGS="-std=gnu17 $OC_CPARGS";OC_CCARGS="-std=gnu17 $OC_CCARGS";;
+    no) ;;
 esac
 
 OC_CPARGS="-D__PORTABLE_OBJC__ $OC_CPARGS"
