@@ -1,7 +1,7 @@
 
 #
 # Portable Object Compiler (c) 2025.  All Rights Reserved. 
-# $Id: Makefile.in,v 1.2 2025/03/15 14:50:40 stes Exp $
+# $Id: Makefile.in,v 1.3 2025/05/05 12:13:12 stes Exp $
 #
 
 #
@@ -30,10 +30,11 @@ LIBSUFFIX=@LIBSUFFIX@
 BINDIR=@BINDIR@
 LIBDIR=@LIBDIR@
 IFLAGS=@OBJC_IFLAGS@
-BOOTLIBS=@OBJC_BOOTLIBS@
+BOOTLIBS=@OBJC_BOOTLIBS@ ../cakit/cakit.$(LIBSUFFIX)
 DEPENDLIBS=../objcrt/objcrt.$(LIBSUFFIX) \
            ../objpak/objpak.$(LIBSUFFIX) \
-           ../oclib/oclib.$(LIBSUFFIX)
+           ../oclib/oclib.$(LIBSUFFIX) \
+           ../cakit/cakit.$(LIBSUFFIX)
 MFLAGS=$(@MFLAGS@)
 
 #
@@ -57,13 +58,20 @@ OBJUTFILES=\
 	bagtest.$(OBJSUFFIX)\
 	ordctest.$(OBJSUFFIX)\
 	seqtest.$(OBJSUFFIX)\
+	perfect.$(OBJSUFFIX)\
 	objut.$(OBJSUFFIX)
 
+#because PerfectNumberTest uses cakit and because "make test" is assumed
+#to be running before cakit is installed, use a relative -I flag for include/cakit
+
 .m.$(OBJSUFFIX):
-	$(OBJC) -c $< $(MFLAGS) $(EXTRA_MFLAGS) $(IFLAGS)
+	$(OBJC) -c $< $(MFLAGS) $(EXTRA_MFLAGS) $(IFLAGS) -I$(SRCDIR)/../../include/cakit
 
 check : $(OBJUTPROGRAM)
 	$(BUILDDIR)/$(OBJUTPROGRAM)
+
+#because PerfectNumberTest uses cakit and because "make test" is assumed
+#to be running before cakit is installed, use BOOTLIBS with -noLibs flag
 
 $(OBJUTPROGRAM) : $(OBJUTFILES) $(DEPENDLIBS)
 	$(OBJC) $(EXTRA_MFLAGS) $(OBJUTFILES) $(BOOTLIBS) -o $(OBJUTPROGRAM)

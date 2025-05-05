@@ -1,6 +1,6 @@
 dnl
 dnl autoconf source file for objc-4.x.x configure script
-dnl $Id: configure.in,v 1.122 2025/05/04 18:56:55 stes Exp $
+dnl $Id: configure.in,v 1.123 2025/05/05 10:28:57 stes Exp $
 dnl
 dnl note: we're in the process of converting the old configure script
 dnl (configure.orig) to an autoconf script (long term project)
@@ -267,6 +267,7 @@ case $target in
  *nextstep*|*rhapsody*) OC_CPARGS="-traditional-cpp";;
  *) OC_CPARGS='';;
 esac
+OC_CCARGS=''
 
 dnl
 dnl since POC 3.3.4 we select gcc in C mode rather than their Objective-C mode
@@ -301,8 +302,6 @@ esac
 
 OC_CPARGS="-D__PORTABLE_OBJC__ $OC_CPARGS"
 AC_SUBST(OC_CPARGS)
-
-OC_CCARGS=''
 AC_SUBST(OC_CCARGS)
 
 dnl

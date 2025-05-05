@@ -4283,6 +4283,7 @@ case $target in
  *nextstep*|*rhapsody*) OC_CPARGS="-traditional-cpp";;
  *) OC_CPARGS='';;
 esac
+OC_CCARGS=''
 
 case $ac_cv_c_compiler_gnu in
   yes)
@@ -4386,8 +4387,6 @@ esac
 
 OC_CPARGS="-D__PORTABLE_OBJC__ $OC_CPARGS"
 
-
-OC_CCARGS=''
 
 
 
