@@ -1,7 +1,7 @@
 
 /*
- * Portable Object Compiler (c) 1997,2020,2023.  All Rights Reserved.
- * $Id: objcrt.h,v 1.17 2023/02/19 17:00:57 stes Exp $
+ * Portable Object Compiler (c) 1997-2025.  All Rights Reserved.
+ * $Id: objcrt.h,v 1.18 2025/05/18 18:01:10 stes Exp $
  */
 
 /*
@@ -58,10 +58,10 @@ typedef char BOOL;		/* Boolean */
 typedef FILE *IOD;		/* I/O Device */
 typedef id SHR;			/* type of class, for us, it's id */
 
-#ifdef __cplusplus
-typedef id (*IMP) (...);	/* Method pointer */
+#if __STDC_VERSION__ >=  202311L
+typedef id (*IMP) (...);	/* Method pointer C++ style in C23 */
 #else
-typedef id (*IMP) ();		/* Method pointer */
+typedef id (*IMP) ();		/* Method pointer traditional */
 #endif
 
 typedef void (*ARGIMP) (id, SEL, void *);	/* dispatcher */

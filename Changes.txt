@@ -1,4 +1,6 @@
 
+3.4.4   * add __STDC_VERSION__ test in objcrt.h for C++ style IMP def in C23
+
 3.4.3   * add PerfectNumberTest class (subclass of TestCase)
 
 	* modify src/unittest/Makefile to link cakit
