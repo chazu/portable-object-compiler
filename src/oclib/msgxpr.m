@@ -1,6 +1,6 @@
 
 /*
- * Copyright (c) 1998,99 David Stes.
+ * Copyright (c) 1998,99,2025 David Stes.
  *
  * This library is free software; you can redistribute it and/or modify it
  * under the terms of the GNU Library General Public License as published 
@@ -16,7 +16,7 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  *
- * $Id: msgxpr.m,v 1.1.1.1 2000/06/07 21:09:26 stes Exp $
+ * $Id: msgxpr.m,v 1.2 2025/06/04 19:33:07 stes Exp $
  */
 
 #include "config.h"
@@ -260,7 +260,7 @@ id msgwraps; /* VICI */
 	gf("fwdTransTbl[%i]", [trlunit fwdoffset:self]);
       }
     } else {
-      gs((o_cplus) ? "(id(*)(...))0" : "(id(*)())0");
+      gs((o_c23) ? "(id(*)(...))0" : "(id(*)())0");
       if (o_warnfwd) {
 	char *fmt;
 

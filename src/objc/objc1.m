@@ -50,7 +50,7 @@ void printcopyright(void)
 void unknownoption(char* arg)
 {
   STR msg = "%s: unknown option %s\n";
-  STR name = (o_cplus) ? "objcpls1" : "objc1";
+  STR name = "objc1";
   fprintf(stderr, msg, name, arg);
   exit(1);
 }
@@ -58,7 +58,7 @@ void unknownoption(char* arg)
 void badarg(id option,id arg)
 {
   STR msg = "%s: illegal argument %s for %s\n";
-  STR name = (o_cplus) ? "objcpls1" : "objc1";
+  STR name = "objc1";
   fprintf(stderr, msg, name, [arg str], [option str]);
   exit(1);
 }
@@ -316,6 +316,8 @@ void setoptions(id aCltn)
       o_nilrcvr = 0;
     } else if (!strcmp(t,"-objc")) {
       o_gencode = 0;
+    } else if (!strcmp(t,"-c23")) {
+      o_c23++;
     } else if (!strcmp(t,"-cplus")) {
       o_cplus++;
     } else if (!strcmp(t,"-inlinecache")) {
