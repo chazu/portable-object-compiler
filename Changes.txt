@@ -1,9 +1,9 @@
 
-3.4.4   * add __STDC_VERSION__ test in objcrt.h for C++ style IMP def in C23
+3.4.5   * change -cplus option / add option -impcplus to objc1 and objc 
 
-	* add option -c23 which partly replaces the -cplus option
-	  -cplus now only enables generation of 'extern "C"' declarations
-	  -c23 enables generation of (...) C++ style IMP def for C23
+	* remove TDF options (for the tcc C compiler) from man page
+
+3.4.4   * add __STDC_VERSION__ test in objcrt.h for C++ style IMP def in C23
 
 3.4.3   * add PerfectNumberTest class (subclass of TestCase)
 

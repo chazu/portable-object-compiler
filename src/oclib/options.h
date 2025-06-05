@@ -16,7 +16,7 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  *
- * $Id: options.h,v 1.10 2025/06/04 19:33:07 stes Exp $
+ * $Id: options.h,v 1.11 2025/06/05 12:18:52 stes Exp $
  */
 
 void defoptions(void);
@@ -55,7 +55,7 @@ extern char *o_bind;
 extern char *o_browsedir;
 extern int o_refbind;
 extern int o_inlinecache;
-extern int o_c23;
+extern int o_impcplus;
 extern int o_cplus;
 extern int o_gencode;
 extern int o_st80;

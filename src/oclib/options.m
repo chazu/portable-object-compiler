@@ -16,7 +16,7 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  *
- * $Id: options.m,v 1.10 2025/06/04 19:33:07 stes Exp $
+ * $Id: options.m,v 1.11 2025/06/05 12:18:52 stes Exp $
  */
 
 #include "config.h"
@@ -58,7 +58,7 @@ char *o_bind;
 char *o_browsedir;
 int o_refbind;
 int o_inlinecache;
-int o_c23;
+int o_impcplus;
 int o_cplus;
 int o_gencode;
 int o_st80;
@@ -142,7 +142,7 @@ defoptions(void)
   o_vms = 0;
   o_hpux = 0;
   o_refcnt = 0;
-  o_c23 = 0;
+  o_impcplus = 0;
   o_cplus = 0;
   o_debuginfo = 0;
   o_ppi = 0;

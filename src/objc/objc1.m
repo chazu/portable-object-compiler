@@ -316,8 +316,8 @@ void setoptions(id aCltn)
       o_nilrcvr = 0;
     } else if (!strcmp(t,"-objc")) {
       o_gencode = 0;
-    } else if (!strcmp(t,"-c23")) {
-      o_c23++;
+    } else if (!strcmp(t,"-impcplus")) {
+      o_impcplus++;
     } else if (!strcmp(t,"-cplus")) {
       o_cplus++;
     } else if (!strcmp(t,"-inlinecache")) {

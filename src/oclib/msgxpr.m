@@ -16,7 +16,7 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  *
- * $Id: msgxpr.m,v 1.2 2025/06/04 19:33:07 stes Exp $
+ * $Id: msgxpr.m,v 1.3 2025/06/05 12:18:52 stes Exp $
  */
 
 #include "config.h"
@@ -260,7 +260,7 @@ id msgwraps; /* VICI */
 	gf("fwdTransTbl[%i]", [trlunit fwdoffset:self]);
       }
     } else {
-      gs((o_c23) ? "(id(*)(...))0" : "(id(*)())0");
+      gs((o_impcplus) ? "(id(*)(...))0" : "(id(*)())0");
       if (o_warnfwd) {
 	char *fmt;
 
