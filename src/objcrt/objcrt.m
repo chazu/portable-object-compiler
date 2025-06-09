@@ -1,7 +1,7 @@
 
 /*
  * Portable Object Compiler (c) 1997-2025.  All Rights Reserved.
- * $Id: objcrt.m,v 1.18 2025/05/18 18:01:10 stes Exp $
+ * $Id: objcrt.m,v 1.19 2025/06/09 10:27:57 stes Exp $
  */
 
 /*
@@ -1702,11 +1702,11 @@ _getImp (id cls, SEL sel, int index, IMP fwd)
 
   if (objcinitflag)
     {
-      return (fwd) ? fwd : _nofwdHandler;
+      return (fwd) ? fwd : (IMP) _nofwdHandler;
     }
   else
     {
-      return _errHandler;
+      return (IMP) _errHandler;
     }
 }
 
@@ -1824,7 +1824,7 @@ fwdmsg (id self, SEL sel, void *args, ARGIMP disp)
 static void 
 selptrdisp (id self, SEL sel, id * p)
 {
-  p [0] = (*fwdimp (self, sel, selptrfwd)) (self, sel, p [1], p [2], p [3], p [4]);
+  p [0] = (*fwdimp (self, sel, (IMP) selptrfwd)) (self, sel, p [1], p [2], p [3], p [4]);
 }
 
 id EXPORT 

@@ -16,7 +16,7 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  *
- * $Id: classdef.m,v 1.8 2025/06/05 12:18:52 stes Exp $
+ * $Id: classdef.m,v 1.9 2025/06/09 10:28:02 stes Exp $
  */
 
 #include "config.h"
@@ -556,7 +556,7 @@ id curclassdef;
 - genslt:methdef
 {
   if (o_impcplus) {
-    gf("\n{\"%s\",(id (*)(...))%s},", [methdef selname], [methdef impname]);
+    gf("\n{\"%s\",(id (*)(id,...))%s},", [methdef selname], [methdef impname]);
   } else {
     gf("\n{\"%s\",(id (*)())%s},", [methdef selname], [methdef impname]);
   }
@@ -566,7 +566,7 @@ id curclassdef;
 - gennilslt
 {
   if (o_impcplus) {
-    gs("\n{(char*)0,(id (*)(...))0}");
+    gs("\n{(char*)0,(id (*)(id,...))0}");
   } else {
     gs("\n{(char*)0,(id (*)())0}");
   }

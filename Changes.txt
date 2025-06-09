@@ -1,4 +1,12 @@
 
+3.4.6   * add fddtest (FactorDistinctDegreeTest) class (subclass of TestCase) 
+	  test for Polynomial distinct degree factorisation to src/unittest
+
+	* add GaloisField, Legendre, Shanks, Bezout to src/unittest
+
+	* make -impcplus option output (id,...) arguments instead of (...)
+	  and define OBJCRT_IMPCPLUS instead of using __STDC_VERSION__
+
 3.4.5   * change -cplus option / add option -impcplus to objc1 and objc 
 
 	* remove TDF options (for the tcc C compiler) from man page

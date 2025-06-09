@@ -16,7 +16,7 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  *
- * $Id: msgxpr.m,v 1.3 2025/06/05 12:18:52 stes Exp $
+ * $Id: msgxpr.m,v 1.4 2025/06/09 10:28:02 stes Exp $
  */
 
 #include "config.h"
@@ -255,12 +255,12 @@ id msgwraps; /* VICI */
     gc(',');
     if ([self canforward]) {
       if ([method isselptr]) {
-	gs("selptrfwd");	/* Objective-C default (all args 'id') */
+	gs("(IMP)selptrfwd");	/* Objective-C default (all args 'id') */
       } else {
 	gf("fwdTransTbl[%i]", [trlunit fwdoffset:self]);
       }
     } else {
-      gs((o_impcplus) ? "(id(*)(...))0" : "(id(*)())0");
+      gs((o_impcplus) ? "(id(*)(id,...))0" : "(id(*)())0");
       if (o_warnfwd) {
 	char *fmt;
 

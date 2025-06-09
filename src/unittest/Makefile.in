@@ -1,7 +1,7 @@
 
 #
 # Portable Object Compiler (c) 2025.  All Rights Reserved. 
-# $Id: Makefile.in,v 1.3 2025/05/05 12:13:12 stes Exp $
+# $Id: Makefile.in,v 1.4 2025/06/09 10:28:17 stes Exp $
 #
 
 #
@@ -58,7 +58,15 @@ OBJUTFILES=\
 	bagtest.$(OBJSUFFIX)\
 	ordctest.$(OBJSUFFIX)\
 	seqtest.$(OBJSUFFIX)\
+	zashaus.$(OBJSUFFIX)\
+	quofield.$(OBJSUFFIX)\
+	galfield.$(OBJSUFFIX)\
+	bigrand.$(OBJSUFFIX)\
+	shanks.$(OBJSUFFIX)\
+	legendre.$(OBJSUFFIX)\
+	bezout.$(OBJSUFFIX)\
 	perfect.$(OBJSUFFIX)\
+	fddtest.$(OBJSUFFIX)\
 	objut.$(OBJSUFFIX)
 
 #because PerfectNumberTest uses cakit and because "make test" is assumed

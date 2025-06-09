@@ -16,7 +16,7 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  *
- * $Id: trlunit.m,v 1.8 2025/06/05 12:18:52 stes Exp $
+ * $Id: trlunit.m,v 1.9 2025/06/09 10:28:02 stes Exp $
  */
 
 #include "config.h"
@@ -114,7 +114,7 @@ id trlunit;
 {
   /* inline cache data type emitted here, must match one from objcrt.m */
   if (o_impcplus) {
-    gs("struct objcrt_inlineCache {id cls;id (*imp)(...);};\n");
+    gs("struct objcrt_inlineCache {id cls;id (*imp)(id,...);};\n");
   } else {
     gs("struct objcrt_inlineCache {id cls;id (*imp)();};\n");
   }
@@ -123,7 +123,7 @@ id trlunit;
   /* emit o_bind so that the definition matches the one in objcrt */
   if (o_impcplus) {
     gextc();
-    gf("id %s _nilHandler(...);\n", o_bind);
+    gf("id %s _nilHandler(id,...);\n", o_bind);
   } else {
     gf("id %s _nilHandler(id,char*);\n", o_bind);
   }
@@ -231,10 +231,10 @@ mystrrchr(const char *s, int c)
 
   if (!o_fwd) {
     if (o_impcplus) {
-      gextc();			/* in C++ IMP is defined as id *(...) */
-      gf("id %s (* _imp(id,char*))(...);\n", o_bind);
+      gextc();			/* in C++ IMP is defined as id *(id,...) */
+      gf("id %s (* _imp(id,char*))(id,...);\n", o_bind);
       gextc();
-      gf("id %s (* _impSuper(id,char*))(...);\n", o_bind);
+      gf("id %s (* _impSuper(id,char*))(id,...);\n", o_bind);
     } else {
       gf("extern id %s (* _imp(id,char*))();\n", o_bind);
       gf("extern id %s (* _impSuper(id,char*))();\n", o_bind);
@@ -255,14 +255,14 @@ mystrrchr(const char *s, int c)
 
   if (o_fwd) {
     if (o_impcplus) {
-      gs("static id (**fwdTransTbl)(...);\n");
+      gs("static id (**fwdTransTbl)(id,...);\n");
     } else {
       gs("static id (**fwdTransTbl)();\n");
     }
   }
   /* struct used in sharedType & defined by Stepstone objcc */
   if (o_impcplus) {
-    gs("struct _SLT {char *_cmd;id (*_imp)(...);};\n");
+    gs("struct _SLT {char *_cmd;id (*_imp)(id,...);};\n");
   } else {
     gs("struct _SLT {char *_cmd;id (*_imp)();};\n");
   }
@@ -426,7 +426,7 @@ mystrrchr(const char *s, int c)
   n = (fwdcltn) ? [fwdcltn size] : 0;
 
   if (o_impcplus) {
-    gs("static id (*(_fwdTransTbl[]))(...) ={\n");
+    gs("static id (*(_fwdTransTbl[]))(id,...) ={\n");
   } else {
     gs("static id (*(_fwdTransTbl[]))() ={\n");
   }
@@ -435,7 +435,7 @@ mystrrchr(const char *s, int c)
     char *s = [[fwdcltn at:i] fwdname];
 
     if (o_impcplus) {
-      gf("(id(*)(...))%s,\n", s);
+      gf("(id(*)(id,...))%s,\n", s);
     } else {
       gf("(id(*)())%s,\n", s);
     }
@@ -443,7 +443,7 @@ mystrrchr(const char *s, int c)
 
   /* always at least one entry (SGI cc chokes on empty decls)    */
   if (o_impcplus) {
-    gs("(id(*)(...))0\n};\n");
+    gs("(id(*)(id,...))0\n};\n");
   } else {
     gs("(id(*)())0\n};\n");
   }
