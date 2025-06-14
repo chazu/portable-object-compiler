@@ -528,6 +528,10 @@ void setfirstlinetag(void)
     /* Solaris 11.3 defines va_arg_incr as function when -m64 */
     definebuiltinvar("__builtin_va_alist");
     if (!(o_sunstudio && o_m64)) definebuiltinfun("__builtin_va_arg_incr");
+
+    /* gcc15 in so called c23 or gnu23 mode */
+    definebuiltinvar("nullptr");
+    definebuiltinfun("__builtin_c23_va_start");
   }
 }
 

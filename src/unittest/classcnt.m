@@ -1,7 +1,7 @@
 
 /*
  * Portable Object Compiler (c) 2025.  All Rights Reserved.
- * $Id: classcnt.m,v 1.1 2025/03/15 14:50:40 stes Exp $
+ * $Id: classcnt.m,v 1.2 2025/06/14 06:35:35 stes Exp $
  */
 
 /*
@@ -27,11 +27,6 @@
 #include "Block.h"
 #endif
 #include <objpak.h>
-#include "node.h"
-#include "trlunit.h"
-#include "options.h"
-#include "util.h"
-#include "symbol.h"
 
 @implementation ClassCount
 
@@ -54,21 +49,11 @@ phierarchy(id c)
 }
 
 /*
- * idea here is to link an executable which like objc1
- * is processing TranslationUnit classes
- *
- * the main() program first creates a TranslationUnit instance,
- * just like the objc1 executable
- *
- * however here for testing purposes we just print some info
- * that can then be used as a basic regression test to see that the
- * produced executable (which uses a new runtime) is not simply core dumping
- *
+ * Print a list of classes linked into executable
  */
 
 - run
 {
-   id trlunit = [TranslationUnit new];
    phierarchy(Object);
    printf("Object Unit Test: number of classes is %i\n",numclasses);
    return self;

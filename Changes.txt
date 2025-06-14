@@ -1,4 +1,16 @@
 
+3.4.7	* modify configure script for UT_BOOTLIBS (Unit Test bootlibs)
+	  and UT_IFLAGS (Unit Test include files) NOT including oclib anylonger
+
+	* add __builtin_c23_va_start (stdarg.h openSUSE 16 gcc 15) for -gnu
+	  stdarg.h unfortunately has: va_list ap;char *format;
+	  __builtin_c23_va_start(ap,format)
+
+	* add nullptr (stddef.h openSUSE 16 gcc 15) as builtin constant -gnu
+	  stddef.h unfortunately has: typedef __typeof__(nullptr) nullptr_t;
+
+	* add comment on Tendra tcc in Readme
+
 3.4.6   * add fddtest (FactorDistinctDegreeTest) class (subclass of TestCase) 
 	  test for Polynomial distinct degree factorisation to src/unittest
 

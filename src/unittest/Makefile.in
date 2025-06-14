@@ -1,7 +1,7 @@
 
 #
 # Portable Object Compiler (c) 2025.  All Rights Reserved. 
-# $Id: Makefile.in,v 1.4 2025/06/09 10:28:17 stes Exp $
+# $Id: Makefile.in,v 1.5 2025/06/14 06:35:35 stes Exp $
 #
 
 #
@@ -29,18 +29,19 @@ OBJSUFFIX=@OBJSUFFIX@
 LIBSUFFIX=@LIBSUFFIX@
 BINDIR=@BINDIR@
 LIBDIR=@LIBDIR@
-IFLAGS=@OBJC_IFLAGS@
-BOOTLIBS=@OBJC_BOOTLIBS@ ../cakit/cakit.$(LIBSUFFIX)
+IFLAGS=@UT_IFLAGS@
+BOOTLIBS=@UT_BOOTLIBS@
 DEPENDLIBS=../objcrt/objcrt.$(LIBSUFFIX) \
            ../objpak/objpak.$(LIBSUFFIX) \
-           ../oclib/oclib.$(LIBSUFFIX) \
            ../cakit/cakit.$(LIBSUFFIX)
+
 MFLAGS=$(@MFLAGS@)
 
 #
 # Link the objut test program to BOOTLIBS
 # the libraries that are not yet installed;  this is so that "make check"
 # can test those libraries before they are installed by "make install"
+# use XOBJC for the build (as is used to build objc1 itself)
 #
 
 OBJC=@XOBJC@
@@ -69,11 +70,8 @@ OBJUTFILES=\
 	fddtest.$(OBJSUFFIX)\
 	objut.$(OBJSUFFIX)
 
-#because PerfectNumberTest uses cakit and because "make test" is assumed
-#to be running before cakit is installed, use a relative -I flag for include/cakit
-
 .m.$(OBJSUFFIX):
-	$(OBJC) -c $< $(MFLAGS) $(EXTRA_MFLAGS) $(IFLAGS) -I$(SRCDIR)/../../include/cakit
+	$(OBJC) -c $< $(MFLAGS) $(EXTRA_MFLAGS) $(IFLAGS)
 
 check : $(OBJUTPROGRAM)
 	$(BUILDDIR)/$(OBJUTPROGRAM)

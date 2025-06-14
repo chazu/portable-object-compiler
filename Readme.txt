@@ -90,8 +90,9 @@ NOT included is a C compiler : in order to be able to use "objc", you will
 need to elsewhere find a compatible C compiler.  This should be no problem
 since one of our goals - see below - is to make "objc" work with as many C
 compilers as possible.  On UNIX systems, the (free) "gcc" compiler is a
-possibility (not needed, but possible).  Another possibility, is to use
-the (free) "lcc" compiler or the "tcc" TDF compiler system.
+possibility (not needed, but possible).
+
+Another possibility, is to use the (free) "lcc" compiler or the "tcc" TDF compiler system, or Intel "icc".  The TDF tcc compiler was compatible in the past, but has not been tested for years.  See http://github.com/tendra for more info.
 
 
 NICE FEATURES

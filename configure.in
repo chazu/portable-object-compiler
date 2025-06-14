@@ -1,6 +1,6 @@
 dnl
 dnl autoconf source file for objc-4.x.x configure script
-dnl $Id: configure.in,v 1.126 2025/06/09 10:27:13 stes Exp $
+dnl $Id: configure.in,v 1.127 2025/06/14 06:33:28 stes Exp $
 dnl
 dnl note: we're in the process of converting the old configure script
 dnl (configure.orig) to an autoconf script (long term project)
@@ -51,7 +51,7 @@ AC_CONFIG_AUX_DIR(util)
 AC_CANONICAL_TARGET
 
 TARGET=$target;AC_SUBST(TARGET)
-OBJC1VERSION=3.4.6;AC_SUBST(OBJC1VERSION)
+OBJC1VERSION=3.4.7;AC_SUBST(OBJC1VERSION)
 NAME=objc-${OBJC1VERSION};AC_SUBST(NAME)
 WARNING="DO NOT EDIT -- configure ${NAME} ${TARGET}";AC_SUBST(WARNING)
 
@@ -458,6 +458,7 @@ NOI="-noI";
 NOLIBS="-noLibs";
 OBJCRT_INC="${ISRCDIR}${UP}${UP}include${PATHSEP}objcrt";
 OBJPAK_INC="${ISRCDIR}${UP}${UP}include${PATHSEP}objpak"
+CAKIT_INC="${ISRCDIR}${UP}${UP}include${PATHSEP}cakit"
 
 # -I. is included for #include "config.h" and "yacc.h"
 # it is possible that $ISRCDIR is also -I./ so duplicate -I./ -I. in that case
@@ -467,17 +468,23 @@ OBJPAK_IFLAGS="$NOI $OBJCRT_INC $ISRCDIR -I."
 OCLIB_IFLAGS="$NOI $OBJCRT_INC $OBJPAK_INC $ISRCDIR -I."
 OBJC_IFLAGS="$NOI $OBJCRT_INC $OBJPAK_INC ${ISRCDIR}${UP}oclib $ISRCDIR -I."
 CAKIT_IFLAGS="$NOI $OBJCRT_INC $ISRCDIR -I."
+UT_IFLAGS="$NOI $OBJCRT_INC $OBJPAK_INC $CAKIT_INC $ISRCDIR -I."
 
 OBJC_BOOTLIBS="${NOLIBS} ${UP}oclib${PATHSEP}oclib.${LIBSUFFIX}"
 OBJC_BOOTLIBS="$OBJC_BOOTLIBS ${UP}objpak${PATHSEP}objpak.${LIBSUFFIX}"
 OBJC_BOOTLIBS="$OBJC_BOOTLIBS ${UP}objcrt${PATHSEP}objcrt.${LIBSUFFIX}"
+UT_BOOTLIBS="${NOLIBS} ${UP}cakit${PATHSEP}cakit.${LIBSUFFIX}"
+UT_BOOTLIBS="$UT_BOOTLIBS ${UP}objpak${PATHSEP}objpak.${LIBSUFFIX}"
+UT_BOOTLIBS="$UT_BOOTLIBS ${UP}objcrt${PATHSEP}objcrt.${LIBSUFFIX}"
 
 AC_SUBST(OBJCRT_IFLAGS)
 AC_SUBST(OBJPAK_IFLAGS)
 AC_SUBST(OCLIB_IFLAGS)
 AC_SUBST(OBJC_IFLAGS)
 AC_SUBST(CAKIT_IFLAGS)
+AC_SUBST(UT_IFLAGS)
 AC_SUBST(OBJC_BOOTLIBS)
+AC_SUBST(UT_BOOTLIBS)
 
 dnl Since the quality of the POC depends on lex/yacc, we require flex/byacc
 dnl Most lexes, yaccs and bison also work (but: byacc is required for -refcnt)

@@ -1,7 +1,7 @@
 
 /*
  * Portable Object Compiler (c) 2025.  All Rights Reserved.
- * $Id: fddtest.m,v 1.1 2025/06/09 10:28:18 stes Exp $
+ * $Id: fddtest.m,v 1.2 2025/06/14 06:35:35 stes Exp $
  */
 
 /*
@@ -52,6 +52,7 @@
    printf("isVariableDense: %i\n",[dpol isVariableDense]);
    printf("isRecursive: %i\n",[dpol isRecursive]);
    dpol = [dpol power:10];
+   [dpol printLine];
    printf("degree: %i\n",[dpol degree]);
    return self;
 }
