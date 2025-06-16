@@ -1,4 +1,6 @@
 
+3.4.8   * add multivariate polynomial test in Unit Test
+
 3.4.7	* modify configure script for UT_BOOTLIBS (Unit Test bootlibs)
 	  and UT_IFLAGS (Unit Test include files) NOT including oclib anylonger
 

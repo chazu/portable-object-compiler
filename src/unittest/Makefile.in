@@ -1,7 +1,7 @@
 
 #
 # Portable Object Compiler (c) 2025.  All Rights Reserved. 
-# $Id: Makefile.in,v 1.5 2025/06/14 06:35:35 stes Exp $
+# $Id: Makefile.in,v 1.6 2025/06/16 16:19:51 stes Exp $
 #
 
 #
@@ -67,6 +67,7 @@ OBJUTFILES=\
 	legendre.$(OBJSUFFIX)\
 	bezout.$(OBJSUFFIX)\
 	perfect.$(OBJSUFFIX)\
+	mvartest.$(OBJSUFFIX)\
 	fddtest.$(OBJSUFFIX)\
 	objut.$(OBJSUFFIX)
 
