@@ -803,6 +803,7 @@ SHELL'
 ac_subst_files=''
 ac_user_opts='
 enable_option_checking
+with_impcplus
 with_prefixed_names
 with_postlink
 with_longlinetags
@@ -1442,6 +1443,7 @@ if test -n "$ac_init_help"; then
 Optional Packages:
   --with-PACKAGE[=ARG]    use PACKAGE [ARG=yes]
   --without-PACKAGE       do not use PACKAGE (same as --with-PACKAGE=no)
+  --with-impcplus         define IMP C++ style id (*imp)(id,...)
   --with-prefixed-names   use oc_objcInit as initialization function
   --with-postlink         use postlink runtime initialization
   --with-longlinetags     generate long #line linetags
@@ -2568,6 +2570,16 @@ ac_compiler_gnu=$ac_cv_c_compiler_gnu
 
 
 
+
+
+
+
+# Check whether --with-impcplus was given.
+if test ${with_impcplus+y}
+then :
+  withval=$with_impcplus; ac_cv_impcplus=$withval
+
+fi
 
 
 
@@ -4389,6 +4401,12 @@ esac
 
 OC_CPARGS="-D__PORTABLE_OBJC__ $OC_CPARGS"
 
+case $ac_cv_impcplus in
+  yes) OC_CPARGS="$OC_CPARGS -DOBJCRT_IMPCPLUS=1";;
+  no) ;;
+esac
+
+
 
 
 
@@ -4497,6 +4515,12 @@ case $ac_cv_shortlinetags in
      esac
      ;;
 esac
+
+case $ac_cv_impcplus in
+  yes) OC_OCARGS="$OC_OCARGS -impcplus";;
+  no) ;;
+esac
+
 
 OC_LDARGS='';
 

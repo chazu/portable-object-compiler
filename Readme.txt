@@ -55,6 +55,16 @@ The "objc" distribution consists of the following parts :
 	There's absolutely no assembly language needed, nor is there
 	a dependency on stack layout, register allocation conventions etc.
 
+	The runtime defines a C type "id" for identifying objects,
+	laid out in classes, similar as in Smalltalk-80.
+
+	It works by binding at runtime (during execution of the program),
+	methods (messages) and objects that receive messages,
+	to function pointers (of C type IMP).
+
+	The runtime library supports K&R (Kernighan&Ritchie) style IMP
+	and C++ style IMP function pointers.
+
         The runtime and compiler support using the frame pointer,
 	as a general purpose register (as in the x64 ABI, for instance).
 
@@ -71,6 +81,8 @@ The "objc" distribution consists of the following parts :
 	port with 'objc'.  Compatible with ICpak101, the collection class
 	library described in Brad Cox book, and used by existing
 	Objective-C packages that were developed with Stepstone objc.
+
+	The classes from Brad Cox' book are similar to those from Smalltalk-80.
 
 	4. "cakit", the "Computer Algebra Kit" Objective C classes
 
@@ -143,12 +155,4 @@ NICE FEATURES
 
 	14.Great system for experimentation with your own additions/extensions
 	to Objective C !
-
-
-WANT TO HELP?
--------------
-
-If you like "objc", feel free to send e-mail to, "stes@pandora.be".
-I'm especially interested in bug-fixes, of course.  And in ports
-to machines that I don't have access to (e.g. CP/M, Atari).
 

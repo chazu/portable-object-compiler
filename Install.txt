@@ -85,6 +85,22 @@ I'd recommend to install the bootstrap compiler in a different directory,
 
 It is important to use the --prefix option if you want to install the compiler in a directory like $HOME/bin.  The default (if no --prefix is specified) is to install into /usr/local/bin,/usr/local/include,/usr/local/man etc.  
 
+Configure has some options (see --help for a list).
+
+The runtime library and compiler support K&R (Kernighan&Ritchie) style IMP
+
+typedef id (*IMP) ();           /* Method pointer traditional K&R C style */
+
+and C++ style IMP function pointers
+
+typedef id (*IMP) (id,...);     /* Method pointer C++ style */
+
+The configure script option:
+
+	./configure --with-impcplus
+
+enables the C++ style by setting -DOBJCRT_IMPCPLUS=1 and the -impcplus switch.
+
 The configure script has to find a C compiler for all this to work.
 
 The configure script will try to find itself a C compiler.
@@ -123,14 +139,16 @@ or on Digital Unix, CC='cc -std' or on Solaris /opt/developerstudio12.6/bin/cc
 
         or
 
-	./configure --prefix=$HOME \
+	./configure --prefix=$HOME --with-impcplus\
            OBJC=/opt/objc-bootstrap/bin/objc \
            XOBJC=/opt/objc-bootstrap/bin/objc \
            YACC='yacc -d' LEX='flex --nounistd' \
            AR=echo FINAL_AR='ar cr' \
 	   MFLAGS=DBG_MFLAGS
 
-        the previous configure line sets OBJC and XOBJC to 
+        the previous configure line installs into $HOME/bin,$HOME/include
+	enables the -DOBJCRT_IMPCPLUS=1 switch for C++ IMP definition,
+	(and enables code generation for -impcplus), sets OBJC and XOBJC to 
         a bootstrap compiler that was installed in /opt/objc-bootstrap,
 	which is only necessary,
 	if you don't have a previous version of objc in the PATH (see step 2)
@@ -151,7 +169,7 @@ or on Digital Unix, CC='cc -std' or on Solaris /opt/developerstudio12.6/bin/cc
 
 	./configure MFLAGS=OPT_MFLAGS
 
-  Optionally run a few basic tests before 'make install':
+  Optionally run the "Unit Test" tests before 'make install':
 
 	make check
 
@@ -159,7 +177,7 @@ or on Digital Unix, CC='cc -std' or on Solaris /opt/developerstudio12.6/bin/cc
 
 	man assert
 
-  Then 
+  To install the compiler and runtime libraries, use :
 
 	make install
 
@@ -169,7 +187,7 @@ or on Digital Unix, CC='cc -std' or on Solaris /opt/developerstudio12.6/bin/cc
 
   different from /opt/objc-bootstrap/bin or $HOME/objc-bootstrap/bin.
 
-  Some examples can be used to check:
+  Some examples (in addition to "Unit Test" from make check) :
 
 	make words
 

@@ -1,6 +1,6 @@
 dnl
 dnl autoconf source file for objc-4.x.x configure script
-dnl $Id: configure.in,v 1.128 2025/06/16 17:11:02 stes Exp $
+dnl $Id: configure.in,v 1.129 2025/06/18 08:24:51 stes Exp $
 dnl
 dnl note: we're in the process of converting the old configure script
 dnl (configure.orig) to an autoconf script (long term project)
@@ -13,6 +13,15 @@ AC_ARG_VAR(LIB64NAME,name relative to OBJCDIR)
 
 dnl the following sets 'srcdir' check that it finds unique block98.html file
 AC_CONFIG_SRCDIR(block98.html)
+
+dnl by default define IMP
+dnl typedef id (*IMP) ()           
+dnl Method pointer traditional K&R C style as in C (and ANSI C)
+
+AC_ARG_WITH(impcplus,
+  [  --with-impcplus         define IMP C++ style id (*imp)(id,...)],
+  [ac_cv_impcplus=$withval]
+)
 
 dnl normally we check for _objcInit() (to see if it's not in the syslibs)
 dnl if it is, we should be using some other prefixed name (oc_objcInit)
@@ -301,6 +310,12 @@ case $ac_cv_gnu17 in
 esac
 
 OC_CPARGS="-D__PORTABLE_OBJC__ $OC_CPARGS"
+
+case $ac_cv_impcplus in 
+  yes) OC_CPARGS="$OC_CPARGS -DOBJCRT_IMPCPLUS=1";;
+  no) ;;
+esac
+
 AC_SUBST(OC_CPARGS)
 AC_SUBST(OC_CCARGS)
 
@@ -396,6 +411,12 @@ case $ac_cv_shortlinetags in
      esac
      ;;
 esac
+
+case $ac_cv_impcplus in
+  yes) OC_OCARGS="$OC_OCARGS -impcplus";;
+  no) ;;
+esac
+
 AC_SUBST(OC_OCARGS)
 OC_LDARGS='';
 AC_SUBST(OC_LDARGS)
