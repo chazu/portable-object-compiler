@@ -1,4 +1,8 @@
 
+3.4.9	* add factorial test in Unit Test
+
+	* pointer to sourceforge site in manpage
+
 3.4.8   * add multivariate polynomial test in Unit Test
 
 	* add option --with-impcplus to configure script

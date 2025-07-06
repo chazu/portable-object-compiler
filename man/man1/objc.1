@@ -2,7 +2,7 @@
 .de q
 ``\\$1''\\$2
 ..
-.TH objc 1 "Jun 5, 2025"
+.TH objc 1 "Jul 6, 2025"
 .SH NAME
 objc \- Portable Object Compiler
 .SH SYNOPSIS
@@ -394,12 +394,6 @@ after running the Objective C compiler.  This option can somewhat reduce the siz
 will extract selector strings out of the translated Objective C sources, assemble the strings in a file called "strings", and will cause the runtime to use a single, shared table of strings).  This could also speed up runtime
 initialization as selectors don't have to be uniqued anylonger at startup.
 
-.IP "\fB\-Yenv\fP"
-
-Use the specified environment.  This is for the TenDRA
-.B tcc
-compiler.  Valid values are \-Yansi, \-Yposix, \-Yunix95 etc.
-
 .SH ENVIRONMENT
 
 The most useful environment variable for setting options for
@@ -446,12 +440,6 @@ $OBJCDIR/bin and $OBJCDIR/man can be added to $PATH and $MANPATH respectively.
 
 .br
 
-.IP "OBJCPATHSEP"
-
-This environment variable, if set, is a string that will be used as path separator instead of the default separator.  Applies to both objc and objc1.
-
-.br
-
 .IP "TMPDIR"
 
 If set, temporary files will be placed in this directory.  The \-T option overrides the value set by TMPDIR.
@@ -486,7 +474,7 @@ function should be logged.  If this variable is set, output for OBJCRTDBG and OB
 
 .SH BUGS
 
-Send bug reports to stes@telenet.be.
+Send bug reports to stes@telenet.be or preferably to objc-discuss@lists.sourceforge.net.   See http://objc.sourceforge.net for more info.
 
 .SH "SEE ALSO"
 cc(1),

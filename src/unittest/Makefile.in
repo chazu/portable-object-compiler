@@ -1,7 +1,7 @@
 
 #
 # Portable Object Compiler (c) 2025.  All Rights Reserved. 
-# $Id: Makefile.in,v 1.6 2025/06/16 16:19:51 stes Exp $
+# $Id: Makefile.in,v 1.7 2025/07/06 08:51:58 stes Exp $
 #
 
 #
@@ -57,6 +57,7 @@ OBJUTFILES=\
 	testcase.$(OBJSUFFIX)\
 	classcnt.$(OBJSUFFIX)\
 	bagtest.$(OBJSUFFIX)\
+	factest.$(OBJSUFFIX)\
 	ordctest.$(OBJSUFFIX)\
 	seqtest.$(OBJSUFFIX)\
 	zashaus.$(OBJSUFFIX)\

@@ -1,7 +1,7 @@
 
 /* 
  * Portable Object Compiler (c) 2025.  All Rights Reserved.
- * $Id: objut.m,v 1.5 2025/06/16 16:19:51 stes Exp $
+ * $Id: objut.m,v 1.6 2025/07/06 08:51:58 stes Exp $
  *
  * This library is free software; you can redistribute it and/or modify it
  * under the terms of the GNU Library General Public License as published 
@@ -27,6 +27,7 @@
 #include "bagtest.h"
 #include "seqtest.h"
 #include "ordctest.h"
+#include "factest.h"
 #include "perfect.h"
 #include "fddtest.h"
 #include "mvartest.h"
@@ -40,6 +41,7 @@ int main(int argc, char *argv[])
   [testSuite addTest:[BagTest new]];
   [testSuite addTest:[OrdCltnTest new]];
   [testSuite addTest:[SequenceTest new]];
+  [testSuite addTest:[FactorialTest new]];
   [testSuite addTest:[PerfectNumberTest new]];
   [testSuite addTest:[FactorDistinctDegreeTest new]];
   [testSuite addTest:[MultivariateExpansionTest new]];
