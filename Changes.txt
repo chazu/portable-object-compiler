@@ -1,4 +1,6 @@
 
+3.4.10  * add OpenBSD7.7 to Platforms.txt
+
 3.4.9	* add factorial test in Unit Test
 
 	* pointer to sourceforge site in manpage
