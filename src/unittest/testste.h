@@ -1,7 +1,7 @@
 
 /*
  * Portable Object Compiler (c) 2025.  All Rights Reserved.
- * $Id: testste.h,v 1.1 2025/03/15 14:50:40 stes Exp $
+ * $Id: testste.h,v 1.2 2025/10/19 18:25:17 stes Exp $
  */
 
 /*
@@ -21,7 +21,7 @@
  */
 
 #ifndef __TESTSUITE_H__
-#define __TESTSUITE__H__
+#define __TESTSUITE_H__
 
 #ifndef __OBJECT_INCLUDED__
 #define __OBJECT_INCLUDED__
