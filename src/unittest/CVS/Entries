@@ -10,7 +10,6 @@
 /testcase.m/1.1/Sat Mar 15 14:50:40 2025//
 /testste.m/1.1/Sat Mar 15 14:50:40 2025//
 /perfect.h/1.1/Mon May  5 12:13:12 2025//
-/perfect.m/1.1/Mon May  5 12:13:12 2025//
 /bezout.h/1.1/Mon Jun  9 08:54:22 2025//
 /bezout.m/1.1/Mon Jun  9 09:11:40 2025//
 /bigrand.h/1.1/Mon Jun  9 08:48:34 2025//
@@ -30,9 +29,12 @@
 /fddtest.m/1.2/Sat Jun 14 06:35:35 2025//
 /mvartest.h/1.1/Mon Jun 16 16:19:51 2025//
 /mvartest.m/1.1/Mon Jun 16 16:19:51 2025//
-/Makefile.in/1.7/Sun Jul  6 08:51:58 2025//
 /factest.h/1.1/Sun Jul  6 08:51:58 2025//
 /factest.m/1.1/Sun Jul  6 08:51:58 2025//
-/objut.m/1.6/Sun Jul  6 08:51:58 2025//
 /testste.h/1.2/Sun Oct 19 18:25:17 2025//
+/Makefile.in/1.8/Sun Oct 19 19:14:58 2025//
+/lgndtest.h/1.1/Sun Oct 19 19:14:59 2025//
+/lgndtest.m/1.1/Sun Oct 19 19:14:59 2025//
+/objut.m/1.7/Sun Oct 19 19:14:59 2025//
+/perfect.m/1.2/Sun Oct 19 19:14:59 2025//
 D

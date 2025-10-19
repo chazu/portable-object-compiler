@@ -1,7 +1,7 @@
 
 /* 
  * Portable Object Compiler (c) 2025.  All Rights Reserved.
- * $Id: objut.m,v 1.6 2025/07/06 08:51:58 stes Exp $
+ * $Id: objut.m,v 1.7 2025/10/19 19:14:59 stes Exp $
  *
  * This library is free software; you can redistribute it and/or modify it
  * under the terms of the GNU Library General Public License as published 
@@ -31,6 +31,7 @@
 #include "perfect.h"
 #include "fddtest.h"
 #include "mvartest.h"
+#include "lgndtest.h"
 
 /* objut (Object Unit Test) is a test program to check newly built libs */
 
@@ -43,6 +44,7 @@ int main(int argc, char *argv[])
   [testSuite addTest:[SequenceTest new]];
   [testSuite addTest:[FactorialTest new]];
   [testSuite addTest:[PerfectNumberTest new]];
+  [testSuite addTest:[LegendreTest new]];
   [testSuite addTest:[FactorDistinctDegreeTest new]];
   [testSuite addTest:[MultivariateExpansionTest new]];
   [testSuite run];

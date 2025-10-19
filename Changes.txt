@@ -1,6 +1,8 @@
 
 3.4.10  * add OpenBSD7.7 to Platforms.txt
 
+	* add LegendreTest in Unit Test (check whether -1 is square modulo p)
+
 3.4.9	* add factorial test in Unit Test
 
 	* pointer to sourceforge site in manpage

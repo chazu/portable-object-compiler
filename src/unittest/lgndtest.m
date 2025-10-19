@@ -1,7 +1,7 @@
 
 /*
  * Portable Object Compiler (c) 2025.  All Rights Reserved.
- * $Id: perfect.m,v 1.2 2025/10/19 19:14:59 stes Exp $
+ * $Id: lgndtest.m,v 1.1 2025/10/19 19:14:59 stes Exp $
  */
 
 /*
@@ -22,7 +22,8 @@
 
 #include "config.h"
 #include <assert.h>
-#include "perfect.h"
+#include "lgndtest.h"
+#include "legendre.h"
 #if OBJC_BLOCKS
 #include "Block.h"
 #endif
@@ -31,43 +32,29 @@
 
 #define NUMPRIMES 4
 
-@implementation PerfectNumberTest
-
-/*
- * Smalltalk code small perfect numbers
- * 
- * |d c|
- * d := Integer primesUpTo:7.
- * c := OrderedCollection new.
- * d do:[ :p | c add:((2 raisedToInteger:(p-1)) * ((2 raisedToInteger:p) - 1)). ].
- */
-
 static int smallprimes[] = {2,3,5,7};
 
-id perfect(void) 
+@implementation LegendreTest
+
+- run
 {
   id c;
   int i;
   id two,one;
+  printf("Object Unit Test: Legendre Symbol test\n");
 
   c = [OrdCltn new];
   one = [BigInt int:1];
   two = [BigInt int:2];
 
   for(i=0;i<NUMPRIMES;i++) {
+     int a;
      int p = smallprimes[i];
-     [c add:[[two power:(p-1)] multiply:[[two power:p] subtract:one]]];
-  } 
+     a = legendre([BigInt int:-1],[BigInt int:p]);
+     printf("legendre(%i,%i) = %i\n",-1,p,a);
+  }
 
-  return c;
-}
-
-- run
-{
-  id m;
-  m  = perfect();
-  printf("Object Unit Test: Perfect Number test\n");
-  [m printLine];
+  return self;
 }
 
 @end
