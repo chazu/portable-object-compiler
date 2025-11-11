@@ -1,6 +1,6 @@
 Summary: Portable Object Compiler
 Name: objc
-Version: 3.4.3
+Version: 3.4.10
 Release: 1%{?dist}
 Group: Applications/File
 License: GPLv2+
@@ -12,7 +12,7 @@ The Portable Object Compiler, a language and a runtime library for producing C p
 
 %prep
 %setup -q
-./configure OBJCDIR=%{_prefix} --prefix=$RPM_BUILD_ROOT%{_prefix}
+./configure OBJCDIR=%{_prefix} --prefix=$RPM_BUILD_ROOT%{_prefix} --without-gnu17 --with-impcplus
 
 %build
 
@@ -156,6 +156,9 @@ rm -rf $RPM_BUILD_ROOT
 %doc Beos.txt Books.txt Changes.txt Ibmvac.txt Install.txt Intro.txt Lcc.txt License.txt Mpw.txt Platform.txt Readme.txt Visual.txt Vms.txt Watcom.txt
 
 %changelog
+* Tue Nov 11 20:50:29 CET 2025 David Stes <stes@telenet.be> 3.4.10
+Update for 3.4.10 : build without-gnu17 --with-impcplus
+
 * Sat May 10 18:04:05 CEST 2025 David Stes <stes@telenet.be> 3.4.3
 Update for 3.4.3
 
