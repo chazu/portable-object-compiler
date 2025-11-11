@@ -1,4 +1,6 @@
 
+3.4.11  * add openSUSE Tumbleweed i586/x86_64 with gcc 15.2.1 to Platforms.txt
+
 3.4.10  * add OpenBSD7.7 to Platforms.txt
 
 	* add LegendreTest in Unit Test (check whether -1 is square modulo p)

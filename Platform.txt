@@ -119,4 +119,6 @@ x86_64-pc-solaris2.11 openindiana hipster gcc13.3 (Illumos SGU lex/yacc)
 x86_64-pc-solaris2.11 openindiana hipster gcc14.2 (Illumos SGU lex/yacc)
 x86_64-unknown-linux-gnu openSUSE Leap 16.0 gcc15 (-std=gnu17 mode) byacc 2.0
 i386-unknown-openbsd7.7 (clang 16.0.6 / flex 2.5.39 / yacc of OpenBSD 7.7)
+i586-unknown-linux-gnu openSUSE Tumbleweed gcc15.2.1 byacc 2.0
+x86_64-unknown-linux-gnu openSUSE Tumbleweed gcc15.2.1 byacc 2.0
 
