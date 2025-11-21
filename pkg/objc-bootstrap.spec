@@ -1,6 +1,6 @@
 Summary: Bootstrap for Portable Object Compiler
 Name: objc-bootstrap
-Version: 3.4.3
+Version: 3.4.11
 Release: 1%{?dist}
 Group: Applications/File
 License: GPLv2+

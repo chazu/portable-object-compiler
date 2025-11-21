@@ -231,6 +231,36 @@ This will compile/build the compiler in the "mybuild" directory.
 This can be useful to do multiple builds in different directories,
 using different flags.
 
+For example, a version of the runtime can be built in separate directories
+
+	- with debug info
+	- with postlink runtime initialisation
+	- with profile information
+	- with reference counts 
+	- with object tables (double indirection)
+	- with Boehm-Demers-Weiser garbage collection
+	- with inline cache 
+	- with the -fast option to disable the use of frame pointer
+	etc.
+
+By building in separate directories (out of the source tree) different configurations can used :
+
+	gnutar xvfz objc-3.4.11.tar.gz
+
+	mkdir bdwgcbuild
+	cd bdwgcbuild
+
+	../objc-3.4.11/configure --prefix=$HOME EXTRA_MFLAGS="-DOBJCRT_BOEHM"
+	make runtime
+
+	cd ..
+	mkdir inlinebuild
+	cd inlinebuild
+	../objc-3.4.11/configure --prefix=$HOME EXTRA_MFLAGS="-inlineCache"
+	make runtime
+
+The objc driver script assumes however that the name of the runtime libraries is changed appropriately; for example from objcrt.a to objcrtgc.a for BDWGC.
+
 Good luck!
 
 Regards,

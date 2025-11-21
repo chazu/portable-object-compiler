@@ -137,8 +137,11 @@ NICE FEATURES
 
 	8.Option for Garbage Collection (using Boehm gc package).
 
-          Option for automatic reference counted memory management 
-          (doesn't require Boehm).  
+	See the Boehm-Demers-Weiser GC at http://hboehm.info/gc for more info.
+	Tested with option -bdwgc using GC 8.3.0
+
+        Option for automatic reference counted memory management 
+        (doesn't require Boehm).  
 
 	9.Exception handling scheme (using Objective-C Blocks) that allows
 	to specify a default handler to be executed.

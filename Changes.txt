@@ -3,6 +3,10 @@
 
 	* update RPM spec file, build bins --without-gnu17 --with-impcplus
 
+	* add option -bdwgc for the Boehm-Demers-Weiser garbage collector
+
+	* add comment on EXTRA_MFLAGS in Install.txt
+
 3.4.10  * add OpenBSD7.7 to Platforms.txt
 
 	* add LegendreTest in Unit Test (check whether -1 is square modulo p)

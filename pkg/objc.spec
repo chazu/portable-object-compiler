@@ -1,6 +1,6 @@
 Summary: Portable Object Compiler
 Name: objc
-Version: 3.4.10
+Version: 3.4.11
 Release: 1%{?dist}
 Group: Applications/File
 License: GPLv2+
@@ -156,6 +156,9 @@ rm -rf $RPM_BUILD_ROOT
 %doc Beos.txt Books.txt Changes.txt Ibmvac.txt Install.txt Intro.txt Lcc.txt License.txt Mpw.txt Platform.txt Readme.txt Visual.txt Vms.txt Watcom.txt
 
 %changelog
+* Fri Nov 21 16:30:07 CET 2025 David Stes <stes@telenet.be> 3.4.11
+Update for 3.4.11 : option -bdwgc for Boehm-Demers-Weiser GC
+
 * Tue Nov 11 20:50:29 CET 2025 David Stes <stes@telenet.be> 3.4.10
 Update for 3.4.10 : build without-gnu17 --with-impcplus
 
