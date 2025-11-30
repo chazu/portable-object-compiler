@@ -1,4 +1,6 @@
 
+3.4.12	* add SUSE SLES 16.0 to Platforms.txt
+
 3.4.11  * add openSUSE Tumbleweed i586/x86_64 with gcc 15.2.1 to Platforms.txt
 
 	* update RPM spec file, build bins --without-gnu17 --with-impcplus
