@@ -1,7 +1,7 @@
 
 #
 # Portable Object Compiler (c) 1996-2023. All Rights Reserved.
-# $Id: Makefile.in,v 1.31 2025/03/07 19:10:42 stes Exp $
+# $Id: Makefile.in,v 1.32 2025/12/31 18:16:31 stes Exp $
 #
 
 SRCDIR=@srcdir@
@@ -30,14 +30,8 @@ runtimer : objcrtr objpakr cakitr
 objcrt ::
 	$(CD) src; $(CD) objcrt; $(MAKE)
 
-objcrtr ::
-	$(CD) src;$(CD) objcrt; $(MAKE) OBJC="objc -q -refcnt" LIBRARY=objcrtr.a
-
 objpak ::
 	$(CD) src; $(CD) objpak; $(MAKE)
-
-objpakr ::
-	$(CD) src;$(CD) objpak; $(MAKE) OBJC="objc -q -refcnt" LIBRARY=objpakr.a
 
 oclib ::
 	$(CD) src; $(CD) oclib;  $(MAKE)
@@ -45,7 +39,7 @@ oclib ::
 objc : objcrt objpak oclib
 	$(CD) src; $(CD) objc;   $(MAKE)
 
-test : default
+test ::
 	$(CD) src; $(CD) unittest;   $(MAKE) check
 
 check : default
@@ -53,9 +47,6 @@ check : default
 
 cakit ::
 	$(CD) src; $(CD) cakit;  $(MAKE)
-
-cakitr ::
-	$(CD) src;$(CD) cakit;$(MAKE) OBJC="objc -q -refcnt" LIBRARY=cakitr.a
 
 browse ::
 	objc -browse tmp browse.h

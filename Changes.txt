@@ -1,6 +1,13 @@
 
 3.4.12	* add SUSE SLES 16.0 to Platforms.txt
 
+	* add OmniOS CE r151056 to Platforms.txt
+
+	* added REFCNTOPT_MFLAGS and REFCNTDBG_MFLAGS to Makefile.in
+	  'make runtime/installruntime' to build/install refcnt libraries
+
+	* fix TestSuite class and Unit Test for -refcnt
+
 3.4.11  * add openSUSE Tumbleweed i586/x86_64 with gcc 15.2.1 to Platforms.txt
 
 	* update RPM spec file, build bins --without-gnu17 --with-impcplus

@@ -1,6 +1,6 @@
 dnl
 dnl autoconf source file for objc-4.x.x configure script
-dnl $Id: configure.in,v 1.133 2025/11/30 18:28:11 stes Exp $
+dnl $Id: configure.in,v 1.134 2025/12/31 18:16:31 stes Exp $
 dnl
 dnl note: we're in the process of converting the old configure script
 dnl (configure.orig) to an autoconf script (long term project)
@@ -459,6 +459,17 @@ case $ac_cv_c_compiler_gnu in
 esac
 AC_SUBST(OPT_MFLAGS)
 DBG_MFLAGS=${DBG_MFLAGS:-'-DDEBUG -g'};AC_SUBST(DBG_MFLAGS)
+
+# for building the runtime with -refcnt support
+# to use the names objcrtr, objpakr, cakitr instead of objcrt,objpak,cakit
+OBJCRTLIBNAME=${OBJCRTLIBNAME:-objcrt}; AC_SUBST(OBJCRTLIBNAME)
+OBJPAKLIBNAME=${OBJPAKLIBNAME:-objpak}; AC_SUBST(OBJPAKLIBNAME)
+CAKITLIBNAME=${CAKITLIBNAME:-cakit}; AC_SUBST(CAKITLIBNAME)
+
+REFCNTOPT_MFLAGS=${REFCNTOPT_MFLAGS:-'-refcnt -DNDEBUG'}
+AC_SUBST(REFCNTOPT_MFLAGS)
+REFCNTDBG_MFLAGS=${REFCNTDBG_MFLAGS:-'-refcnt -DDEBUG -g'}
+AC_SUBST(REFCNTDBG_MFLAGS)
 
 # allow configure EXTRA_MFLAGS=  to specify some extra .m flag
 AC_SUBST(EXTRA_MFLAGS)

@@ -1,7 +1,7 @@
 
 /*
  * Portable Object Compiler (c) 2025.  All Rights Reserved.
- * $Id: testste.m,v 1.1 2025/03/15 14:50:40 stes Exp $
+ * $Id: testste.m,v 1.2 2025/12/31 18:15:24 stes Exp $
  */
 
 /*
@@ -31,11 +31,15 @@
 
 @implementation TestSuite
 
+- tests:c
+{
+  tests = c;
+  return self;
+}
+
 + new
 {
-  self = [super new];
-  tests = [OrderedCollection new];
-  return self;
+  return [[super new] tests:[OrderedCollection new]];
 }
 
 - addTest:aTestCase

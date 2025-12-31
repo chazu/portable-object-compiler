@@ -1,7 +1,7 @@
 
 /* 
  * Portable Object Compiler (c) 2025.  All Rights Reserved.
- * $Id: objut.m,v 1.7 2025/10/19 19:14:59 stes Exp $
+ * $Id: objut.m,v 1.8 2025/12/31 18:15:24 stes Exp $
  *
  * This library is free software; you can redistribute it and/or modify it
  * under the terms of the GNU Library General Public License as published 
@@ -38,15 +38,19 @@
 int main(int argc, char *argv[])
 {
   id testSuite = [TestSuite new];
+#ifndef OBJC_REFCNT
   [testSuite addTest:[ClassCount new]];
+#endif
   [testSuite addTest:[BagTest new]];
   [testSuite addTest:[OrdCltnTest new]];
   [testSuite addTest:[SequenceTest new]];
   [testSuite addTest:[FactorialTest new]];
   [testSuite addTest:[PerfectNumberTest new]];
   [testSuite addTest:[LegendreTest new]];
+#ifndef OBJC_REFCNT
   [testSuite addTest:[FactorDistinctDegreeTest new]];
   [testSuite addTest:[MultivariateExpansionTest new]];
+#endif
   [testSuite run];
   /* always success except when assert() fails */
   exit(0);

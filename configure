@@ -683,6 +683,11 @@ OCLIB_IFLAGS
 OBJPAK_IFLAGS
 OBJCRT_IFLAGS
 EXTRA_MFLAGS
+REFCNTDBG_MFLAGS
+REFCNTOPT_MFLAGS
+CAKITLIBNAME
+OBJPAKLIBNAME
+OBJCRTLIBNAME
 DBG_MFLAGS
 OPT_MFLAGS
 MFLAGS
@@ -5063,6 +5068,17 @@ case $ac_cv_c_compiler_gnu in
 esac
 
 DBG_MFLAGS=${DBG_MFLAGS:-'-DDEBUG -g'};
+
+# for building the runtime with -refcnt support
+# to use the names objcrtr, objpakr, cakitr instead of objcrt,objpak,cakit
+OBJCRTLIBNAME=${OBJCRTLIBNAME:-objcrt};
+OBJPAKLIBNAME=${OBJPAKLIBNAME:-objpak};
+CAKITLIBNAME=${CAKITLIBNAME:-cakit};
+
+REFCNTOPT_MFLAGS=${REFCNTOPT_MFLAGS:-'-refcnt -DNDEBUG'}
+
+REFCNTDBG_MFLAGS=${REFCNTDBG_MFLAGS:-'-refcnt -DDEBUG -g'}
+
 
 # allow configure EXTRA_MFLAGS=  to specify some extra .m flag
 
