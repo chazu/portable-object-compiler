@@ -2759,7 +2759,7 @@ test -n "$target_alias" &&
   program_prefix=${target_alias}-
 
 TARGET=$target;
-OBJC1VERSION=3.4.12;
+OBJC1VERSION=3.4.13;
 NAME=objc-${OBJC1VERSION};
 WARNING="DO NOT EDIT -- configure ${NAME} ${TARGET}";
 
