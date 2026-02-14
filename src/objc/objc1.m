@@ -1,6 +1,6 @@
 
 /* 
- * Copyright (c) 1998-2025 David Stes
+ * Copyright (c) 1998-2026 David Stes
  *
  * This library is free software; you can redistribute it and/or modify it
  * under the terms of the GNU Library General Public License as published 
@@ -318,8 +318,15 @@ void setoptions(id aCltn)
       o_gencode = 0;
     } else if (!strcmp(t,"-impcplus")) {
       o_impcplus++;
+    } else if (!strcmp(t,"-wcharcplus")) {
+      o_wcharcplus++;
+    } else if (!strcmp(t,"-boolcplus")) {
+      o_boolcplus++;
     } else if (!strcmp(t,"-cplus")) {
       o_cplus++;
+      o_wcharcplus++;
+      o_boolcplus++;
+      o_impcplus++;
     } else if (!strcmp(t,"-inlinecache")) {
       o_inlinecache++;
     } else if (!strcmp(t,"-refBind")) {

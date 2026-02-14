@@ -1,6 +1,6 @@
 
 /*
- * Copyright (c) 1998,99,2002,2017,2019,2023,2025 David Stes.
+ * Copyright (c) 1998,99,2002,2017,2019,2023,2025,2026 David Stes.
  *
  * This library is free software; you can redistribute it and/or modify it
  * under the terms of the GNU Library General Public License as published 
@@ -16,7 +16,7 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  *
- * $Id: options.m,v 1.11 2025/06/05 12:18:52 stes Exp $
+ * $Id: options.m,v 1.12 2026/02/14 18:11:20 stes Exp $
  */
 
 #include "config.h"
@@ -58,8 +58,10 @@ char *o_bind;
 char *o_browsedir;
 int o_refbind;
 int o_inlinecache;
-int o_impcplus;
-int o_cplus;
+int o_impcplus; /* definition of IMP type with ... cplus syntax */
+int o_wcharcplus; /* in 2.2.12, wchar_t,bool,__wchar_t enabled by -cplus */
+int o_boolcplus; /* bool type for -cplus */
+int o_cplus; /* causes extern "C" code generation */
 int o_gencode;
 int o_st80;
 int o_selfassign;
@@ -143,6 +145,8 @@ defoptions(void)
   o_hpux = 0;
   o_refcnt = 0;
   o_impcplus = 0;
+  o_boolcplus = 0;
+  o_wcharcplus = 0;
   o_cplus = 0;
   o_debuginfo = 0;
   o_ppi = 0;

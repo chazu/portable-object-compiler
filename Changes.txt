@@ -1,6 +1,9 @@
 
 3.4.13  * add Fedora 43 to Platforms.txt
 
+	* wchar_t, __wchar_t and bool support was added in/since version 2.2.12
+	  objc1 flag -cplus now enables -boolcplus -wcharcplus + extern "C"
+
 3.4.12	* add SUSE SLES 16.0 to Platforms.txt
 
 	* add OmniOS CE r151056 to Platforms.txt
