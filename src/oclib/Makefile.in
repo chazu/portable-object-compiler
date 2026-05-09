@@ -1,7 +1,7 @@
 
 #
 # Portable Object Compiler (c) 1996-2019. All Rights Reserved.
-# $Id: Makefile.in,v 1.6 2022/09/25 14:36:58 stes Exp $
+# $Id: Makefile.in,v 1.7 2026/05/09 17:31:11 stes Exp $
 #
 
 #
@@ -92,6 +92,8 @@ OBJFILES=\
     assign.$(OBJSUFFIX)\
     relxpr.$(OBJSUFFIX)\
     funcall.$(OBJSUFFIX)\
+    gtsassoc.$(OBJSUFFIX)\
+    gtsexpr.$(OBJSUFFIX)\
     btincall.$(OBJSUFFIX)\
     def.$(OBJSUFFIX)\
     fundef.$(OBJSUFFIX)\

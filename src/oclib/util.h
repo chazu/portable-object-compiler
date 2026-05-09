@@ -1,6 +1,6 @@
 
 /*
- * Copyright (c) 1998 David Stes.
+ * Copyright (c) 1998,2026 David Stes.
  *
  * This library is free software; you can redistribute it and/or modify it
  * under the terms of the GNU Library General Public License as published 
@@ -16,7 +16,7 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  *
- * $Id: util.h,v 1.2 2003/09/29 16:52:05 stes Exp $
+ * $Id: util.h,v 1.3 2026/05/09 17:31:11 stes Exp $
  */
 
 #define YYSTYPE id
@@ -104,6 +104,8 @@ id mkparmdef(id parmdef, id specs, id decl);
 id mkparmdeflist(id idents, id parmdefs, BOOL varargs);
 id mkselarg(id selarg, id usel, int ncols);
 id mkselectorexpr(id expr);
+id mkgtsexpr(id gkeyw,id expr,id assoclist); /* _Generic extension */
+id mkgtsassoc(id gkeyw,id expr); /* _Generic extension */
 
 void procextdef(id def);
 void finclassdef(void);

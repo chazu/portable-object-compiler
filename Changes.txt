@@ -1,7 +1,15 @@
 
+3.4.14  * add openSUSE Tumbleweed 20260505-0 (Linux 7.0.2) to Platform.txt
+
+        * add the non-ANSI C "_Generic" keyword for generic type selection
+	  because unfortunately openSUSE Tumbleweed 20260505 
+          glibc 2.43 sys/cdefs.h on Linux 7.0.2 has weird glibc_const_generic
+	  with gcc 15.2.1 enables _Generic (unless --with-gnu17 is used)
+	  _Generic for strstr() included in src/oclib/symbol.m from <string.h>
+
 3.4.13  * add Fedora 43 to Platforms.txt
 
-	* wchar_t, __wchar_t and bool support was added in/since version 2.2.12
+	* wchar_t, __wchar_t and bool support was added in/since objc-2.2.12
 	  objc1 flag -cplus now enables -boolcplus -wcharcplus + extern "C"
 
 3.4.12	* add SUSE SLES 16.0 to Platforms.txt

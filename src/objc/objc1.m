@@ -43,7 +43,7 @@ void printversion(void)
 
 void printcopyright(void)
 {
-  printf("Portable Object Compiler %s (c) 1997-2025.\n",OBJCVERSION);
+  printf("Portable Object Compiler %s (c) 1997-2026.\n",OBJCVERSION);
   printf("Distributed under the terms of the GNU LGPL.\n");
 }
 

@@ -16,7 +16,7 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  *
- * $Id: lex.lm,v 1.19 2026/02/14 18:11:18 stes Exp $
+ * $Id: lex.lm,v 1.20 2026/05/09 17:31:07 stes Exp $
  */
 
 %{
@@ -224,6 +224,8 @@ __declspec\([^)]*\)	{ return watcomkeyw(typequal); }
 "_Optlink"              { return ibmvackeyw(typequal); }
 "_Builtin"              { return ibmvackeyw(typequal);}
 "_System"               { return ibmvackeyw(typequal);}
+
+"_Generic"		{ return keyw(generickeyw); /* gts generic type sel */ }
 
 "("			{
   okblock=0; /* ({ }) GNU nest block */
