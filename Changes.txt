@@ -1,4 +1,8 @@
 
+3.4.15  * update configure/config.guess/config.sub to autoconf 2.73
+
+	* add Debian Linux 13.4 (trixie) to Platform.txt
+
 3.4.14  * add openSUSE Tumbleweed 20260505-0 (Linux 7.0.2) to Platform.txt
 
         * add the non-ANSI C "_Generic" keyword for generic type selection

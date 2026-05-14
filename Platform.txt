@@ -125,4 +125,5 @@ x86_64-unknown-linux-gnu SUSE SLES 16.0 gcc15.1 or gcc13.4 byacc 2.0 flex 2.6.4
 x86_64-pc-solaris2.11 OmniOS CE r151056 gcc14.3 (SGU Solaris-ELF 4.0 yacc)
 x86_64-unknown-linux-gnu Fedora 43 gcc15.2.1 byacc 2.0 flex 2.6.4
 x86_64-pc-linux-gnu openSUSE Tumbleweed 20260505-0 gcc15.2.1 byacc 2.0
+x86_64-unknown-linux-gnu Debian 13.4 gcc byacc 2.0 flex 2.6.4
 
