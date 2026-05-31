@@ -2,7 +2,7 @@
  BOOTSTRAP PROCEDURE
  -------------------
 
-1.  "./configure"  or "./configure --prefix=$HOME"
+1.  "./configure"  or "./configure --prefix=$HOME/objc-bootstrap"
 
     this will configure objc (the driver script) and
     objc.exe (the driver executable)
@@ -19,16 +19,16 @@
 3.  "[ su root; ] make install"
 
     this will copy the executables objc and objc1 into /usr/local/bin
-    (or into $HOME/bin if you configured with --prefix=$HOME)
+    (or into $HOME/objc-bootstrap/bin if you configured with --prefix)
 
  INSTALLATION PROCEDURE
  ----------------------
 
-4.  "cd $HOME/objc1.7.1"
+4.  "cd $HOME/somedirectory"
 
     download the latest compiler sources and go to that directory
 
-5.  "./configure" or "./configure --prefix=$HOME"
+5.  "./configure" or "./configure --prefix=$HOME/objc-bootstrap"
 
     configure the compiler sources
     this will find the bootstrap compiler that we've built before
@@ -36,6 +36,8 @@
 6.  "make; [ su root; ] make install"
 
     replace the bootstrap compiler by the actual compiler
+    by setting PATH=$HOME/objc-bootstrap/bin:$PATH
+    and by running configure/make/make install for the compiler sources
 
 
  FUTURE UPGRADES

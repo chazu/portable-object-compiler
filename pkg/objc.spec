@@ -1,6 +1,6 @@
 Summary: Portable Object Compiler
 Name: objc
-Version: 3.4.11
+Version: 3.4.16
 Release: 1%{?dist}
 Group: Applications/File
 License: GPLv2+
@@ -156,6 +156,9 @@ rm -rf $RPM_BUILD_ROOT
 %doc Beos.txt Books.txt Changes.txt Ibmvac.txt Install.txt Intro.txt Lcc.txt License.txt Mpw.txt Platform.txt Readme.txt Visual.txt Vms.txt Watcom.txt
 
 %changelog
+* Sun May 31 21:32:17 CEST 2026 David Stes <stes@telenet.be> 3.4.16
+Update for 3.4.16 : add non-ANSI _Generic keyword
+
 * Fri Nov 21 16:30:07 CET 2025 David Stes <stes@telenet.be> 3.4.11
 Update for 3.4.11 : option -bdwgc for Boehm-Demers-Weiser GC
 
@@ -188,3 +191,4 @@ Update for 3.3.1
 
 * Sat Sep 26 2015 David Stes <stes@telenet.be> 3.2.13
 Copy spec file from example
+

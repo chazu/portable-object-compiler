@@ -3,11 +3,11 @@
 %:
 	dh $@
 
-INSTALLDIR=/home/stes/src/objc-3.4.14/debian/objc/usr
-BINDIR=/home/stes/src/objc-3.4.14/debian/objc/usr/bin
-HDRDIR=/home/stes/src/objc-3.4.14/debian/objc/usr/include
-LIBDIR=/home/stes/src/objc-3.4.14/debian/objc/usr/lib
-MANDIR=/home/stes/src/objc-3.4.14/debian/objc/usr/share/man
+INSTALLDIR=/home/stes/src/objc-3.4.16/debian/objc/usr
+BINDIR=/home/stes/src/objc-3.4.16/debian/objc/usr/bin
+HDRDIR=/home/stes/src/objc-3.4.16/debian/objc/usr/include
+LIBDIR=/home/stes/src/objc-3.4.16/debian/objc/usr/lib
+MANDIR=/home/stes/src/objc-3.4.16/debian/objc/usr/share/man
 
 override_dh_auto_configure:
 	dh_auto_configure -- --with-impcplus --without-gnu17 LEX="flex"

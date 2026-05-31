@@ -52,9 +52,10 @@ For Solaris SVR4 package (older Solaris or 11 in legacy mode)
 	pkgrecv -s myrepo -d archive.p5p -a pkg://stes/developer/objc
 
 
-For FreeBSD 10 
+For FreeBSD 10,15 
 
 	pkg -d create -p freebsd10/pkg-plist -m freebsd10
+	pkg -d create -p freebsd15/pkg-plist -m freebsd15
 
 For Ubuntu
 	

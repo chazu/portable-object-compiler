@@ -88,6 +88,8 @@ OBJS= pointer.o\
 	objcrt.o\
 	datadef.o\
 	gasmop.o\
+	gtsassoc.o\
+	gtsexpr.o\
 	dostmt.o\
 	gattrib.o\
 	arrowxpr.o\

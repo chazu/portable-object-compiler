@@ -1,4 +1,11 @@
 
+3.4.16  * add openSUSE Tumbleweed 20260529-0 to Platform.txt (Linux 7.0.10)
+
+        * add FreeBSD 15 to Platform.txt
+	  (update pkg/freebsd15 files for man3objc location)
+
+	* add non-ANSI C "_Generic" to util/Makefile.in for bootstrap compiler
+
 3.4.15  * update configure/config.guess/config.sub to autoconf 2.73
 
 	* add Debian Linux 13.4 (trixie) to Platform.txt
