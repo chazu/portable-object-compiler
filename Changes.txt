@@ -6,6 +6,8 @@
 
 	* add non-ANSI C "_Generic" to util/Makefile.in for bootstrap compiler
 
+	* update version of bootstrap compiler to 3.4.16 for autoconf 2.73
+
 3.4.15  * update configure/config.guess/config.sub to autoconf 2.73
 
 	* add Debian Linux 13.4 (trixie) to Platform.txt
