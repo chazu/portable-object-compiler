@@ -1,6 +1,9 @@
 
 3.4.17  * use lib64 instead of lib on linux aarch64 for libraries 
 
+	* update pkg/objc.spec and pkg/objc-bootstrap.spec
+	  for SUSE Open Build Service (separate objc-devel subpackage)
+
 3.4.16  * add openSUSE Tumbleweed 20260529-0 to Platform.txt (Linux 7.0.10)
 
         * add FreeBSD 15 to Platform.txt

@@ -1,18 +1,31 @@
 Summary: Portable Object Compiler
 Name: objc
-Version: 3.4.16
+Version: 3.4.17
 Release: 1%{?dist}
-Group: Applications/File
-License: GPLv2+
+Group: Development/Languages/Objective-C
+License: LGPL-2.0-or-later
 Source: https://sourceforge.net/projects/objc/files/src/objc-%{version}.tar.gz
+BuildRequires: flex
+BuildRequires: byacc
+BuildRequires: objc-bootstrap
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 %description
 The Portable Object Compiler, a language and a runtime library for producing C programs that operate by the runtime conventions of Smalltalk 80 in a UNIX environment, as described in Brad Cox's book on Objective-C.  Smalltalk and Objective-C offer Object Oriend Programming in which data, and the programs which may access it, are designed, built and maintained as inseparable units called objects.  The precompiler is backed by a library which supports Smalltalk 80's interpretation of messaging; binding of a message to its target routine is done at run time.  The library also contains a growing number of primitive class definitions, such as an Object class whose abilities are inherited by every object in the system and features such as Blocks, enclosures like in Smalltalk 80.
 
+%package devel  
+Summary:        Development files for %{name}
+Group: Development/Languages/Objective-C
+ 
+%description devel  
+This package contains the header files and development documentation for %{name}.  
+
 %prep
 %setup -q
-./configure OBJCDIR=%{_prefix} --prefix=$RPM_BUILD_ROOT%{_prefix} --without-gnu17 --with-impcplus
+./configure OBJCDIR=%{_prefix} \
+  OBJC=/opt/objc-bootstrap/bin/objc \
+  XOBJC=/opt/objc-bootstrap/bin/objc \
+--prefix=$RPM_BUILD_ROOT%{_prefix} --without-gnu17 --with-impcplus
 
 %build
 
@@ -36,13 +49,17 @@ rm -rf $RPM_BUILD_ROOT
 %{_bindir}/objc1
 %{_bindir}/cvtimport
 %{_bindir}/postlink
+%{_libdir}/objchelp.txt
+%{_libdir}/_prelink.o
+%{_libdir}/objcdlso.ld
+
+%files devel
+%defattr(-,root,root)
 %{_libdir}/objcrt.a
 %{_libdir}/objpak.a
 %{_libdir}/cakit.a
-%{_libdir}/_prelink.o
 %{_libdir}/_predll.o
-%{_libdir}/objchelp.txt
-%{_libdir}/objcdlso.ld
+%{_prefix}/include/objcrt
 %{_prefix}/include/objcrt/OutOfMem.h
 %{_prefix}/include/objcrt/Object.h
 %{_prefix}/include/objcrt/objc.h
@@ -50,6 +67,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_prefix}/include/objcrt/Message.h
 %{_prefix}/include/objcrt/Block.h
 %{_prefix}/include/objcrt/objcrt.h
+%{_prefix}/include/cakit
 %{_prefix}/include/cakit/cfloat.h
 %{_prefix}/include/cakit/term.h
 %{_prefix}/include/cakit/ccltn.h
@@ -65,6 +83,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_prefix}/include/cakit/cakit.h
 %{_prefix}/include/cakit/vector.h
 %{_prefix}/include/cakit/fraction.h
+%{_prefix}/include/ppi
 %{_prefix}/include/ppi/vectors.h
 %{_prefix}/include/ppi/IPSequence.h
 %{_prefix}/include/ppi/OrdCltn.h
@@ -80,6 +99,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_prefix}/include/ppi/StringCl.h
 %{_prefix}/include/ppi/ICpak101.h
 %{_prefix}/include/ppi/Assoc.h
+%{_prefix}/include/objpak
 %{_prefix}/include/objpak/set.h
 %{_prefix}/include/objpak/outofbnd.h
 %{_prefix}/include/objpak/rectangl.h
@@ -110,6 +130,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/objc.1.gz
 %{_mandir}/man1/postlink.1.gz
 %{_mandir}/man1/vici.1.gz
+%{_mandir}/man3objc
 %{_mandir}/man3objc/Array.3.gz
 %{_mandir}/man3objc/AsciiFiler.3.gz
 %{_mandir}/man3objc/BadVersion.3.gz
@@ -130,7 +151,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man3objc/Message.3.gz
 %{_mandir}/man3objc/Monomial.3.gz
 %{_mandir}/man3objc/NotFound.3.gz
-# motif-devel conflict with Object.3
 %{_mandir}/man3objc/Object.3.gz
 %{_mandir}/man3objc/OrdCltn.3.gz
 %{_mandir}/man3objc/OutOfBounds.3.gz
@@ -156,19 +176,23 @@ rm -rf $RPM_BUILD_ROOT
 %doc Beos.txt Books.txt Changes.txt Ibmvac.txt Install.txt Intro.txt Lcc.txt License.txt Mpw.txt Platform.txt Readme.txt Visual.txt Vms.txt Watcom.txt
 
 %changelog
-* Sun May 31 21:32:17 CEST 2026 David Stes <stes@telenet.be> 3.4.16
-Update for 3.4.16 : add non-ANSI _Generic keyword
+%changelog
+* Sat Jul 18 2026 David Stes <stes@telenet.be> 3.4.17
+Use lib64 for linux aarch64
 
-* Fri Nov 21 16:30:07 CET 2025 David Stes <stes@telenet.be> 3.4.11
+* Fri Jul 3 2026 David Stes <stes@telenet.be> 3.4.15
+Add flex,byacc as requirements
+
+* Fri Nov 21 2025 David Stes <stes@telenet.be> 3.4.11
 Update for 3.4.11 : option -bdwgc for Boehm-Demers-Weiser GC
 
-* Tue Nov 11 20:50:29 CET 2025 David Stes <stes@telenet.be> 3.4.10
+* Tue Nov 11 2025 David Stes <stes@telenet.be> 3.4.10
 Update for 3.4.10 : build without-gnu17 --with-impcplus
 
-* Sat May 10 18:04:05 CEST 2025 David Stes <stes@telenet.be> 3.4.3
+* Sat May 10 2025 David Stes <stes@telenet.be> 3.4.3
 Update for 3.4.3
 
-* Sat Oct  7 13:51:05 CEST 2023 David Stes <stes@telenet.be> 3.3.41
+* Sat Oct  7 2023 David Stes <stes@telenet.be> 3.3.41
 Update for 3.3.41
 
 * Sat Feb 11 2023 David Stes <stes@telenet.be> 3.3.34
