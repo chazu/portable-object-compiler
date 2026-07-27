@@ -4,6 +4,12 @@
 	* update pkg/objc.spec and pkg/objc-bootstrap.spec
 	  for SUSE Open Build Service (separate objc-devel subpackage)
 
+	* add _Float16, _Float32, _Float64, _Float128 non-ANSI types
+	  because those types are unfortunately in <stdlib.h> on Linux
+          can be used when compiling with -D_DEFAULT_SOURCE _D_GNU_SOURCE
+
+	* add SUSE SLES 15 SP6 to Platform.txt (gcc 7.5, Linux 6.4)
+
 3.4.16  * add openSUSE Tumbleweed 20260529-0 to Platform.txt (Linux 7.0.10)
 
         * add FreeBSD 15 to Platform.txt
