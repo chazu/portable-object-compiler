@@ -16,7 +16,7 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  *
- * $Id: lex.lm,v 1.21 2026/07/27 14:25:40 stes Exp $
+ * $Id: lex.lm,v 1.22 2026/07/27 20:47:43 stes Exp $
  */
 
 %{
@@ -201,18 +201,22 @@ DBLSUFFIX ([fFlL]{1,3})
     return (o_llkeyw)?keyw(typeword):identif();
 }
 
-"_Float16"	{ /* IEC 60559 */ return gnukeyw(typequal); }
-"_Float32"	{ /* IEC 60559 */ return gnukeyw(typequal); }
-"_Float64"	{ /* IEC 60559 */ return gnukeyw(typequal); }
-"_Float128"	{ /* IEC 60559 */ return gnukeyw(typequal); }
-"_Float16x"	{ /* IEC 60559 */ return gnukeyw(typequal); }
-"_Float32x"	{ /* IEC 60559 */ return gnukeyw(typequal); }
-"_Float64x"	{ /* IEC 60559 */ return gnukeyw(typequal); }
-"_Float128x"	{ /* IEC 60559 */ return gnukeyw(typequal); }
+"_Float16"	{ /* IEC 60559 */ return gnukeyw(typeword); }
+"_Float32"	{ /* IEC 60559 */ return gnukeyw(typeword); }
+"_Float64"	{ /* IEC 60559 */ return gnukeyw(typeword); }
+"_Float128"	{ /* IEC 60559 */ return gnukeyw(typeword); }
+"_Float16x"	{ /* IEC 60559 */ return gnukeyw(typeword); }
+"_Float32x"	{ /* IEC 60559 */ return gnukeyw(typeword); }
+"_Float64x"	{ /* IEC 60559 */ return gnukeyw(typeword); }
+"_Float128x"	{ /* IEC 60559 */ return gnukeyw(typeword); }
 
 "__int64"           {
  /* WATCOM C 11 io.h */ 
   return watcomkeyw(typeword); 
+}
+"__int128"           {
+ /* linux/types.h */ 
+  return gnukeyw(typeword);
 }
 "__huge"		{ return watcomkeyw(typequal); }
 "__segment"		{ return watcomkeyw(typequal); }

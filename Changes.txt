@@ -1,4 +1,8 @@
 
+3.4.18  * add non-ANSI __int128 C type from <linux/types.h>
+	
+	* add non-ANSI _Float16x, _Float32x, _Float64x, _Float128x
+
 3.4.17  * use lib64 instead of lib on linux aarch64 for libraries 
 
 	* update pkg/objc.spec and pkg/objc-bootstrap.spec
