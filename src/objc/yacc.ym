@@ -1,6 +1,6 @@
 
 /*
- * Copyright (c) 1997,2021 David Stes.
+ * Copyright (c) 1997,2026 David Stes.
  *
  * This library is free software; you can redistribute it and/or modify it
  * under the terms of the GNU Library General Public License as published 
@@ -16,7 +16,7 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  *
- * $Id: yacc.ym,v 1.21 2021/03/23 12:39:49 stes Exp $
+ * $Id: yacc.ym,v 1.23 2026/05/09 17:31:07 stes Exp $
  */
 
 %{
@@ -38,7 +38,7 @@
 #include "util.h"
 #include "stmt.h"
 
-#if 0
+#if 1
 /* breaks compile wcc386 */
 int yyerror(char*);
 int yylex() ;
@@ -63,6 +63,9 @@ int yylex() ;
 %token ellipsis
 %token dosasmstmt
 %token assignop equalop relop shift plusplus logand logor arrow
+
+/* support OpenSUSE Linux 7.0.2 glibc-2.43 glibc_const_generic in sys/cdefs.h */
+%token generickeyw
 
 /* Objective C */
 
@@ -685,6 +688,20 @@ ppinamelist : ppiname
      { $$ = nil; /* ignored */ }
   ;
 
+/* _Generic type (gts) selection non-ANSI C construct */
+
+gtsassoclist : gtsassoc
+     { $$ = mklist(nil,$1); }
+  | gtsassoclist ',' gtsassoc
+     { $$ = mklist($1,$3); }
+  ;
+
+gtsassoc : typename ':' assignexpr
+     { $$ = mkgtsassoc($1,$3); }
+  | defaultkeyw ':' assignexpr
+     { $$ = mkgtsassoc($1,$3); }
+  ;
+
 primaryexpr : identifier
      { $$ = mkidentexpr($1); }
   | constant
@@ -703,6 +720,9 @@ primaryexpr : identifier
      { $$ = mkfuncall($1,$3); }
   | primaryexpr '(' compoundstmt ')' %prec hyperunary
      { $$ = mkpostfixexpr($1,mkprecexpr($3)); }
+  /* _Generic type selection non-ANSI C construct */
+  | generickeyw '(' expr ',' gtsassoclist ')' %prec hyperunary
+     { $$ = mkgtsexpr($1,$3,$5); }
   | primaryexpr '.' identifier
      { $$ = mkdotexpr($1,$3); }
   | primaryexpr '.' typeword

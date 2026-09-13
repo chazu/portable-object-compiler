@@ -16,7 +16,7 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  *
- * $Id: util.m,v 1.4 2011/06/13 21:54:16 stes Exp $
+ * $Id: util.m,v 1.5 2026/05/09 17:31:11 stes Exp $
  */
 
 #include "config.h"
@@ -107,6 +107,8 @@
 #include "gasmstmt.h"
 #include "gattrib.h"
 #include "gatrdecl.h"
+#include "gtsexpr.h"
+#include "gtsassoc.h"
 
 void 
 procextdef(id def)
@@ -642,6 +644,31 @@ mkfuncall(id funname, id args)
 
   [r funname:funname];
   [r funargs:args];
+  return r;
+}
+
+/* non-ANSI _Generic() type selection */
+
+id 
+mkgtsexpr(id keyw, id anExpr, id args)
+{
+  id r = [GenericTypeSelectionExpr new];
+
+  [r keyw:keyw];
+  [r expr:anExpr];
+  [r assoclist:args];
+  return r;
+}
+
+/* non-ANSI _Generic() type selection */
+
+id 
+mkgtsassoc(id keyw, id anExpr)
+{
+  id r = [GenericTypeSelectionAssoc new];
+
+  [r typename:keyw];
+  [r expr:anExpr];
   return r;
 }
 

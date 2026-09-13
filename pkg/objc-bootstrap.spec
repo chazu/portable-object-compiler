@@ -1,10 +1,12 @@
 Summary: Bootstrap for Portable Object Compiler
 Name: objc-bootstrap
-Version: 3.3.38
+Version: 3.4.17
 Release: 1%{?dist}
-Group: Applications/File
-License: GPLv2+
+Group: Development/Languages/Objective-C
+License: LGPL-2.0-or-later
 Source: https://sourceforge.net/projects/objc/files/src/objc-bootstrap-%{version}.tar.gz
+BuildRequires: flex
+BuildRequires: byacc
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 # redefine the default _prefix /usr to /opt/objc-boostrap
@@ -38,12 +40,24 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(-,root,root)
+%{_prefix}
+%{_bindir}
 %{_bindir}/objc
 %{_bindir}/objc1
 %{_bindir}/postlink
+%{_libdir}
 %{_libdir}/_prelink.o
 
 %changelog
+* Sat Jul 18 2026 David Stes <stes@telenet.be> 3.4.17
+Use lib64 for linux aarch64
+
+* Fri Jul 3 2026 David Stes <stes@telenet.be> 3.4.16
+Update to 3.4.16
+
+* Sat May 10 2025 David Stes <stes@telenet.be> 3.4.3
+Update to 3.4.3
+
 * Sat Feb 11 2023 David Stes <stes@telenet.be> 3.3.32
 Use _prefix /opt/objc-bootstrap for bootstrap compiler
 
